@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34322.80
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessService", "DataAccessService\DataAccessService.csproj", "{6FD22F10-A9F7-4B8A-A4CD-FE1134975C31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.DataAccessService", "DataAccessService\Library.DataAccessService.csproj", "{6FD22F10-A9F7-4B8A-A4CD-FE1134975C31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataContext", "DataContext\DataContext.csproj", "{A899ED68-1F91-4FCE-86B5-11B977D90EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.DataContext", "DataContext\Library.DataContext.csproj", "{A899ED68-1F91-4FCE-86B5-11B977D90EE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiService", "ApiService\ApiService.csproj", "{BD4B58EB-204A-46BD-8F25-CE0BCC6FBE65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.ApiService", "ApiService\Library.ApiService.csproj", "{BD4B58EB-204A-46BD-8F25-CE0BCC6FBE65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{FE72BF6A-AFDE-4996-A945-357B1A85B0A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Models", "Models\Library.Models.csproj", "{FE72BF6A-AFDE-4996-A945-357B1A85B0A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventPlannerAPI", "EventPlannerAPI\EventPlannerAPI.csproj", "{9F0595C0-7310-4C4A-AF89-006D25726613}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventPlannerAPI", "EventPlannerAPI\EventPlannerAPI.csproj", "{9F0595C0-7310-4C4A-AF89-006D25726613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventPlannerMAUI", "EventPlannerMAUI\EventPlannerMAUI.csproj", "{482AC85C-D9A6-417B-AB0D-487FF7E63014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventPlannerMAUI", "EventPlannerMAUI\EventPlannerMAUI.csproj", "{482AC85C-D9A6-417B-AB0D-487FF7E63014}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
