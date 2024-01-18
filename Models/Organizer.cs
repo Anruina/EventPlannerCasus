@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Library.Models
 {
+    
     public class Organizer : TableData
     {
 
         //properties
         public string? Name { get; set; }
-        public List<string>? Permits { get; set; }
+        public string? AuthenticationId { get; set; }
 
         //relations
-        public Event? Event { get; set; }
+        public List<Event>? OrganizedEvents { get; set; }
+
+        public string? MailAddress { get; set; }
+        public string? PhoneNumber { get; set; }
+
     }
+
 }

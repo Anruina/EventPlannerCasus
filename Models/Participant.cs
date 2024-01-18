@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Library.Models
 {
+    
     public class Participant : TableData
     {
-        //properties
+
         public string? Name { get; set; }
 
-        //relations
-        public List<Event>? Events { get; set; }
+        public string? AuthenticationId { get; set; }
 
-        public List<Activity>? Activities { get; set; }
+        public List<Event>? VisitedEvents { get; set; }
 
+        public List<PlannedActivity>? VisitedActivities { get; set; }
+
+        public int AddressId { get; set; }
         public Address? Address { get; set; }
+
     }
+
 }
