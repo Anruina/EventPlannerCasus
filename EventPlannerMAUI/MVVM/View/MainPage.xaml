@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPlannerMAUI.MainPage"
-             NavigationPage.HasNavigationBar="False" >
+             x:Class="EventPlannerMAUI.MVVM.View.MainPage"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False" >
 
     <ScrollView>
 
@@ -104,8 +105,11 @@
                             HeightRequest="45" 
                             WidthRequest="100" />
 
-                        <Label
-                            Text="Forgot Password" />
+                        <Button
+                            Text="Forgot Password" 
+                            HorizontalOptions="Center"
+                            TextColor="#1F5ABC" 
+                            BackgroundColor="Transparent" />
 
                     </StackLayout>
 

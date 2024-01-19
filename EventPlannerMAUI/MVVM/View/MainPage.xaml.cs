@@ -1,7 +1,7 @@
 ﻿using EventPlannerMAUI.MobileApp;
 using Library.ApiService;
 
-namespace EventPlannerMAUI
+namespace EventPlannerMAUI.MVVM.View
 {
 
     public partial class MainPage : ContentPage
@@ -62,7 +62,7 @@ namespace EventPlannerMAUI
         private async void OnRegisterClick(object sender, EventArgs e)
         {
 
-            //await Navigation.PushAsync(new RegisterPage());
+            await Navigation.PushAsync(new RegisterPage());
 
         }
 
