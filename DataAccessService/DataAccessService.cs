@@ -1,6 +1,8 @@
 ﻿using Library.Models;
+using Library.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Library.DataContext.Data;
+using System.Runtime.CompilerServices;
 
 namespace Library.DataAccessService
 {
@@ -103,7 +105,104 @@ namespace Library.DataAccessService
 
         #endregion
 
+        #region Organizer
+
+        #region Get
+        public async Task<Organizer?> GetOrganizer(string authenticationId)
+        {
+
+            if(_applicationContext?.Organizers == null)
+                return null;
+
+            Organizer? organizer = await _applicationContext.Organizers.Include(o => o.OrganizedEvents).FirstOrDefaultAsync(o => o.AuthenticationId == authenticationId);
+            
+            return organizer;
+
+        }
         #endregion
 
+        #region Save
+        public async Task<Organizer?> SaveOrganizer(Organizer organizer)
+        {
+
+            if (_applicationContext?.Organizers == null)
+                return null;
+
+            _applicationContext.Organizers.Update(organizer);
+            await _applicationContext.SaveChangesAsync();
+
+            return organizer;
+
+        }
+
+        #endregion
+
+        #region Delete
+        public async Task<bool> DeleteOrganizer(string authenticationId)
+        {
+
+            if (_applicationContext?.Organizers == null)
+                return false;
+
+            Organizer? organizer = await _applicationContext.Organizers.FirstOrDefaultAsync(p => p.AuthenticationId == authenticationId);
+
+            if (organizer == null)
+                return false;
+
+            _applicationContext.Organizers.Remove(organizer);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
+        #endregion
+        #endregion
+
+        #region Activity
+
+        #region Get & Get All
+        public async Task<Activity?> GetActivity(int id)
+        {
+
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            Activity? activity = await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).FirstOrDefaultAsync(a => a.Id == id);
+
+            if (activity == null)
+                return null;
+
+            return activity;
+
+        }
+
+        public async Task<List<Activity>?> GetAllActivites()
+        {
+
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            return await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).ToListAsync();
+
+        }
+
+
+        #endregion
+
+        #endregion
+
+        #region Event
+        #endregion
+
+        #region EventType
+        #endregion
+
+        #region Address
+        #endregion
+
+        #region PlannedActivity
+        #endregion
+
+        #endregion
     }
 }
