@@ -226,13 +226,66 @@ namespace Library.DataAccessService
         #region Event
 
         #region Get & Get All
+        public async Task<Event?> GetEvent(int id)
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
+
+            if (evenement == null)
+                return null;
+
+            return evenement;
+
+        }
+
+        public async Task<List<Event>?> GetAllEvents ()
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
+
+        }
 
         #endregion
 
         #region Save
+        public async Task<Event?> SaveEvent(Event evenement)
+        {
+            if (_applicationContext?.Events == null)
+                return null;
+
+            _applicationContext.Events.Update(evenement);
+            await _applicationContext.SaveChangesAsync();
+
+            return evenement;
+        }
+
         #endregion
 
         #region Delete
+        public async Task<bool?> DeleteEvent(int eventementId)
+        {
+
+            if (_applicationContext?.Events == null)
+                return false;
+
+            Event? evenement = await _applicationContext.Events.FirstOrDefaultAsync(a => a.Id == eventementId);
+
+            if (evenement == null)
+                return false;
+
+            _applicationContext.Events.Remove(evenement);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
+
         #endregion
 
         #endregion
