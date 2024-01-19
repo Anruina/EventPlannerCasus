@@ -226,17 +226,6 @@ namespace Library.DataAccessService
         #region Event
 
         #region Get & Get All
-
-        public async Task<List<Event>?> GetEvents()
-        {
-
-            if (_applicationContext?.Events == null)
-                return null;
-
-            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
-
-        }
-
         public async Task<Event?> GetEvent(int id)
         {
 
@@ -249,6 +238,16 @@ namespace Library.DataAccessService
                 return null;
 
             return evenement;
+
+        }
+
+        public async Task<List<Event>?> GetAllEvents()
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
 
         }
 
@@ -332,7 +331,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.EventTypes == null)
                 return false;
 
-            EventType? eventType = await _applicationContext.EventTypes.FirstOrDefaultAsync(a => a.Id == eventTypeId);
+            EventType? eventType = await _applicationContext.EventTypes.FirstOrDefaultAsync(et => et.Id == eventTypeId);
 
             if (eventType == null)
                 return false;
@@ -350,12 +349,64 @@ namespace Library.DataAccessService
         #region Address
 
         #region Get & Get All
+        public async Task<Address?> GetAddress(int id)
+        {
+
+            if (_applicationContext?.Addresses == null)
+                return null;
+
+            Address? address = await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Participants).FirstOrDefaultAsync(a => a.Id == id);
+
+            if (address == null)
+                return null;
+
+            return address;
+
+        }
+
+        public async Task<List<Address>?> GetAllAddress()
+        {
+
+            if (_applicationContext?.Addresses == null)
+                return null;
+
+            return await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Participants).ToListAsync();
+
+        }
         #endregion
 
         #region Save
+        public async Task<Address?> SaveAddress(Address address)
+        {
+            if (_applicationContext?.Addresses == null)
+                return null;
+
+            _applicationContext.Addresses.Update(address);
+            await _applicationContext.SaveChangesAsync();
+
+            return address;
+        }
+
         #endregion
 
         #region Delete
+        public async Task<bool?> DeleteAddress(int addressId)
+        {
+
+            if (_applicationContext?.Addresses == null)
+                return false;
+
+            Address? address = await _applicationContext.Addresses.FirstOrDefaultAsync(a => a.Id == addressId);
+
+            if (address == null)
+                return false;
+
+            _applicationContext.Addresses.Remove(address);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
         #endregion
 
         #endregion
@@ -363,6 +414,7 @@ namespace Library.DataAccessService
         #region PlannedActivity
 
         #region Get & Get All
+
         #endregion
 
         #region Save
