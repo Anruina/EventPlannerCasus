@@ -186,21 +186,94 @@ namespace Library.DataAccessService
 
         }
 
+        #endregion
 
+        #region Save
+        public async Task<Activity?> SaveActivity(Activity activity)
+        {
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            _applicationContext.Activities.Update(activity);
+            await _applicationContext.SaveChangesAsync();
+
+            return activity;
+        }
+        #endregion
+
+        #region Delete
+        public async Task<bool?> DeleteActivity(int activityId)
+        {
+
+            if (_applicationContext?.Activities == null)
+                return false;
+
+            Activity? activity = await _applicationContext.Activities.FirstOrDefaultAsync(a => a.Id == activityId);
+
+            if (activity == null)
+                return false;
+
+            _applicationContext.Activities.Remove(activity);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
         #endregion
 
         #endregion
 
         #region Event
+
+        #region Get & Get All
+
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #region EventType
+
+        #region Get
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #region Address
+
+        #region Get & Get All
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #region PlannedActivity
+
+        #region Get & Get All
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #endregion
