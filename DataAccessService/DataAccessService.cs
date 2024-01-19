@@ -461,7 +461,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.PlannedActivities == null)
                 return false;
 
-            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.FirstOrDefaultAsync(a => a.Id == plannedActivityId);
+            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.FirstOrDefaultAsync(pa => pa.Id == plannedActivityId);
 
             if (plannedActivity == null)
                 return false;
