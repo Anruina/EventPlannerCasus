@@ -414,13 +414,64 @@ namespace Library.DataAccessService
         #region PlannedActivity
 
         #region Get & Get All
+        public async Task<PlannedActivity?> GetPlannedActivity(int id)
+        {
+
+            if (_applicationContext?.PlannedActivities == null)
+                return null;
+
+            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.Include(pa => pa.Participants).Include(pa => pa.Activity).FirstOrDefaultAsync(pa => pa.Id == id);
+
+            if (plannedActivity == null)
+                return null;
+
+            return plannedActivity;
+
+        }
+
+        public async Task<List<PlannedActivity>?> GetAllPlannedActivity()
+        {
+
+            if (_applicationContext?.PlannedActivities == null)
+                return null;
+
+            return await _applicationContext.PlannedActivities.Include(pa => pa.Participants).Include(pa => pa.Activity).ToListAsync();
+
+        }
 
         #endregion
 
         #region Save
+        public async Task<PlannedActivity?> SavePlannedActivity(PlannedActivity plannedActivity)
+        {
+            if (_applicationContext?.PlannedActivities == null)
+                return null;
+
+            _applicationContext.PlannedActivities.Update(plannedActivity);
+            await _applicationContext.SaveChangesAsync();
+
+            return plannedActivity;
+        }
         #endregion
 
         #region Delete
+        public async Task<bool?> DeletePlannedActivity(int plannedActivityId)
+        {
+
+            if (_applicationContext?.PlannedActivities == null)
+                return false;
+
+            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.FirstOrDefaultAsync(a => a.Id == plannedActivityId);
+
+            if (plannedActivity == null)
+                return false;
+
+            _applicationContext.PlannedActivities.Remove(plannedActivity);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
         #endregion
 
         #endregion
