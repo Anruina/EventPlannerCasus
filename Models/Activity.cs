@@ -12,7 +12,7 @@
         public int EventId { get; set; }
         public Event? Event { get; set; }
 
-        List<PlannedActivity>? PlannedActivities { get; set; }
+        public List<PlannedActivity>? PlannedActivities { get; set; }
 
     }
 
