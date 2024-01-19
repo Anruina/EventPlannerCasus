@@ -104,6 +104,9 @@
                             HeightRequest="45" 
                             WidthRequest="100" />
 
+                        <Label
+                            Text="Forgot Password" />
+
                     </StackLayout>
 
                 </Grid>
