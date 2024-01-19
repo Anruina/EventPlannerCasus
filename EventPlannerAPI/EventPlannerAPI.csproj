@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessService\Library.DataAccessService.csproj" />
+    <ProjectReference Include="..\Library.ApiModels\Library.ApiModels.csproj" />
     <ProjectReference Include="..\Models\Library.Models.csproj" />
   </ItemGroup>
 

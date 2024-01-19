@@ -23,7 +23,7 @@ namespace EventPlannerAPI.Controllers
 
         #endregion
 
-        #region Contructor
+        #region Constructor
 
         /// <summary>
         /// Sets dataAccessService, user manager and signin manager
@@ -75,7 +75,7 @@ namespace EventPlannerAPI.Controllers
         /// Updates current logged in organizer.
         /// </summary>
         /// <param name="id">Id of current logged in organizer</param>
-        /// <param name="participant">Updated organizer</param>
+        /// <param name="organizer">Updated organizer</param>
         /// <returns>No content</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateLoggedInUser(int id, Organizer organizer)

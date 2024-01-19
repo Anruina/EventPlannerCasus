@@ -23,7 +23,7 @@ namespace EventPlannerAPI.Controllers
 
         #endregion
 
-        #region Contructor
+        #region Constructor
 
         /// <summary>
         /// Sets dataAccessService, user manager and signin manager
