@@ -66,6 +66,13 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
+        private async void OnForgotPasswordClick(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new ForgotPasswordPage());
+
+        }
+
     }
 
 }
