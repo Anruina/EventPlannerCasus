@@ -66,4 +66,8 @@
 	  <Folder Include="MVVM\ViewModel\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\ApiService\Library.ApiService.csproj" />
+	</ItemGroup>
+
 </Project>
