@@ -8,12 +8,12 @@ namespace EventPlannerAPI.Controllers
 {
 
     /// <summary>
-    /// This controller allows you to modify and view participants within the database.
+    /// This controller allows you to modify and view organizers within the database.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class ParticipantsController : ControllerBase
+    public class OrganizersController : ControllerBase
     {
 
         #region Properties
@@ -30,7 +30,7 @@ namespace EventPlannerAPI.Controllers
         /// </summary>
         /// <param name="userManager">Used for creating and deleting users</param>
         /// <param name="dataAccessService">Current DataAccessService used by program</param>
-        public ParticipantsController(UserManager<IdentityUser> userManager, DataAccessService dataAccessService)
+        public OrganizersController(UserManager<IdentityUser> userManager, DataAccessService dataAccessService)
         {
 
             _userManager = userManager;
@@ -43,11 +43,11 @@ namespace EventPlannerAPI.Controllers
         #region GET
 
         /// <summary>
-        /// Returns specific participant with private data.
+        /// Returns specific organizer with private data.
         /// </summary>
-        /// <returns>Specific participant</returns>
+        /// <returns>Specific organizer</returns>
         [HttpGet]
-        public async Task<ActionResult<Participant>> GetParticapant()
+        public async Task<ActionResult<Organizer>> GetOrganizer()
         {
 
             if (_userManager == null)
@@ -58,12 +58,12 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Participant? participant = await _dataAccessService.GetParticipant(user.Id);
+            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
 
-            if (participant == null)
+            if (organizer == null)
                 return NotFound();
 
-            return participant;
+            return organizer;
 
         }
 
@@ -72,13 +72,13 @@ namespace EventPlannerAPI.Controllers
         #region PUT
 
         /// <summary>
-        /// Updates current logged in participant.
+        /// Updates current logged in organizer.
         /// </summary>
-        /// <param name="id">Id of current logged in participant</param>
-        /// <param name="participant">Updated participant</param>
+        /// <param name="id">Id of current logged in organizer</param>
+        /// <param name="participant">Updated organizer</param>
         /// <returns>No content</returns>
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateLoggedInUser(int id, Participant participant)
+        public async Task<IActionResult> UpdateLoggedInUser(int id, Organizer organizer)
         {
 
             if (_userManager == null)
@@ -89,10 +89,10 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            if (participant.Id != id || participant.AuthenticationId != user.Id)
+            if (organizer.Id != id || organizer.AuthenticationId != user.Id)
                 return BadRequest();
 
-            await _dataAccessService.SaveParticipant(participant);
+            await _dataAccessService.SaveOrganizer(organizer);
 
             return NoContent();
 
