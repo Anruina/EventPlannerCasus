@@ -159,6 +159,36 @@ namespace Library.DataAccessService
         #endregion
 
         #region Activity
+
+        #region Get & Get All
+        public async Task<Activity?> GetActivity(int id)
+        {
+
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            Activity? activity = await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).FirstOrDefaultAsync(a => a.Id == id);
+
+            if (activity == null)
+                return null;
+
+            return activity;
+
+        }
+
+        public async Task<List<Activity>?> GetAllActivites()
+        {
+
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            return await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).ToListAsync();
+
+        }
+
+
+        #endregion
+
         #endregion
 
         #region Event
