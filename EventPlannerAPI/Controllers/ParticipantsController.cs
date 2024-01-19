@@ -9,7 +9,6 @@ namespace EventPlannerAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ParticipantsController : ControllerBase
     {
 
@@ -39,7 +38,12 @@ namespace EventPlannerAPI.Controllers
 
         #region GET
 
+        /// <summary>
+        /// Returns specific participant with private data.
+        /// </summary>
+        /// <returns>Specific participant</returns>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<Participant>> GetParticapant()
         {
 
@@ -62,11 +66,35 @@ namespace EventPlannerAPI.Controllers
 
         #endregion
 
-        #region UPDATE
+        #region PUT
 
-        #endregion
+        /// <summary>
+        /// Updates current logged in participant.
+        /// </summary>
+        /// <param name="id">Id of current logged in participant</param>
+        /// <param name="participant">Updated participant</param>
+        /// <returns>No content</returns>
+        [HttpPut("{id}")]
+        [Authorize]
+        public async Task<IActionResult> UpdateLoggedInUser(int id, Participant participant)
+        {
 
-        #region DELETE
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            if (participant.Id != id || participant.AuthenticationId != user.Id)
+                return BadRequest();
+
+            await _dataAccessService.SaveParticipant(participant);
+
+            return NoContent();
+
+        }
 
         #endregion
 
