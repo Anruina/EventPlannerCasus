@@ -12,8 +12,8 @@
         public string? Province { get; set; }
         public string? AdditionHouseNumber { get; set; }
 
-        List<Event>? Events { get; set; }
-        List<Participant>? Participants { get; set; }
+        public List<Event>? Events { get; set; }
+        public List<Participant>? Participants { get; set; }
 
     }
     
