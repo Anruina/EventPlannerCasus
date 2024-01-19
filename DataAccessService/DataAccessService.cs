@@ -186,21 +186,147 @@ namespace Library.DataAccessService
 
         }
 
+        #endregion
 
+        #region Save
+        public async Task<Activity?> SaveActivity(Activity activity)
+        {
+            if (_applicationContext?.Activities == null)
+                return null;
+
+            _applicationContext.Activities.Update(activity);
+            await _applicationContext.SaveChangesAsync();
+
+            return activity;
+        }
+        #endregion
+
+        #region Delete
+        public async Task<bool?> DeleteActivity(int activityId)
+        {
+
+            if (_applicationContext?.Activities == null)
+                return false;
+
+            Activity? activity = await _applicationContext.Activities.FirstOrDefaultAsync(a => a.Id == activityId);
+
+            if (activity == null)
+                return false;
+
+            _applicationContext.Activities.Remove(activity);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
         #endregion
 
         #endregion
 
         #region Event
+
+        #region Get & Get All
+        public async Task<Event?> GetEvent(int id)
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
+
+            if (evenement == null)
+                return null;
+
+            return evenement;
+
+        }
+
+        public async Task<List<Event>?> GetAllEvents ()
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
+
+        }
+
+        #endregion
+
+        #region Save
+        public async Task<Event?> SaveEvent(Event evenement)
+        {
+            if (_applicationContext?.Events == null)
+                return null;
+
+            _applicationContext.Events.Update(evenement);
+            await _applicationContext.SaveChangesAsync();
+
+            return evenement;
+        }
+
+        #endregion
+
+        #region Delete
+        public async Task<bool?> DeleteEvent(int eventementId)
+        {
+
+            if (_applicationContext?.Events == null)
+                return false;
+
+            Event? evenement = await _applicationContext.Events.FirstOrDefaultAsync(a => a.Id == eventementId);
+
+            if (evenement == null)
+                return false;
+
+            _applicationContext.Events.Remove(evenement);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
+
+        #endregion
+
         #endregion
 
         #region EventType
+
+        #region Get
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #region Address
+
+        #region Get & Get All
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #region PlannedActivity
+
+        #region Get & Get All
+        #endregion
+
+        #region Save
+        #endregion
+
+        #region Delete
+        #endregion
+
         #endregion
 
         #endregion
