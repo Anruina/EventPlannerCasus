@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPlannerMAUI.MainPage">
+             x:Class="EventPlannerMAUI.MainPage"
+             NavigationPage.HasNavigationBar="False" >
 
     <ScrollView>
 
@@ -34,18 +35,13 @@
 
                 <Grid>
 
-
-                    <Border 
-                        IsVisible="true" 
-                        BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" 
-                        Opacity="0.75" 
-                        StrokeThickness="0" 
-                        HorizontalOptions="FillAndExpand" 
-                        VerticalOptions="FillAndExpand" 
-                        Scale="1.1" />
+            <!--        <Image -->
+            <!--           Source="login_background_image.svg" -->
+            <!--           Aspect="AspectFill" -->
+            <!--           IsVisible="true" /> -->
 
                     <Label 
-                        Text="Figure collect"
+                        Text="Event Planner"
                         FontSize="32"
                         Padding="30"
                         HorizontalTextAlignment="Center" />

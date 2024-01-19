@@ -12,7 +12,7 @@ namespace Library.ApiService
         private HttpClient _httpClient;
         private JsonSerializerOptions _jsonSerializerOptions;
 
-        ApiService()
+        public ApiService()
         {
 
             ///<summary> I am temporary disabling certificate validation check, because it is giving problems </summary>

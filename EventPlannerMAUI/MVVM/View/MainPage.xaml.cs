@@ -1,11 +1,13 @@
 ﻿using EventPlannerMAUI.MobileApp;
+using Library.ApiService;
 
 namespace EventPlannerMAUI
 {
+
     public partial class MainPage : ContentPage
     {
 
-        private readonly ApiService.ApiService _apiService;
+        private readonly ApiService _apiService;
 
         public MainPage()
         {
@@ -24,7 +26,7 @@ namespace EventPlannerMAUI
             if (await SecureStorage.GetAsync("Username") is string Username && await SecureStorage.GetAsync("Password") is string Password)
             {
 
-                bool LoggedIn = await _apiService.Login(Username, Password);
+                //bool LoggedIn = await _apiService.Login(Username, Password);
 
                // if (LoggedIn)
                 //    await Navigation.PushAsync(new HomeNavigationPage());
@@ -39,7 +41,8 @@ namespace EventPlannerMAUI
         private async void OnLoginClick(object sender, EventArgs e)
         {
 
-            bool LoggedIn = await _apiService.Login(UsernameEntry.Text, PasswordEntry.Text);
+            //bool LoggedIn = await _apiService.Login(UsernameEntry.Text, PasswordEntry.Text);
+            bool LoggedIn = false;
 
             if (LoggedIn)
             {
