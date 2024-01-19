@@ -293,12 +293,55 @@ namespace Library.DataAccessService
         #region EventType
 
         #region Get
+        public async Task<EventType?> GetEventType(int id)
+        {
+
+            if (_applicationContext?.EventTypes == null)
+                return null;
+
+            EventType? eventType = await _applicationContext.EventTypes.Include(et => et.Events).FirstOrDefaultAsync(et => et.Id == id);
+
+            if (eventType == null)
+                return null;
+
+            return eventType;
+
+        }
+
         #endregion
 
         #region Save
+        public async Task<EventType?> SaveEventType(EventType eventType)
+        {
+            if (_applicationContext?.EventTypes == null)
+                return null;
+
+            _applicationContext.EventTypes.Update(eventType);
+            await _applicationContext.SaveChangesAsync();
+
+            return eventType;
+        }
+
         #endregion
 
         #region Delete
+        public async Task<bool?> DeleteEventType(int eventTypeId)
+        {
+
+            if (_applicationContext?.EventTypes == null)
+                return false;
+
+            EventType? eventType = await _applicationContext.EventTypes.FirstOrDefaultAsync(a => a.Id == eventTypeId);
+
+            if (eventType == null)
+                return false;
+
+            _applicationContext.EventTypes.Remove(eventType);
+            await _applicationContext.SaveChangesAsync();
+
+            return true;
+
+        }
         #endregion
 
         #endregion
