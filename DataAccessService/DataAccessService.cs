@@ -274,7 +274,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return false;
 
-            Event? evenement = await _applicationContext.Events.FirstOrDefaultAsync(a => a.Id == eventementId);
+            Event? evenement = await _applicationContext.Events.FirstOrDefaultAsync(e => e.Id == eventementId);
 
             if (evenement == null)
                 return false;
