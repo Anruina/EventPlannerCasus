@@ -1,4 +1,5 @@
 using EventPlannerMAUI.MobileApp;
+using Library.ApiModels;
 using Library.ApiService;
 
 namespace EventPlannerMAUI.MVVM.View;
@@ -24,10 +25,10 @@ public partial class RegisterPage : ContentPage
         else
         {
 
-            //bool registeredNewUser = await _apiService.Register(UsernameEntry.Text, PasswordEntry.Text);
+            AccountModel? account = await _apiService.CreateObject<AccountModel>("Api/User/Register", new AccountModel { Username = UsernameEntry.Text, Password = PasswordEntry.Text });
 
-            //if (registeredNewUser)
-              //  await Navigation.PopAsync();
+            if (account != null)
+                await Navigation.PopAsync();
 
         }
 

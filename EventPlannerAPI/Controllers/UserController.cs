@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace EventPlannerAPI.Controllers
 {
 
+    /// <summary>
+    /// This controller allows you to create, modify and view users within the database.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
