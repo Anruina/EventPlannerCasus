@@ -142,12 +142,7 @@ namespace EventPlannerAPI.Controllers
             if (organizer == null)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.Organizer != organizer)
-                return BadRequest();
-
-            Event? createdEvent = await _dataAccessService.SaveEvent(updatedEvent);
-
-            if (createdEvent == null)
+            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.Organizer != organizer || await _dataAccessService.SaveEvent(updatedEvent) == null)
                 return BadRequest();
 
             return NoContent();

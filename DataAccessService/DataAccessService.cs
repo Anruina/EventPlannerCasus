@@ -294,18 +294,24 @@ namespace Library.DataAccessService
         #region EventType
 
         #region Get
+
+        public async Task<List<EventType>?> GetEventTypes()
+        {
+
+            if (_applicationContext?.EventTypes == null)
+                return null;
+
+            return await _applicationContext.EventTypes.Include(et => et.Events).ToListAsync();
+
+        }
+
         public async Task<EventType?> GetEventType(int id)
         {
 
             if (_applicationContext?.EventTypes == null)
                 return null;
 
-            EventType? eventType = await _applicationContext.EventTypes.Include(et => et.Events).FirstOrDefaultAsync(et => et.Id == id);
-
-            if (eventType == null)
-                return null;
-
-            return eventType;
+            return await _applicationContext.EventTypes.Include(et => et.Events).FirstOrDefaultAsync(et => et.Id == id);
 
         }
 
