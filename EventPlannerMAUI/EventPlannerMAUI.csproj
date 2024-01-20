@@ -57,6 +57,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\wallpapereventplanner.png" />
 	  <None Remove="Resources\Images\zuydlogo.png" />
 	</ItemGroup>
 

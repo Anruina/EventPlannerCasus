@@ -3,21 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.RegisterPage"
              Title="Registration"
-             NavigationPage.HasBackButton="True" >
+             NavigationPage.HasBackButton="True" 
+             Shell.BackgroundColor="#ED1B34"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="#D6CCC9" >
 
     <VerticalStackLayout
-    Spacing="25"
-    Padding="20,-38,20,20"
-    VerticalOptions="Center" >
+        Spacing="25"
+        Padding="0,-75,0,0"
+        VerticalOptions="CenterAndExpand" >
 
         <Grid>
 
-            <!-- <Image Source="login_background_image.svg" Aspect="AspectFill" IsVisible="true" /> -->
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="0,10,0,0" >
+
+                <Image
+                    Source="wallpapereventplanner.png" 
+                    Aspect="AspectFill" />
+
+            </AbsoluteLayout>
 
             <Label 
-                Text="MyAppName"
+                Text="Event Planner"
                 FontSize="32"
-                Padding="30"
+                Padding="0,100,0,0"
                 HorizontalTextAlignment="Center" />
 
             <StackLayout 
