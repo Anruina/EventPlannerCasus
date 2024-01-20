@@ -51,7 +51,7 @@ namespace EventPlannerAPI.Controllers
         /// <param name="newAccountModel">Username and password of the new user</param>
         /// <returns>Was able to create user</returns>
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AccountModel newAccountModel)
+        public async Task<ActionResult<AccountModel>> Register([FromBody] AccountModel newAccountModel)
         {
 
             if (string.IsNullOrEmpty(newAccountModel.Username) || string.IsNullOrEmpty(newAccountModel.Password))
@@ -85,7 +85,7 @@ namespace EventPlannerAPI.Controllers
 
             await _dataAccessService.SaveParticipant(newParticipant);
 
-            return Ok("Registration successful");
+            return new AccountModel { Username = "", Password = "" };
 
         }
 
@@ -95,7 +95,7 @@ namespace EventPlannerAPI.Controllers
         /// <param name="newAccountModel">Username and password of user</param>
         /// <returns>Was able to login with username and password</returns>
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] AccountModel newAccountModel)
+        public async Task<ActionResult<AccountModel>> Login([FromBody] AccountModel newAccountModel)
         {
 
             if (string.IsNullOrEmpty(newAccountModel.Username) || string.IsNullOrEmpty(newAccountModel.Password))
@@ -109,7 +109,7 @@ namespace EventPlannerAPI.Controllers
             if (!result.Succeeded)
                 return BadRequest("Invalid login attempt. Details: " + string.Join(", ", result.ToString()));
 
-            return Ok("Login successful");
+            return new AccountModel { Username = "", Password = "" };
 
         }
 

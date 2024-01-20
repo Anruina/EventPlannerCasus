@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Library.DataContext.Authentication
+namespace Library.DataContext.SecurityContext
 {
 
     public class SecurityDbContext : IdentityDbContext

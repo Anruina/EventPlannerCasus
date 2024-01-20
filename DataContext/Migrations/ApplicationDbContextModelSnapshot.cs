@@ -177,7 +177,7 @@ namespace Library.DataContext.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("AuthenticationId")
@@ -278,9 +278,7 @@ namespace Library.DataContext.Migrations
                 {
                     b.HasOne("Library.Models.Address", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
                 });
@@ -288,7 +286,7 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.PlannedActivity", b =>
                 {
                     b.HasOne("Library.Models.Activity", "Activity")
-                        .WithMany()
+                        .WithMany("PlannedActivities")
                         .HasForeignKey("ActivityId");
 
                     b.HasOne("Library.Models.Event", null)
@@ -311,6 +309,11 @@ namespace Library.DataContext.Migrations
                         .HasForeignKey("VisitedActivitiesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Library.Models.Activity", b =>
+                {
+                    b.Navigation("PlannedActivities");
                 });
 
             modelBuilder.Entity("Library.Models.Event", b =>

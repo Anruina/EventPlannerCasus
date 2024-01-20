@@ -1,5 +1,5 @@
 using Library.DataAccessService;
-using Library.DataContext.Authentication;
+using Library.DataContext.SecurityContext;
 using Microsoft.AspNetCore.Identity;
 using System.Text.Json.Serialization;
 using Library.DataContext.Data;
@@ -51,8 +51,6 @@ namespace EventPlannerAPI
 
             });
 
-            builder.Services.AddControllers();
-
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -86,6 +84,7 @@ namespace EventPlannerAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
 
             app.MapControllers();
 
