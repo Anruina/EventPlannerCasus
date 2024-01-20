@@ -226,6 +226,17 @@ namespace Library.DataAccessService
         #region Event
 
         #region Get & Get All
+
+        public async Task<List<Event>?> GetEvents()
+        {
+
+            if (_applicationContext?.Events == null)
+                return null;
+
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
+
+        }
+
         public async Task<Event?> GetEvent(int id)
         {
 
@@ -238,16 +249,6 @@ namespace Library.DataAccessService
                 return null;
 
             return evenement;
-
-        }
-
-        public async Task<List<Event>?> GetAllEvents()
-        {
-
-            if (_applicationContext?.Events == null)
-                return null;
-
-            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
 
         }
 
@@ -364,7 +365,7 @@ namespace Library.DataAccessService
 
         }
 
-        public async Task<List<Address>?> GetAllAddress()
+        public async Task<List<Address>?> GetAddress()
         {
 
             if (_applicationContext?.Addresses == null)
@@ -477,5 +478,6 @@ namespace Library.DataAccessService
         #endregion
 
         #endregion
+
     }
 }
