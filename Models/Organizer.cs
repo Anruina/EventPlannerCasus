@@ -1,14 +1,9 @@
 ﻿namespace Library.Models
 {
     
-    public class Organizer : TableData
+    public class Organizer : User
     {
 
-        //properties
-        public string? Name { get; set; }
-        public string? AuthenticationId { get; set; }
-
-        //relations
         public List<Event>? OrganizedEvents { get; set; }
 
         public string? MailAddress { get; set; }

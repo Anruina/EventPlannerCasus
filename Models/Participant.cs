@@ -1,12 +1,8 @@
 ﻿namespace Library.Models
 {
     
-    public class Participant : TableData
+    public class Participant : User
     {
-
-        public string? Name { get; set; }
-
-        public string? AuthenticationId { get; set; }
 
         public List<Event>? VisitedEvents { get; set; }
 
