@@ -436,7 +436,7 @@ namespace Library.DataAccessService
 
         }
 
-        public async Task<List<PlannedActivity>?> GetAllPlannedActivity()
+        public async Task<List<PlannedActivity>?> GetPlannedActivity()
         {
 
             if (_applicationContext?.PlannedActivities == null)
