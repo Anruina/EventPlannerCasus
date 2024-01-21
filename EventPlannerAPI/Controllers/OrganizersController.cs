@@ -69,6 +69,45 @@ namespace EventPlannerAPI.Controllers
 
         #endregion
 
+        #region POST
+
+        /// <summary>
+        /// Participant gets removed and converted to organizer.
+        /// </summary>
+        /// <param name="id">Id of participant that has to become organizer</param>
+        /// <param name="newOrganizer">The new organizer that has to be created</param>
+        /// <returns>Created organizer</returns>
+        [HttpPost("{id}")]
+        [Authorize]
+        public async Task<ActionResult<Organizer>> PostOrganizer(int id, Organizer newOrganizer)
+        {
+
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            Participant? participant = await _dataAccessService.GetParticipant(user.Id);
+            if (participant == null || participant.Id != id || participant.AuthenticationId != user.Id)
+                return BadRequest();
+
+            newOrganizer = participant;
+
+            await _dataAccessService.DeleteParticipant(user.Id);
+            Organizer? createdOrganizer = await _dataAccessService.SaveOrganizer(newOrganizer);
+
+            if (createdOrganizer == null)
+                return BadRequest();
+
+            return CreatedAtAction("GetOrganizer", new { id = createdOrganizer.Id }, createdOrganizer);
+
+        }
+
+        #endregion
+
         #region PUT
 
         /// <summary>

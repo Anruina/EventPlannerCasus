@@ -43,7 +43,7 @@ namespace EventPlannerAPI.Controllers
 
         #endregion
 
-        #region ACCOUNT
+        #region Account
 
         /// <summary>
         /// Registers a new user to the database.
@@ -159,7 +159,18 @@ namespace EventPlannerAPI.Controllers
             if (!result.Succeeded)
                 return BadRequest("\"Failed to delete account. Details: " + result.Errors.ToString());
 
-            //await _dataAccessService.DeleteCollector(_dataAccessService.GetCollector(userId).Id, userId);
+            Participant? participant = await _dataAccessService.GetParticipant(userId);
+            if (participant == null)
+            {
+
+                if (await _dataAccessService.GetOrganizer(userId) == null)
+                    return BadRequest();
+
+                await _dataAccessService.DeleteOrganizer(userId);
+
+            }
+            else
+                await _dataAccessService.DeleteParticipant(userId);
 
             return Ok("Deleted account.");
 
