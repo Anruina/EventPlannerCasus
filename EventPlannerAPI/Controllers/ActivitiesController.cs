@@ -8,11 +8,11 @@ namespace EventPlannerAPI.Controllers
 {
 
     /// <summary>
-    /// This controller allows you to create, modify and view events within the database.
+    /// This controller allows you to view, create, edit and delete activiteis within the database.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class EventsController : ControllerBase
+    public class ActivitiesController : ControllerBase
     {
 
         #region Properties
@@ -29,7 +29,7 @@ namespace EventPlannerAPI.Controllers
         /// </summary>
         /// <param name="userManager">Used for creating and deleting users</param>
         /// <param name="dataAccessService">Current DataAccessService used by program</param>
-        public EventsController(UserManager<IdentityUser> userManager, DataAccessService dataAccessService)
+        public ActivitiesController(UserManager<IdentityUser> userManager, DataAccessService dataAccessService)
         {
 
             _userManager = userManager;
@@ -42,37 +42,37 @@ namespace EventPlannerAPI.Controllers
         #region GET
 
         /// <summary>
-        /// Returns all events within database.
+        /// Returns all activities within database.
         /// </summary>
-        /// <returns>All events</returns>
+        /// <returns>All activities</returns>
         [HttpGet]
-        public async Task<ActionResult<List<Event>?>> GetEvents()
+        public async Task<ActionResult<List<Activity>?>> GetActivities()
         {
 
-            List<Event>? events = await _dataAccessService.GetEvents();
+            List<Activity>? activity = await _dataAccessService.GetActivites();
 
-            if (events == null)
+            if (activity == null)
                 return NotFound();
 
-            return events;
+            return activity;
 
         }
 
         /// <summary>
-        /// Gets specific event from database.
+        /// Gets specific activity from database.
         /// </summary>
-        /// <param name="id">Specific event from database</param>
-        /// <returns>Specific event</returns>
+        /// <param name="id">Specific activity from database</param>
+        /// <returns>Specific activity</returns>
         [HttpGet("{id}")]
-        public async Task<ActionResult<Event?>> GetEvent(int id)
+        public async Task<ActionResult<Activity?>> GetActivity(int id)
         {
 
-            Event? specificEvent = await _dataAccessService.GetEvent(id);
+            Activity? specificActivity = await _dataAccessService.GetActivity(id);
 
-            if (specificEvent == null)
+            if (specificActivity == null)
                 return NotFound();
 
-            return specificEvent;
+            return specificActivity;
 
         }
 
@@ -81,13 +81,13 @@ namespace EventPlannerAPI.Controllers
         #region POST
 
         /// <summary>
-        /// Creates new event if the logged in user is an organizer.
+        /// Creates new activity if the logged in user is an organizer.
         /// </summary>
-        /// <param name="newEvent">New event to be created</param>
-        /// <returns>Created event</returns>
+        /// <param name="newActivity">New activity to be created</param>
+        /// <returns>Created activity</returns>
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Event>> PostEvent(Event newEvent)
+        public async Task<ActionResult<Activity>> PostActivity(Activity newActivity)
         {
 
             if (_userManager == null)
@@ -99,16 +99,15 @@ namespace EventPlannerAPI.Controllers
                 return NotFound("No user was found.");
 
             Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            if (organizer == null || (await _dataAccessService.GetEvent(newActivity.EventId))?.Organizer?.Id != organizer.Id)
                 return BadRequest();
 
-            newEvent.Organizer = organizer;
-            Event? createdEvent = await _dataAccessService.SaveEvent(newEvent);
+            Activity? createdActivity = await _dataAccessService.SaveActivity(newActivity);
 
-            if (createdEvent == null)
+            if (createdActivity == null)
                 return BadRequest();
 
-            return CreatedAtAction("GetEvent", new { id = createdEvent.Id }, createdEvent);
+            return CreatedAtAction("GetActivity", new { id = createdActivity.Id }, createdActivity);
 
         }
 
@@ -117,17 +116,17 @@ namespace EventPlannerAPI.Controllers
         #region PUT
 
         /// <summary>
-        /// Updates event in database.
+        /// Updates activity in database.
         /// </summary>
-        /// <param name="id">Id of event to be updated</param>
-        /// <param name="updatedEvent">Updated event</param>
+        /// <param name="id">Id of activity to be updated</param>
+        /// <param name="updatedActivity">Updated activity</param>
         /// <returns>No content</returns>
         [HttpPut("{id}")]
         [Authorize]
-        public async Task<IActionResult> PutEvent(int id, Event updatedEvent)
+        public async Task<IActionResult> PutActivity(int id, Activity updatedActivity)
         {
 
-            if (id != updatedEvent.Id)
+            if (id != updatedActivity.Id)
                 return BadRequest();
 
             if (_userManager == null)
@@ -142,7 +141,7 @@ namespace EventPlannerAPI.Controllers
             if (organizer == null)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.Organizer?.Id != organizer.Id || await _dataAccessService.SaveEvent(updatedEvent) == null)
+            if ((await _dataAccessService.GetEvent(updatedActivity.EventId))?.Organizer?.Id != organizer.Id || await _dataAccessService.SaveActivity(updatedActivity) == null)
                 return BadRequest();
 
             return NoContent();
@@ -154,13 +153,13 @@ namespace EventPlannerAPI.Controllers
         #region DELETE
 
         /// <summary>
-        /// Deletes event data from database.
+        /// Deletes activity data from database.
         /// </summary>
-        /// <param name="id">Id of event to delete</param>
+        /// <param name="id">Id of activity to delete</param>
         /// <returns>No content</returns>
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> DeleteEvent(int id)
+        public async Task<IActionResult> DeleteActivity(int id)
         {
 
             if (_userManager == null)
@@ -175,8 +174,14 @@ namespace EventPlannerAPI.Controllers
             if (organizer == null)
                 return BadRequest();
 
-            Event? deleteEvent = await _dataAccessService.GetEvent(id);
-            if (deleteEvent == null || deleteEvent.Organizer != organizer || await _dataAccessService.DeleteEvent(id) == false)
+            Activity? deleteActivity = await _dataAccessService.GetActivity(id);
+
+            if (deleteActivity == null)
+                return BadRequest();
+
+            Event? activityEvent = await _dataAccessService.GetEvent(deleteActivity.EventId);
+
+            if (activityEvent == null || activityEvent.Organizer?.Id != organizer.Id || await _dataAccessService.DeleteActivity(id) == false)
                 return BadRequest();
 
             return NoContent();

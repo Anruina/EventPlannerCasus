@@ -176,7 +176,7 @@ namespace Library.DataAccessService
 
         }
 
-        public async Task<List<Activity>?> GetAllActivites()
+        public async Task<List<Activity>?> GetActivites()
         {
 
             if (_applicationContext?.Activities == null)

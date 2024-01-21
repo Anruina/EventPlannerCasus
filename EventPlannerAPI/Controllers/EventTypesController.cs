@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace EventPlannerAPI.Controllers
 {
 
+    /// <summary>
+    /// This controller allows you to view, create and edit event types within the database.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class EventTypesController : ControllerBase
