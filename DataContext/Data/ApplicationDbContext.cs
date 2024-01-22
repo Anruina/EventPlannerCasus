@@ -1,18 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Library.Models;
 
-namespace DataContext.Data
+namespace Library.DataContext.Data
 {
     
     public class ApplicationDbContext : DbContext
     {
         
+        public DbSet<Models.Activity>? Activities { get; set; }
+        public DbSet<Address>? Addresses { get; set; }
+        public DbSet<Event>? Events { get; set; }
+        public DbSet<Organizer>? Organizers { get; set; }
+        public DbSet<Participant>? Participants { get; set; }
+        public DbSet<PlannedActivity>? PlannedActivities { get; set; }
+        public DbSet<EventType>? EventTypes { get; set; }
+
         public ApplicationDbContext() { }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Server=.;Database=EventPlannerCasusDatabase;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=.;Database=EventPlannerCasusData;Trusted_Connection=True;TrustServerCertificate=True");
 
         }
 

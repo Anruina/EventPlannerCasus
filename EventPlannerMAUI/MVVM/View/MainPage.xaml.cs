@@ -1,25 +1,78 @@
-﻿namespace EventPlannerMAUI
+﻿using EventPlannerMAUI.MobileApp;
+using Library.ApiModels;
+using Library.ApiService;
+
+namespace EventPlannerMAUI.MVVM.View
 {
+
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+
+        private readonly ApiService _apiService;
 
         public MainPage()
         {
+            
             InitializeComponent();
+            _apiService = ServiceLocator.apiService;
+
+            OnCreate();
+
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+
+        private async void OnCreate()
         {
-            count++;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            if (await SecureStorage.GetAsync("Username") is string Username && await SecureStorage.GetAsync("Password") is string Password)
+            {
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
+ 
+                if (account != null)
+                    await Navigation.PushAsync(new HomeNavigationPage());
+
+            }
+
+            LoadingStackLayout.IsVisible = false;
+            LoginVerticalStackLayout.IsVisible = true;
+
         }
+
+        private async void OnLoginClick(object sender, EventArgs e)
+        {
+
+            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = UsernameEntry.Text, Password = PasswordEntry.Text });
+
+            if (account != null)
+            {
+
+                await SecureStorage.SetAsync("Username", UsernameEntry.Text);
+                await SecureStorage.SetAsync("Password", PasswordEntry.Text);
+
+                LogginFailedLabel.IsVisible = false;
+                await Navigation.PushAsync(new HomeNavigationPage());
+
+            }
+            else
+                LogginFailedLabel.IsVisible = true;
+
+        }
+
+        private async void OnRegisterClick(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new RegisterPage());
+
+        }
+
+        private async void OnForgotPasswordClick(object sender, EventArgs e)
+        {
+
+            await Navigation.PushAsync(new ForgotPasswordPage());
+
+        }
+
     }
 
 }

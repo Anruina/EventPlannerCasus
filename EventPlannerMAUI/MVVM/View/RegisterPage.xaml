@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPlannerMAUI.MVVM.View.RegisterPage"
+             Title="Registration"
+             NavigationPage.HasBackButton="True" 
+             Shell.BackgroundColor="#ED1B34"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="#D6CCC9" >
+
+    <VerticalStackLayout
+        Spacing="25"
+        Padding="0,-75,0,0"
+        VerticalOptions="CenterAndExpand" >
+
+        <Grid>
+
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="0,10,0,0" >
+
+                <Image
+                    Source="wallpapereventplanner.png" 
+                    Aspect="AspectFill" />
+
+            </AbsoluteLayout>
+
+            <Label 
+                Text="Event Planner"
+                FontSize="32"
+                Padding="0,100,0,0"
+                HorizontalTextAlignment="Center" />
+
+            <StackLayout 
+                Spacing="20"
+                Padding="20, 100, 20, 20"
+                VerticalOptions="Center" >
+
+                <Label
+                    Text="Register"
+                    FontSize="24" 
+                    HorizontalTextAlignment="Center" />
+
+                <StackLayout
+                    Spacing="-5">
+
+                    <Label 
+                        Text="Username"
+                        FontSize="20" />
+
+                    <Entry 
+                        x:Name="UsernameEntry"
+                        Placeholder="Username" />
+
+                    <Label
+                        Text="Password"
+                        FontSize="20" />
+
+                    <Entry 
+                        x:Name="PasswordEntry"
+                        Placeholder="Password"
+                        IsPassword="True" />
+
+                    <Label
+                        Text="Confirm Password"
+                        FontSize="20" />
+
+                    <Entry 
+                        x:Name="ConfirmPasswordEntry"
+                        Placeholder="Reenter Password"
+                        IsPassword="True" />
+
+                    <Label
+                        x:Name="PasswordMatchLabel"
+                        Text="Passwords do not match!"
+                        HorizontalTextAlignment="Center"
+                        TextColor="Red"
+                        IsVisible="False" />
+
+                </StackLayout>
+
+                <Button
+                    x:Name="RegisterButton"
+                    Text="Register"
+                    FontSize="24"
+                    Clicked="OnRegisterClick"
+                    HeightRequest="55" 
+                    WidthRequest="150" />
+
+            </StackLayout>
+
+        </Grid>
+
+    </VerticalStackLayout>
+
+</ContentPage>

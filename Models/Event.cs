@@ -1,26 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Models
+namespace Library.Models
 {
+    
     public class Event : TableData
     {
 
-        //properties
-        public decimal? Price { get; set; }
-        public DateTime? StartEvent { get; set; }
-        public DateTime? EndEvent { get; set; }
+        public string? Name { get; set; }
 
-
-        //relations
+        public int OrganizerId { get; set; }
         public Organizer? Organizer { get; set; }
-        public List<Participant>? Participants { get; set; }
-        public List<Activity>? Activities { get; set; }
+
+        public int AddressId { get; set; }
         public Address? Address { get; set; }
-        public Schedule? Schedule { get; set; }
+
+        public List<Activity>? Activities { get; set; }
+        public List<PlannedActivity>? PlannedActivities { get; set; }
+
+        public EventType? Type { get; set; }
+
+        public DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal Price { get; set; }
+
+        public int MaxParticapents { get; set; }
 
     }
+
 }

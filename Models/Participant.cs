@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Library.Models
 {
-    public class Participant : TableData
+    
+    public class Participant : User
     {
-        //properties
-        public string? Name { get; set; }
 
-        //relations
-        public List<Event>? Events { get; set; }
+        public List<Event>? VisitedEvents { get; set; }
 
-        public List<Activity>? Activities { get; set; }
+        public List<PlannedActivity>? VisitedActivities { get; set; }
 
         public Address? Address { get; set; }
+
+        public static implicit operator Participant(Organizer participant)
+        {
+
+            return new Participant() { Id = participant.Id, AuthenticationId = participant.AuthenticationId, Name = participant.Name };
+
+        }
+
     }
+
 }

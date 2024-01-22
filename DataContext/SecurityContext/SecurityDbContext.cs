@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace AnimeFigureProject.DatabaseContext.Authentication
+namespace Library.DataContext.SecurityContext
 {
 
     public class SecurityDbContext : IdentityDbContext
@@ -13,7 +13,7 @@ namespace AnimeFigureProject.DatabaseContext.Authentication
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer("Server=.;Database=AnimeFigureProjectSecurity;Trusted_Connection=True;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=.;Database=EventPlannerCasusSecurity;Trusted_Connection=True;TrustServerCertificate=True");
 
         }
 

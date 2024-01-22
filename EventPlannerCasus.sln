@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventPlannerMAUI", "EventPl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{7D328575-DFB5-4FC2-83B9-B7823D25055D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.ApiModels", "Library.ApiModels\Library.ApiModels.csproj", "{1079B1AC-75B1-462F-8EF2-5197FEF3093D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{482AC85C-D9A6-417B-AB0D-487FF7E63014}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{482AC85C-D9A6-417B-AB0D-487FF7E63014}.Release|Any CPU.Build.0 = Release|Any CPU
 		{482AC85C-D9A6-417B-AB0D-487FF7E63014}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1079B1AC-75B1-462F-8EF2-5197FEF3093D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1079B1AC-75B1-462F-8EF2-5197FEF3093D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1079B1AC-75B1-462F-8EF2-5197FEF3093D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1079B1AC-75B1-462F-8EF2-5197FEF3093D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{A899ED68-1F91-4FCE-86B5-11B977D90EE5} = {7D328575-DFB5-4FC2-83B9-B7823D25055D}
 		{BD4B58EB-204A-46BD-8F25-CE0BCC6FBE65} = {7D328575-DFB5-4FC2-83B9-B7823D25055D}
 		{FE72BF6A-AFDE-4996-A945-357B1A85B0A6} = {7D328575-DFB5-4FC2-83B9-B7823D25055D}
+		{1079B1AC-75B1-462F-8EF2-5197FEF3093D} = {7D328575-DFB5-4FC2-83B9-B7823D25055D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5065F9FC-CA63-4BD5-81D5-178E6C1D7C26}

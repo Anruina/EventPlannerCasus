@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DataContext.Data
+namespace Library.DataContext.Data
 {
     public static class ApplicationContextExtension
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AnimeFigureProject.DatabaseContext.Authentication
+namespace Library.DataContext.SecurityContext
 {
 
     public static class SecurityContextExtension
