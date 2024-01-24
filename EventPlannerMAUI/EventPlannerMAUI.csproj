@@ -40,12 +40,14 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Images\zuydlogo.png" Color="#FAFAFA" BaseSize="256,256" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -55,19 +57,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\floor3.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Remove="Resources\Images\wallpaper1.png" />
 	  <None Remove="Resources\Images\wallpapereventplanner.png" />
-	  <None Remove="Resources\Images\zuydeventicon.png" />
-	  <None Remove="Resources\Images\zuydeventslogo.png" />
 	  <None Remove="Resources\Images\zuydlogo.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Images\floor3.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,59 +74,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiIcon Include="Resources\AppIcon\zuydeventicon.png" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\ApiService\Library.ApiService.csproj" />
 	  <ProjectReference Include="..\Library.ApiModels\Library.ApiModels.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\View\ActivitySchedulePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\EventInfoPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\ForgotPasswordPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\HistoryViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\HomeNavigationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\ManageEventsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\ResetPWTutorialPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\SaveActivityPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\SaveEventPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\SettingsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\UserProfilePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="Resources\AppIcon\appiconzuyd.png" Size="40,40" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Update="Resources\AppIcon\appiconzuyd.png" Size="40,40" />
 	</ItemGroup>
 
 </Project>
