@@ -1,6 +1,7 @@
 ﻿using EventPlannerMAUI.MobileApp;
 using Library.ApiModels;
 using Library.ApiService;
+using UraniumUI.Material.Controls;
 
 namespace EventPlannerMAUI.MVVM.View
 {
