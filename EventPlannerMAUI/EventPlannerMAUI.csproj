@@ -40,14 +40,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Images\zuydlogo.png" Color="#FAFAFA" BaseSize="256,256" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -58,6 +56,8 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\wallpapereventplanner.png" />
+	  <None Remove="Resources\Images\zuydeventicon.png" />
+	  <None Remove="Resources\Images\zuydeventslogo.png" />
 	  <None Remove="Resources\Images\zuydlogo.png" />
 	</ItemGroup>
 
@@ -71,6 +71,10 @@
 
 	<ItemGroup>
 	  <Folder Include="MVVM\ViewModel\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiIcon Include="Resources\AppIcon\zuydeventicon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -88,6 +92,10 @@
 	  <MauiXaml Update="MVVM\View\RegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Resources\AppIcon\appiconzuyd.png" Size="40,40" />
 	</ItemGroup>
 
 </Project>
