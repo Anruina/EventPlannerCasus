@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.MainPage"
-             xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasNavigationBar="False"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#D6CCC9" >
@@ -46,7 +46,10 @@
                             Aspect="AspectFill" />
 
                     </AbsoluteLayout>
-                    <VerticalStackLayout>
+                    <VerticalStackLayout
+                        Spacing="20"
+                        Padding="20,20" >
+                        
                         <Image
                         Source="zuydeventslogo.png"
                         HeightRequest="300"
@@ -60,32 +63,26 @@
                         Padding="20, 100, 20, 20"
                         VerticalOptions="Center" >
 
-                        <Label
-                            Text="Login"
-                            FontSize="24" 
-                            HorizontalTextAlignment="Center" />
 
                         <StackLayout
-                            Spacing="-5">
+                            Spacing="5">
 
-                            <Label 
-                                Text="Username"
-                                FontSize="20" />
-
-                            <Entry 
+                            <material:TextField
                                 x:Name="UsernameEntry"
-                                Placeholder="Username"
-                                PlaceholderColor="DimGrey" />
+                                Title="E-mail"
+                                AccentColor="Black"
+                                AllowClear="True"/>
 
-                            <Label
-                                Text="Password"
-                                FontSize="20" />
-
-                            <Entry 
+                            <material:TextField 
                                 x:Name="PasswordEntry"
-                                Placeholder="Password"
+                                Title="Password"
                                 IsPassword="True"
-                                PlaceholderColor="DimGrey" />
+                                AccentColor="Black"
+                                >
+                                <material:TextField.Attachments>
+                                    <material:TextFieldPasswordShowHideAttachment />
+                                </material:TextField.Attachments>
+                            </material:TextField>
 
                             <Label
                                 x:Name="LogginFailedLabel"
