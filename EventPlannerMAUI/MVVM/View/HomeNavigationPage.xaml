@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage"
-             xmlns:drawable="clr-namespace:EventPlannerMAUI.Drawables"
-             Title="HomeNavigationPage">
+             x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage">
 
-    
-    
+    <StackLayout>
+        <!-- Knop voor het toevoegen van een evenement -->
+        <Button Text="Voeg evenement toe" Clicked="OnAddEventClicked" />
+
+        <!-- Lijst met evenementen -->
+        <ListView x:Name="eventListView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Elk evenement wordt weergegeven als een "blokje" -->
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" />
+                            <Label Text="{Binding Date}" />
+                            <Label Text="{Binding Location}" />
+                            <Label Text="{Binding Time}" />
+                            <Label Text="{Binding Description}" />
+                             
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
