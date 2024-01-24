@@ -134,4 +134,8 @@
 	  <None Update="Resources\AppIcon\appiconzuyd.png" Size="40,40" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Resources\AppIcon\appiconzuyd.png" Size="40,40" />
+	</ItemGroup>
+
 </Project>
