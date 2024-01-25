@@ -42,7 +42,7 @@
                         AbsoluteLayout.LayoutFlags="All" >
 
                         <Image
-                            Source="wallpapereventplanner.png" 
+                            Source="wallpaper1.png" 
                             Aspect="AspectFill" />
 
                     </AbsoluteLayout>
@@ -65,10 +65,10 @@
 
 
                         <StackLayout
-                            Spacing="5">
+                            Spacing="10">
 
                             <material:TextField
-                                x:Name="UsernameEntry"
+                                x:Name="EmailEntry"
                                 Title="E-mail"
                                 AccentColor="Black"
                                 AllowClear="True"/>
