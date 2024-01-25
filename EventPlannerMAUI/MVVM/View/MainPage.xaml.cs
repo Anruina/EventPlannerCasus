@@ -21,7 +21,9 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
-
+        /// <summary>
+        /// We refer to username, with username we mean the e-mailaddress of the user.
+        /// </summary>
         private async void OnCreate()
         {
 
@@ -43,12 +45,12 @@ namespace EventPlannerMAUI.MVVM.View
         private async void OnLoginClick(object sender, EventArgs e)
         {
 
-            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = UsernameEntry.Text, Password = PasswordEntry.Text });
+            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = EmailEntry.Text, Password = PasswordEntry.Text });
 
             if (account != null)
             {
 
-                await SecureStorage.SetAsync("Username", UsernameEntry.Text);
+                await SecureStorage.SetAsync("Username", EmailEntry.Text);
                 await SecureStorage.SetAsync("Password", PasswordEntry.Text);
 
                 LogginFailedLabel.IsVisible = false;
