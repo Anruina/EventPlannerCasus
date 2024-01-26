@@ -95,7 +95,7 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B3.302"] = new Node(21, 9.2f, 16.0f, "B3.302");
             ComplexPath["B3.300"] = new Node(22, 9.2f, 18.7f, "B3.300");
             ComplexPath["B3.1A"] = new Node(23, 5.0f, 33.0f, "B3.1A");
-            ComplexPath["B3.255"] = new Node(24, 3.0f, 37.0f, "B3.255");
+            ComplexPath["B3.225"] = new Node(24, 3.0f, 37.0f, "B3.225");
             ComplexPath["B3.221"] = new Node(25, 8.0f, 37.0f, "B3.223");
             ComplexPath["B3.105"] = new Node(26, 40.5f, 34.0f, "B3.105");
             ComplexPath["B3.103"] = new Node(27, 43.8f, 34.0f, "B3.103");
@@ -122,32 +122,34 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B3.104 Exit"] = new Node(48, 40.3f, 1.5f, "B3.104 Exit");
 
             // Floor 2
-            ComplexPath["B2.309"] = new Node(49, 1.8f, 43.0f, "B2.309");
-            ComplexPath["End B2.1B"] = new Node(50, 7.0f, 44.3f, "End B2.1B");
-            ComplexPath["Start B2.1B"] = new Node(51, 7.0f, 59.0f, "Start B2.1B");
-            ComplexPath["B2.311"] = new Node(52, 4.2f, 42.5f, "B2.311");
-            ComplexPath["B2.305"] = new Node(53, 3.0f, 59.0f, "B2.305");
-            ComplexPath["B2.1"] = new Node(54, 7.0f, 68.0f, "B2.1");
-            ComplexPath["End B2.2"] = new Node(55, 19.0f, 68.8f, "End B2.2");
-            ComplexPath["Start B2.2"] = new Node(56, 31.6f, 68.8f, "Start B2.2");
-            ComplexPath["B2.3"] = new Node(57, 41.3f, 67.5f, "B2.3");
-            ComplexPath["B2.217"] = new Node(58, 15.0f, 72.5f, "B2.217");
-            ComplexPath["B2.210"] = new Node(59, 15.0f, 62.5f, "B2.210");
+            ComplexPath["B2.315"] = new Node(49, 1.8f, 43.0f, "B2.315");
+            ComplexPath["End B2.2"] = new Node(50, 6.6f, 45.3f, "End B2.2");
+            ComplexPath["Start B2.2"] = new Node(51, 7.0f, 59.0f, "Start B2.2");
+            ComplexPath["B2.317"] = new Node(52, 4.2f, 42.5f, "B2.317");
+            ComplexPath["B2.305"] = new Node(53, 3.0f, 58.0f, "B2.305");
+            ComplexPath["B2.1"] = new Node(54, 6.8f, 66.5f, "B2.1");
+            ComplexPath["End B2.3"] = new Node(55, 21.2f, 65.8f, "End B2.2");
+            ComplexPath["Start B2.3"] = new Node(56, 31.6f, 65.8f, "Start B2.2");
+            ComplexPath["B2.4"] = new Node(57, 41.3f, 67.0f, "B2.3");
+            ComplexPath["B2.207"] = new Node(58, 17.0f, 71.5f, "B2.207");
+            ComplexPath["B2.210"] = new Node(59, 14.0f, 62.5f, "B2.210"); // Done
+
             ComplexPath["B2.208"] = new Node(60, 22.5f, 62.5f, "B2.208");
             ComplexPath["B2.215"] = new Node(61, 21.3f, 72.5f, "B2.215");
             ComplexPath["B2.213"] = new Node(62, 25.6f, 72.5f, "B2.213");
             ComplexPath["B2.206"] = new Node(63, 28.5f, 62.5f, "B2.206");
             ComplexPath["B2.211"] = new Node(64, 29.8f, 72.5f, "B2.211");
-            ComplexPath["B2.209"] = new Node(65, 34.0f, 72.5f, "B2.209");
             ComplexPath["B2.310"] = new Node(66, 9.2f, 44.8f, "B2.310");
             ComplexPath["B2.308"] = new Node(67, 9.2f, 47.8f, "B2.308");
             ComplexPath["B2.306"] = new Node(68, 9.2f, 50.8f, "B2.306");
             ComplexPath["B2.304"] = new Node(69, 9.2f, 53.5f, "B2.304");
             ComplexPath["B2.302"] = new Node(70, 9.2f, 56.0f, "B2.302");
             ComplexPath["B2.300"] = new Node(71, 9.2f, 58.7f, "B2.300");
-            ComplexPath["B2.1A"] = new Node(72, 5.0f, 73.0f, "B2.1A");
-            ComplexPath["B2.255"] = new Node(73, 3.0f, 77.0f, "B2.255");
-            ComplexPath["B2.221"] = new Node(74, 8.0f, 77.0f, "B2.223");
+
+            ComplexPath["B2.1A"] = new Node(72, 6.0f, 72.0f, "B2.1A"); // Done
+            ComplexPath["B2.212"] = new Node(73, 5.8f, 77.0f, "B2.212"); // Done
+            ComplexPath["B2.209"] = new Node(74, 10.0f, 72.0f, "B2.209"); // Done
+
             ComplexPath["B2.105"] = new Node(75, 40.5f, 74.0f, "B2.105");
             ComplexPath["B2.103"] = new Node(76, 43.8f, 74.0f, "B2.103");
             ComplexPath["B2.107"] = new Node(77, 42.0f, 77.8f, "B2.107");
@@ -168,14 +170,14 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B2.200A"] = new Node(92, 32.7f, 63.8f, "B2.200A");
             ComplexPath["C2.1 Hall"] = new Node(93, 50.0f, 67.5f, "C2.1 Hall");
             ComplexPath["C2.1 Stair"] = new Node(94, 50.0f, 62.5f, "C2.1 Stair");
-            ComplexPath["B2.1 Stair"] = new Node(95, 2.8f, 72.0f, "B2.1 Stair");
-            ComplexPath["B2.1B Exit"] = new Node(96, 7.0f, 42.0f, "B2.1B Exit");
+            ComplexPath["B2.1 Stair"] = new Node(95, 2.7f, 71.5f, "B2.1 Stair");
+            ComplexPath["B2.1 Exit"] = new Node(96, 7.0f, 42.0f, "B2.1 Exit");
             ComplexPath["B2.104 Exit"] = new Node(97, 40.3f, 41.5f, "B2.104 Exit");
 
             // Floor 3
             ComplexPath["B3.309"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
             ComplexPath["End B3.1B"].Neighbours = new List<Node> { ComplexPath["B3.309"], ComplexPath["Start B3.1B"], ComplexPath["B3.311"], ComplexPath["B3.310"], ComplexPath["B3.308"], ComplexPath["B3.306"], ComplexPath["B3.1B Exit"] };
-            ComplexPath["Start B3.1B"].Neighbours = new List<Node> { ComplexPath["End B3.1B"], ComplexPath["Start B3.1B"], ComplexPath["B3.305"], ComplexPath["B3.1"], ComplexPath["B3.304"], ComplexPath["B3.302"], ComplexPath["B3.300"] };
+            ComplexPath["Start B3.1B"].Neighbours = new List<Node> { ComplexPath["End B3.1B"], ComplexPath["B3.305"], ComplexPath["B3.1"], ComplexPath["B3.304"], ComplexPath["B3.302"], ComplexPath["B3.300"] };
             ComplexPath["B3.311"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
             ComplexPath["B3.305"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"] };
             ComplexPath["B3.1"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"], ComplexPath["End B3.2"], ComplexPath["B3.1A"], ComplexPath["B3.1 Stair"] };
@@ -196,8 +198,8 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B3.304"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"] };
             ComplexPath["B3.302"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"] };
             ComplexPath["B3.300"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"] };
-            ComplexPath["B3.1A"].Neighbours = new List<Node> { ComplexPath["B3.1"], ComplexPath["B3.255"], ComplexPath["B3.221"] };
-            ComplexPath["B3.255"].Neighbours = new List<Node> { ComplexPath["B3.1A"] };
+            ComplexPath["B3.1A"].Neighbours = new List<Node> { ComplexPath["B3.1"], ComplexPath["B3.225"], ComplexPath["B3.221"] };
+            ComplexPath["B3.225"].Neighbours = new List<Node> { ComplexPath["B3.1A"] };
             ComplexPath["B3.221"].Neighbours = new List<Node> { ComplexPath["B3.1A"] };
             ComplexPath["B3.105"].Neighbours = new List<Node> { ComplexPath["B3.3"] };
             ComplexPath["B3.103"].Neighbours = new List<Node> { ComplexPath["B3.3"] };
@@ -224,36 +226,35 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B3.104 Exit"].Neighbours = new List<Node> { ComplexPath["B3.104"] };
 
             // Floor 2
-            ComplexPath["B2.309"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
-            ComplexPath["End B2.1B"].Neighbours = new List<Node> { ComplexPath["B2.309"], ComplexPath["Start B2.1B"], ComplexPath["B2.311"], ComplexPath["B2.310"], ComplexPath["B2.308"], ComplexPath["B2.306"], ComplexPath["B2.1B Exit"] };
-            ComplexPath["Start B2.1B"].Neighbours = new List<Node> { ComplexPath["End B2.1B"], ComplexPath["Start B2.1B"], ComplexPath["B2.305"], ComplexPath["B2.1"], ComplexPath["B2.304"], ComplexPath["B2.302"], ComplexPath["B2.300"] };
-            ComplexPath["B2.311"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
-            ComplexPath["B2.305"].Neighbours = new List<Node> { ComplexPath["Start B2.1B"] };
-            ComplexPath["B2.1"].Neighbours = new List<Node> { ComplexPath["Start B2.1B"], ComplexPath["End B2.2"], ComplexPath["B2.1A"], ComplexPath["B2.1 Stair"] };
-            ComplexPath["End B2.2"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["Start B2.2"], ComplexPath["B2.217"], ComplexPath["B2.210"], ComplexPath["B2.208"], ComplexPath["B2.215"] };
-            ComplexPath["Start B2.2"].Neighbours = new List<Node> { ComplexPath["End B2.2"], ComplexPath["B2.3"], ComplexPath["B2.213"], ComplexPath["B2.206"], ComplexPath["B2.211"], ComplexPath["B2.209"] };
-            ComplexPath["B2.3"].Neighbours = new List<Node> { ComplexPath["Start B2.2"], ComplexPath["B2.105"], ComplexPath["B2.103"], ComplexPath["B2.107"], ComplexPath["B2.200"], ComplexPath["B2.104"], ComplexPath["C2.1 Hall"] };
-            ComplexPath["B2.217"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
-            ComplexPath["B2.210"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
-            ComplexPath["B2.208"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
-            ComplexPath["B2.215"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
-            ComplexPath["B2.213"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
-            ComplexPath["B2.206"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
-            ComplexPath["B2.211"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
-            ComplexPath["B2.209"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
-            ComplexPath["B2.310"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
-            ComplexPath["B2.308"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
-            ComplexPath["B2.306"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
-            ComplexPath["B2.304"].Neighbours = new List<Node> { ComplexPath["Start B2.1B"] };
-            ComplexPath["B2.302"].Neighbours = new List<Node> { ComplexPath["Start B2.1B"] };
-            ComplexPath["B2.300"].Neighbours = new List<Node> { ComplexPath["Start B2.1B"] };
-            ComplexPath["B2.1A"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["B2.255"], ComplexPath["B2.221"] };
-            ComplexPath["B2.255"].Neighbours = new List<Node> { ComplexPath["B2.1A"] };
-            ComplexPath["B2.221"].Neighbours = new List<Node> { ComplexPath["B2.1A"] };
-            ComplexPath["B2.105"].Neighbours = new List<Node> { ComplexPath["B2.3"] };
-            ComplexPath["B2.103"].Neighbours = new List<Node> { ComplexPath["B2.3"] };
-            ComplexPath["B2.107"].Neighbours = new List<Node> { ComplexPath["B2.3"] };
-            ComplexPath["B2.104"].Neighbours = new List<Node> { ComplexPath["B2.3"], ComplexPath["B2.114"], ComplexPath["B2.112"], ComplexPath["B2.116"], ComplexPath["B2.115"], ComplexPath["B2.110"], ComplexPath["B2.111"], ComplexPath["B2.122"], ComplexPath["B2.120"], ComplexPath["B2.108"], ComplexPath["B2.106"], ComplexPath["B2.104A"], ComplexPath["B2.104 Exit"] };
+            ComplexPath["B2.315"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
+            ComplexPath["End B2.2"].Neighbours = new List<Node> { ComplexPath["B2.315"], ComplexPath["Start B2.2"], ComplexPath["B2.317"], ComplexPath["B2.310"], ComplexPath["B2.308"], ComplexPath["B2.306"], ComplexPath["B2.1 Exit"] };
+            ComplexPath["Start B2.2"].Neighbours = new List<Node> { ComplexPath["End B2.2"], ComplexPath["B2.305"], ComplexPath["B2.1"], ComplexPath["B2.304"], ComplexPath["B2.302"], ComplexPath["B2.300"] };
+            ComplexPath["B2.317"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
+            ComplexPath["B2.305"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
+            ComplexPath["B2.1"].Neighbours = new List<Node> { ComplexPath["Start B2.2"], ComplexPath["End B2.3"], ComplexPath["B2.1A"], ComplexPath["B2.1 Stair"], ComplexPath["B2.209"], ComplexPath["B2.210"] };
+            ComplexPath["End B2.3"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["Start B2.3"], ComplexPath["B2.207"], ComplexPath["B2.210"], ComplexPath["B2.208"], ComplexPath["B2.215"] };
+            ComplexPath["Start B2.3"].Neighbours = new List<Node> { ComplexPath["End B2.3"], ComplexPath["B2.4"], ComplexPath["B2.213"], ComplexPath["B2.206"], ComplexPath["B2.211"], ComplexPath["B2.209"] };
+            ComplexPath["B2.4"].Neighbours = new List<Node> { ComplexPath["Start B2.3"], ComplexPath["B2.105"], ComplexPath["B2.103"], ComplexPath["B2.107"], ComplexPath["B2.200"], ComplexPath["B2.104"], ComplexPath["C2.1 Hall"] };
+            ComplexPath["B2.207"].Neighbours = new List<Node> { ComplexPath["End B2.3"] };
+            ComplexPath["B2.210"].Neighbours = new List<Node> { ComplexPath["End B2.3"], ComplexPath["B2.1"] };
+            ComplexPath["B2.208"].Neighbours = new List<Node> { ComplexPath["End B2.3"] };
+            ComplexPath["B2.215"].Neighbours = new List<Node> { ComplexPath["End B2.3"] };
+            ComplexPath["B2.213"].Neighbours = new List<Node> { ComplexPath["Start B2.3"] };
+            ComplexPath["B2.206"].Neighbours = new List<Node> { ComplexPath["Start B2.3"] };
+            ComplexPath["B2.211"].Neighbours = new List<Node> { ComplexPath["Start B2.3"] };
+            ComplexPath["B2.310"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
+            ComplexPath["B2.308"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
+            ComplexPath["B2.306"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
+            ComplexPath["B2.304"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
+            ComplexPath["B2.302"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
+            ComplexPath["B2.300"].Neighbours = new List<Node> { ComplexPath["Start B2.2"] };
+            ComplexPath["B2.1A"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["B2.212"], ComplexPath["B2.209"] };
+            ComplexPath["B2.212"].Neighbours = new List<Node> { ComplexPath["B2.1A"] };
+            ComplexPath["B2.209"].Neighbours = new List<Node> { ComplexPath["B2.1A"], ComplexPath["B2.1"] };
+            ComplexPath["B2.105"].Neighbours = new List<Node> { ComplexPath["B2.4"] };
+            ComplexPath["B2.103"].Neighbours = new List<Node> { ComplexPath["B2.4"] };
+            ComplexPath["B2.107"].Neighbours = new List<Node> { ComplexPath["B2.4"] };
+            ComplexPath["B2.104"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["B2.114"], ComplexPath["B2.112"], ComplexPath["B2.116"], ComplexPath["B2.115"], ComplexPath["B2.110"], ComplexPath["B2.111"], ComplexPath["B2.122"], ComplexPath["B2.120"], ComplexPath["B2.108"], ComplexPath["B2.106"], ComplexPath["B2.104A"], ComplexPath["B2.104 Exit"] };
             ComplexPath["B2.114"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
             ComplexPath["B2.112"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
             ComplexPath["B2.116"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
@@ -265,37 +266,43 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B2.108"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
             ComplexPath["B2.106"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
             ComplexPath["B2.104A"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
-            ComplexPath["B2.200"].Neighbours = new List<Node> { ComplexPath["B2.3"], ComplexPath["B2.200B"], ComplexPath["B2.200A"] };
+            ComplexPath["B2.200"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["B2.200B"], ComplexPath["B2.200A"] };
             ComplexPath["B2.200B"].Neighbours = new List<Node> { ComplexPath["B2.200"] };
             ComplexPath["B2.200A"].Neighbours = new List<Node> { ComplexPath["B2.200"] };
-            ComplexPath["C2.1 Hall"].Neighbours = new List<Node> { ComplexPath["B2.3"], ComplexPath["C2.1 Stair"] };
+            ComplexPath["C2.1 Hall"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["C2.1 Stair"] };
             ComplexPath["C2.1 Stair"].Neighbours = new List<Node> { ComplexPath["C2.1 Hall"], ComplexPath["C3.1 Stair"] };
             ComplexPath["B2.1 Stair"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["B3.1 Stair"] };
-            ComplexPath["B2.1B Exit"].Neighbours = new List<Node> { ComplexPath["End B2.1B"] };
+            ComplexPath["B2.1 Exit"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
             ComplexPath["B2.104 Exit"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
 
             // Floor 3 Image
-            IImage image;
+            IImage floor3Image;
             using (Stream? stream = GetType().GetTypeInfo().Assembly.GetManifestResourceStream("EventPlannerMAUI.Resources.Images.floor3.png"))
-                image = PlatformImage.FromStream(stream);
+                floor3Image = PlatformImage.FromStream(stream);
 
-            canvas.DrawImage(image, 0, 0, image.Width / 2.05f, image.Height / 2.05f);
+            canvas.DrawImage(floor3Image, 0, 0, floor3Image.Width / 2.05f, floor3Image.Height / 2.05f);
 
             // Floor 2 Image
+            IImage floor2Image;
+            using (Stream? stream = GetType().GetTypeInfo().Assembly.GetManifestResourceStream("EventPlannerMAUI.Resources.Images.floor2.png"))
+                floor2Image = PlatformImage.FromStream(stream);
+
+            canvas.DrawImage(floor2Image, 0, floor3Image.Height / 2.15f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
 
             canvas.FillColor = Colors.Red;
             canvas.StrokeColor = Colors.Red;
 
             int ScaleFactor = 8;
-            /*
+            foreach (Node node in ComplexPath.Values)
+                canvas.FillCircle((node.X * ScaleFactor) + 5, (node.Y * ScaleFactor) + 5, 5);
+            
             if (StartPos != null && EndPos != null)
             {
 
-
                 List<Node> FastestPath = AStarAlgorithm(ComplexPath[StartPos], ComplexPath[EndPos]);
 
-                canvas.FillColor = Colors.Green;
-                canvas.StrokeColor = Colors.Green;
+                canvas.FillColor = Colors.Navy;
+                canvas.StrokeColor = Colors.Navy;
                 canvas.StrokeSize = 3;
 
                 for (int i = 0; i < FastestPath.Count(); i++)
@@ -308,8 +315,13 @@ namespace EventPlannerMAUI.Drawables
 
                 }
 
-            }*/
+                canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 6);
 
+                canvas.FillColor = Colors.LightGreen;
+                canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 5);
+
+            }
+            /*
             if (StartPos != null)
             {
 
@@ -346,7 +358,7 @@ namespace EventPlannerMAUI.Drawables
                 canvas.FillColor = Colors.LightGreen;
                 canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 5);
 
-            }
+            }*/
 
         }
 
