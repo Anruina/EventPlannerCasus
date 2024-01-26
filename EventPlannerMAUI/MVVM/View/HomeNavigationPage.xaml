@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage">
+             x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage"
+             Title="Home Page"
+             Shell.BackgroundColor="#ED1B34"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             BackgroundColor="#D6CCC9"
+             NavigationPage.HasBackButton="False" >
 
     <StackLayout>
         <!-- Knop voor het toevoegen van een evenement -->
         <Button Text="Voeg evenement toe" Clicked="OnAddEventClicked" />
+        <Button Text="Show Map" Clicked="ShowMap" />
 
         <!-- Lijst met evenementen -->
         <ListView x:Name="eventListView" HasUnevenRows="True">

@@ -16,6 +16,14 @@
     <VerticalStackLayout
         VerticalOptions="FillAndExpand" >
 
+        <GraphicsView 
+            x:Name="MapView"
+            HorizontalOptions="StartAndExpand"
+            WidthRequest="200"
+            HeightRequest="300"
+            Drawable="{StaticResource MyDrawable}" 
+            Scale="0.85"/>
+
         <StackLayout
             Orientation="Horizontal">
 
@@ -36,11 +44,6 @@
         <Button 
             Text="Calculate path..." 
             Clicked="OnRefresh" />
-
-        <GraphicsView 
-            x:Name="MapView"
-            HorizontalOptions="Fill"
-            Drawable="{StaticResource MyDrawable}" />
 
     </VerticalStackLayout>
     
