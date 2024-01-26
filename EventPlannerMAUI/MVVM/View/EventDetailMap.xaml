@@ -54,6 +54,13 @@
             Text="Calculate path..." 
             Clicked="OnRefresh" />
 
+        <Button 
+            Text="Locate emercengy exit"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="CenterAndExpand"
+            Margin="10"
+            Clicked="OnEmergencyClick" />
+
     </VerticalStackLayout>
     
 </ContentPage>
