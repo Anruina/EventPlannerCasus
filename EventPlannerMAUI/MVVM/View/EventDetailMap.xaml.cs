@@ -18,7 +18,21 @@ public partial class EventDetailMap : ContentPage
 
             MainMapPath.StartPos = StartPos.Text;
             MainMapPath.EndPos = EndPos.Text;
+            MainMapPath.Emergency = false;
 
+            MapView.Invalidate();
+
+        }
+
+    }
+
+    private void OnEmergencyClick(object sender, EventArgs e)
+    {
+
+        if (!string.IsNullOrEmpty(StartPos.Text))
+        {
+
+            MainMapPath.Emergency = true;
             MapView.Invalidate();
 
         }
