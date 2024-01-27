@@ -39,4 +39,11 @@ public partial class EventDetailMap : ContentPage
 
     }
 
+    private void OnMapPinch(object sender, EventArgs e)
+    {
+
+        
+
+    }
+
 }
