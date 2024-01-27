@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>EventPlannerMAUI</ApplicationTitle>
+		<ApplicationTitle>ZUYD Events</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.eventplannermaui</ApplicationId>
@@ -60,7 +60,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\eventinfoicon.png" />
 	  <None Remove="Resources\Images\floor2.png" />
+	  <None Remove="Resources\Images\MapIcon.png" />
+	  <None Remove="Resources\Images\scheduleicon.png" />
 	  <None Remove="Resources\Images\wallpaper1.png" />
 	  <None Remove="Resources\Images\wallpapereventplanner.png" />
 	  <None Remove="Resources\Images\zuydeventicon.png" />
@@ -95,7 +98,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="MVVM\View\EventDetailMapPage.xaml.cs">
+	    <DependentUpon>EventDetailMapPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="MVVM\View\ActivitySchedulePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\EventDetailTabbedPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\EventInfoPage.xaml">

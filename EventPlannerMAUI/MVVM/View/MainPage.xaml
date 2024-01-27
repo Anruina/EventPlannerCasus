@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.MainPage"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-             NavigationPage.HasNavigationBar="False"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#D6CCC9" >
+             NavigationPage.HasNavigationBar="False" >
 
     <ScrollView>
 
@@ -19,13 +17,11 @@
 
                 <ActivityIndicator 
                     IsRunning="True" 
-                    Color="#3F51B5"
                     VerticalOptions="Center" 
                     HorizontalOptions="Center" />
                 <Label 
                     Text="Trying to login..." 
-                    FontFamily="Montserrat-Bold"
-                    TextColor="#3F51B5" />
+                    FontFamily="Montserrat-Bold" />
 
             </StackLayout>
 
