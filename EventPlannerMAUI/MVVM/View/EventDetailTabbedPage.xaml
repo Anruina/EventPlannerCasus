@@ -4,8 +4,7 @@
             xmlns:local="clr-namespace:EventPlannerMAUI.MVVM.View"
             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
             x:Class="EventPlannerMAUI.MVVM.View.EventDetailTabbedPage"
-            android:TabbedPage.ToolbarPlacement="Bottom" 
-            Shell.BackgroundColor="#ED1B34" >
+            android:TabbedPage.ToolbarPlacement="Bottom" >
 
     <local:EventInfoPage 
         Title="Event Info"

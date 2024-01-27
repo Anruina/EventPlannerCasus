@@ -39,16 +39,31 @@ public partial class EventDetailMapPage : ContentPage
 
     }
 
-    private void OnMapPinch(object sender, PinchGestureUpdatedEventArgs e)
+    private void OnZoomInClick(object sender, EventArgs e)
     {
 
-        if (e.Status == GestureStatus.Running)
+        if (MapView.Scale < 1.8f)
         {
 
-            if (e.Scale > 1.0f)
-                MapView.Scale += 0.01f;
-            else
-                MapView.Scale -= 0.01f;
+            MapView.WidthRequest *= 1.1f;
+            MapView.HeightRequest *= 1.1f;
+
+            MapView.Scale *= 1.1f;
+
+        }
+
+    }
+
+    private void OnZoomOutClick(object sender, EventArgs e)
+    {
+
+        if (MapView.Scale > 0.85f)
+        {
+
+            MapView.WidthRequest /= 1.1f;
+            MapView.HeightRequest /= 1.1f;
+
+            MapView.Scale /= 1.1f;
 
         }
 

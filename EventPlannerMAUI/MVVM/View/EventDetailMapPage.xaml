@@ -18,30 +18,52 @@
     <VerticalStackLayout
         VerticalOptions="FillAndExpand" >
 
-        <ScrollView
-            Orientation="Vertical"
-            HeightRequest="400"
-            WidthRequest="440"
-            Margin="10"
-            BackgroundColor="White" >
+        <Grid>
+           
+            <ScrollView
+                Orientation="Both"
+                HeightRequest="400"
+                WidthRequest="440"
+                Margin="10"
+                BackgroundColor="White" >
 
-            <GraphicsView 
-                x:Name="MapView"
-                HorizontalOptions="StartAndExpand"
-                WidthRequest="500"
-                HeightRequest="650"
-                Drawable="{StaticResource MyDrawable}" 
-                Scale="0.85" >
-                
-                <GraphicsView.GestureRecognizers>
+                <GraphicsView 
+                    x:Name="MapView"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="440"
+                    HeightRequest="655"
+                    Drawable="{StaticResource MyDrawable}" 
+                    Scale="0.85"
+                    TranslationX="40"
+                    TranslationY="0"
+                    AnchorX="0"
+                    AnchorY="0" />
 
-                    <PinchGestureRecognizer PinchUpdated="OnMapPinch"/>
+            </ScrollView>
 
-                </GraphicsView.GestureRecognizers>
-                
-            </GraphicsView>
+            <AbsoluteLayout 
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All" 
+                VerticalOptions="End"
+                HorizontalOptions="End" 
+                Margin="10, 10, 5, 10" >
 
-        </ScrollView>
+                <HorizontalStackLayout>
+
+                    <Button 
+                        Text="-"
+                        Clicked="OnZoomOutClick"
+                        Margin="0,0,5,0" />
+
+                    <Button 
+                        Text="+"
+                        Clicked="OnZoomInClick" />
+
+                </HorizontalStackLayout>
+
+            </AbsoluteLayout>
+
+        </Grid>
 
         <StackLayout
             Orientation="Horizontal">
