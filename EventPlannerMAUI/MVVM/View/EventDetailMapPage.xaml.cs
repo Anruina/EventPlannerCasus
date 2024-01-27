@@ -1,9 +1,9 @@
 namespace EventPlannerMAUI.MVVM.View;
 
-public partial class EventDetailMap : ContentPage
+public partial class EventDetailMapPage : ContentPage
 {
 	
-    public EventDetailMap()
+    public EventDetailMapPage()
 	{
 	
         InitializeComponent();
@@ -39,10 +39,18 @@ public partial class EventDetailMap : ContentPage
 
     }
 
-    private void OnMapPinch(object sender, EventArgs e)
+    private void OnMapPinch(object sender, PinchGestureUpdatedEventArgs e)
     {
 
-        
+        if (e.Status == GestureStatus.Running)
+        {
+
+            if (e.Scale > 1.0f)
+                MapView.Scale += 0.01f;
+            else
+                MapView.Scale -= 0.01f;
+
+        }
 
     }
 

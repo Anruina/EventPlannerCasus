@@ -6,7 +6,6 @@
              Shell.BackgroundColor="#ED1B34"
              Shell.ForegroundColor="White"
              Shell.TitleColor="White"
-             BackgroundColor="#D6CCC9"
              NavigationPage.HasBackButton="False" >
 
     <StackLayout>

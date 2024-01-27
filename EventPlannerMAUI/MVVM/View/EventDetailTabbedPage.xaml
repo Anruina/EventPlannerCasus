@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:EventPlannerMAUI.MVVM.View"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            x:Class="EventPlannerMAUI.MVVM.View.EventDetailTabbedPage"
+            android:TabbedPage.ToolbarPlacement="Bottom" 
+            Shell.BackgroundColor="#ED1B34" >
+
+    <local:EventInfoPage 
+        Title="Event Info"
+        IconImageSource="eventinfoicon.png" />
+
+    <local:ActivitySchedulePage 
+        Title="Schedule" 
+        IconImageSource="scheduleicon.png" />
+
+    <local:EventDetailMapPage 
+        Title="Map"
+        IconImageSource="mapicon.png" />
+
+</TabbedPage>

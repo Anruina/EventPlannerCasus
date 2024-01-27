@@ -38,7 +38,7 @@ namespace EventPlannerMAUI.MVVM.View
         private async void ShowMap(object sender, EventArgs e)
         {
 
-            await Navigation.PushAsync(new EventDetailMap());
+            await Navigation.PushAsync(new EventDetailTabbedPage());
 
         }
 
