@@ -33,7 +33,7 @@ namespace EventPlannerMAUI.MVVM.View
                 AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
  
                 if (account != null)
-                    await Navigation.PushAsync(new HomeNavigationPage());
+                    await Navigation.PopAsync();
 
             }
 
@@ -54,7 +54,7 @@ namespace EventPlannerMAUI.MVVM.View
                 await SecureStorage.SetAsync("Password", PasswordEntry.Text);
 
                 LogginFailedLabel.IsVisible = false;
-                await Navigation.PushAsync(new HomeNavigationPage());
+                await Navigation.PopAsync();
 
             }
             else
