@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<FlyoutPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            xmlns:local="clr-namespace:EventPlannerMAUI.MVVM.View"
-            x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage"
-            IsGestureEnabled="False" >
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage"
+             Title="Home Page"
+             NavigationPage.HasBackButton="False" >
 
-    <FlyoutPage.Flyout>
+    <StackLayout>
+        <!-- Knop voor het toevoegen van een evenement -->
+        <Button Text="Voeg evenement toe" Clicked="OnAddEventClicked" />
+        <Button Text="Show Map" Clicked="ShowMap" />
 
-        <local:MainFlyoutMenuPage
-            x:Name="MainFlyoutPage" />
-
-    </FlyoutPage.Flyout>
-
-    <FlyoutPage.Detail>
-
-        <NavigationPage>
-
-            <x:Arguments>
-
-                <local:EventListPage />
-
-            </x:Arguments>
-
-        </NavigationPage>
-
-    </FlyoutPage.Detail>
-
-</FlyoutPage>
+        <!-- Lijst met evenementen -->
+        <ListView x:Name="eventListView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!-- Elk evenement wordt weergegeven als een "blokje" -->
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" />
+                            <Label Text="{Binding Date}" />
+                            <Label Text="{Binding Location}" />
+                            <Label Text="{Binding Time}" />
+                            <Label Text="{Binding Description}" />
+                             
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
