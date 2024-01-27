@@ -10,7 +10,7 @@ namespace EventPlannerMAUI
 
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new HomeNavigationPage();
 
         }
 
