@@ -4,11 +4,7 @@
              x:Class="EventPlannerMAUI.MVVM.View.RegisterPage"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              Title="Registration"
-             NavigationPage.HasBackButton="True" 
-             Shell.BackgroundColor="#ED1B34"
-             Shell.ForegroundColor="White"
-             Shell.TitleColor="White"
-             BackgroundColor="#D6CCC9" >
+             NavigationPage.HasBackButton="True" >
 
     <VerticalStackLayout
         Spacing="25"

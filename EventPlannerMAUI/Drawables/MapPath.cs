@@ -126,50 +126,50 @@ namespace EventPlannerMAUI.Drawables
             ComplexPath["B3.104 Exit"] = new Node(48, 40.3f, 1.5f, "B3.104 Exit");
 
             // Floor 2
-            ComplexPath["B2.315"] = new Node(49, 1.8f, 43.0f, "B2.315");
-            ComplexPath["End B2.2"] = new Node(50, 6.6f, 45.3f, "End B2.2");
-            ComplexPath["Start B2.2"] = new Node(51, 7.0f, 59.0f, "Start B2.2");
-            ComplexPath["B2.317"] = new Node(52, 4.2f, 42.5f, "B2.317");
-            ComplexPath["B2.305"] = new Node(53, 3.0f, 58.0f, "B2.305");
-            ComplexPath["B2.1"] = new Node(54, 6.8f, 66.5f, "B2.1");
-            ComplexPath["End B2.3"] = new Node(55, 21.2f, 65.8f, "End B2.2");
-            ComplexPath["Start B2.3"] = new Node(56, 31.6f, 65.8f, "Start B2.2");
-            ComplexPath["B2.4"] = new Node(57, 41.3f, 67.0f, "B2.3");
-            ComplexPath["B2.207"] = new Node(58, 17.0f, 71.5f, "B2.207");
-            ComplexPath["B2.210"] = new Node(59, 14.0f, 62.5f, "B2.210"); 
-            ComplexPath["B2.208"] = new Node(60, 16.8f, 62.5f, "B2.208");
-            ComplexPath["B2.205"] = new Node(61, 24.3f, 72.0f, "B2.205");
-            ComplexPath["B2.203"] = new Node(62, 34.6f, 72.0f, "B2.203"); 
-            ComplexPath["B2.206"] = new Node(63, 19.3f, 62.5f, "B2.206"); 
-            ComplexPath["B2.204"] = new Node(64, 23.0f, 62.5f, "B2.204");
-            ComplexPath["B2.312"] = new Node(65, 9.2f, 44.8f, "B2.312");
-            ComplexPath["B2.310"] = new Node(66, 9.2f, 47.8f, "B2.310");
-            ComplexPath["B2.308"] = new Node(67, 9.2f, 50.8f, "B2.308");
-            ComplexPath["B2.306"] = new Node(68, 9.2f, 53.5f, "B2.306");
-            ComplexPath["B2.304"] = new Node(69, 9.2f, 56.0f, "B2.304");
-            ComplexPath["B2.302"] = new Node(70, 9.2f, 58.7f, "B2.302");
-            ComplexPath["B2.1A"] = new Node(71, 6.0f, 72.0f, "B2.1A");
-            ComplexPath["B2.212"] = new Node(72, 5.8f, 77.0f, "B2.212");
-            ComplexPath["B2.209"] = new Node(73, 10.0f, 72.0f, "B2.209"); 
-            ComplexPath["B2.203A"] = new Node(74, 39.0f, 76.8f, "B2.203A");
-            ComplexPath["B2.201"] = new Node(75, 45.0f, 76.0f, "B2.201");
-            ComplexPath["B2.309"] = new Node(76, 3.0f, 53.5f, "B2.309");
-            ComplexPath["B2.104"] = new Node(77, 39.3f, 52.0f, "B2.104");
-            ComplexPath["B2.313"] = new Node(78, 3.0f, 48.5f, "B2.313");
-            ComplexPath["B2.104F"] = new Node(79, 44.8f, 41.3f, "B2.104F");
-            ComplexPath["B2.104E"] = new Node(80, 45.8f, 45.1f, "B2.104E");
-            ComplexPath["B2.104D"] = new Node(81, 43.2f, 49.5f, "B2.104D");
-            ComplexPath["B2.104C"] = new Node(82, 45.8f, 49.6f, "B2.104C");
-            ComplexPath["B2.104A"] = new Node(83, 43.0f, 54.5f, "B2.104A");
-            ComplexPath["B2.104B"] = new Node(84, 45.8f, 53.5f, "B2.104B");
-            ComplexPath["B2.200"] = new Node(85, 36.2f, 61.5f, "B2.200");
-            ComplexPath["B2.202"] = new Node(86, 29.7f, 62.5f, "B2.202");
-            ComplexPath["B2.300"] = new Node(91, 11.0f, 64.0f, "B2.300");
-            ComplexPath["C2.1 Hall"] = new Node(92, 50.0f, 67.5f, "C2.1 Hall");
-            ComplexPath["C2.1 Stair"] = new Node(93, 50.0f, 62.5f, "C2.1 Stair");
-            ComplexPath["B2.1 Stair"] = new Node(94, 2.7f, 71.5f, "B2.1 Stair");
-            ComplexPath["B2.1 Exit"] = new Node(95, 7.0f, 41.5f, "B2.1 Exit");
-            ComplexPath["B2.104 Exit"] = new Node(96, 40.3f, 41.5f, "B2.104 Exit");
+            ComplexPath["B2.315"] = new Node(49, 1.8f, 44.0f, "B2.315");
+            ComplexPath["End B2.2"] = new Node(50, 6.6f, 46.3f, "End B2.2");
+            ComplexPath["Start B2.2"] = new Node(51, 7.0f, 60.0f, "Start B2.2");
+            ComplexPath["B2.317"] = new Node(52, 4.2f, 43.5f, "B2.317");
+            ComplexPath["B2.305"] = new Node(53, 3.0f, 59.0f, "B2.305");
+            ComplexPath["B2.1"] = new Node(54, 6.8f, 67.5f, "B2.1");
+            ComplexPath["End B2.3"] = new Node(55, 21.2f, 66.8f, "End B2.2");
+            ComplexPath["Start B2.3"] = new Node(56, 31.6f, 66.8f, "Start B2.2");
+            ComplexPath["B2.4"] = new Node(57, 41.3f, 68.0f, "B2.3");
+            ComplexPath["B2.207"] = new Node(58, 17.0f, 72.5f, "B2.207");
+            ComplexPath["B2.210"] = new Node(59, 14.0f, 63.5f, "B2.210"); 
+            ComplexPath["B2.208"] = new Node(60, 16.8f, 63.5f, "B2.208");
+            ComplexPath["B2.205"] = new Node(61, 24.3f, 73.0f, "B2.205");
+            ComplexPath["B2.203"] = new Node(62, 34.6f, 73.0f, "B2.203"); 
+            ComplexPath["B2.206"] = new Node(63, 19.3f, 63.5f, "B2.206"); 
+            ComplexPath["B2.204"] = new Node(64, 23.0f, 63.5f, "B2.204");
+            ComplexPath["B2.312"] = new Node(65, 9.2f, 45.8f, "B2.312");
+            ComplexPath["B2.310"] = new Node(66, 9.2f, 48.8f, "B2.310");
+            ComplexPath["B2.308"] = new Node(67, 9.2f, 51.8f, "B2.308");
+            ComplexPath["B2.306"] = new Node(68, 9.2f, 54.5f, "B2.306");
+            ComplexPath["B2.304"] = new Node(69, 9.2f, 57.0f, "B2.304");
+            ComplexPath["B2.302"] = new Node(70, 9.2f, 59.7f, "B2.302");
+            ComplexPath["B2.1A"] = new Node(71, 6.0f, 73.0f, "B2.1A");
+            ComplexPath["B2.212"] = new Node(72, 5.8f, 78.0f, "B2.212");
+            ComplexPath["B2.209"] = new Node(73, 10.0f, 73.0f, "B2.209"); 
+            ComplexPath["B2.203A"] = new Node(74, 39.0f, 77.8f, "B2.203A");
+            ComplexPath["B2.201"] = new Node(75, 45.0f, 77.0f, "B2.201");
+            ComplexPath["B2.309"] = new Node(76, 3.0f, 54.5f, "B2.309");
+            ComplexPath["B2.104"] = new Node(77, 39.3f, 53.0f, "B2.104");
+            ComplexPath["B2.313"] = new Node(78, 3.0f, 49.5f, "B2.313");
+            ComplexPath["B2.104F"] = new Node(79, 44.8f, 42.3f, "B2.104F");
+            ComplexPath["B2.104E"] = new Node(80, 45.8f, 46.1f, "B2.104E");
+            ComplexPath["B2.104D"] = new Node(81, 43.2f, 50.5f, "B2.104D");
+            ComplexPath["B2.104C"] = new Node(82, 45.8f, 50.6f, "B2.104C");
+            ComplexPath["B2.104A"] = new Node(83, 43.0f, 55.5f, "B2.104A");
+            ComplexPath["B2.104B"] = new Node(84, 45.8f, 54.5f, "B2.104B");
+            ComplexPath["B2.200"] = new Node(85, 36.2f, 62.5f, "B2.200");
+            ComplexPath["B2.202"] = new Node(86, 29.7f, 63.5f, "B2.202");
+            ComplexPath["B2.300"] = new Node(91, 11.0f, 65.0f, "B2.300");
+            ComplexPath["C2.1 Hall"] = new Node(92, 50.0f, 68.5f, "C2.1 Hall");
+            ComplexPath["C2.1 Stair"] = new Node(93, 50.0f, 63.5f, "C2.1 Stair");
+            ComplexPath["B2.1 Stair"] = new Node(94, 2.7f, 72.5f, "B2.1 Stair");
+            ComplexPath["B2.1 Exit"] = new Node(95, 7.0f, 42.5f, "B2.1 Exit");
+            ComplexPath["B2.104 Exit"] = new Node(96, 40.3f, 42.5f, "B2.104 Exit");
 
             // Floor 3
             ComplexPath["B3.309"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
@@ -279,7 +279,7 @@ namespace EventPlannerMAUI.Drawables
             using (Stream? stream = GetType().GetTypeInfo().Assembly.GetManifestResourceStream("EventPlannerMAUI.Resources.Images.floor2.png"))
                 floor2Image = PlatformImage.FromStream(stream);
 
-            canvas.DrawImage(floor2Image, 0, floor3Image.Height / 2.15f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
+            canvas.DrawImage(floor2Image, 0, floor3Image.Height / 2.10f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
 
             int ScaleFactor = 8;
 

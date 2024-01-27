@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.HomeNavigationPage"
              Title="Home Page"
-             Shell.BackgroundColor="#ED1B34"
-             Shell.ForegroundColor="White"
-             Shell.TitleColor="White"
              NavigationPage.HasBackButton="False" >
 
     <StackLayout>
