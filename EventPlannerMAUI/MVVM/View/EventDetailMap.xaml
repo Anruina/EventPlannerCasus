@@ -23,15 +23,23 @@
             HeightRequest="300"
             WidthRequest="440"
             Margin="10"
-            BackgroundColor="White" >
-        
+            BackgroundColor="Transparent" >
+
             <GraphicsView 
                 x:Name="MapView"
                 HorizontalOptions="StartAndExpand"
                 WidthRequest="500"
                 HeightRequest="650"
                 Drawable="{StaticResource MyDrawable}" 
-                Scale="0.85"/>
+                Scale="0.85" >
+                
+                <GraphicsView.GestureRecognizers>
+
+                    <PinchGestureRecognizer PinchUpdated="OnMapPinch"/>
+
+                </GraphicsView.GestureRecognizers>
+                
+            </GraphicsView>
 
         </ScrollView>
 
