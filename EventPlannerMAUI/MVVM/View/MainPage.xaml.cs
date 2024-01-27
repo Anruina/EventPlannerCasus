@@ -17,6 +17,29 @@ namespace EventPlannerMAUI.MVVM.View
             InitializeComponent();
             _apiService = ServiceLocator.apiService;
 
+            OnCreate();
+
+        }
+
+        /// <summary>
+        /// We refer to username, with username we mean the e-mailaddress of the user.
+        /// </summary>
+        private async void OnCreate()
+        {
+
+            if (await SecureStorage.GetAsync("Username") is string Username && await SecureStorage.GetAsync("Password") is string Password)
+            {
+
+                AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
+ 
+                if (account != null)
+                    await Navigation.PopAsync();
+
+            }
+
+            LoadingStackLayout.IsVisible = false;
+            LoginVerticalStackLayout.IsVisible = true;
+
         }
 
         private async void OnLoginClick(object sender, EventArgs e)
@@ -31,7 +54,6 @@ namespace EventPlannerMAUI.MVVM.View
                 await SecureStorage.SetAsync("Password", PasswordEntry.Text);
 
                 LogginFailedLabel.IsVisible = false;
-                ServiceLocator.LoggedIn = true;
                 await Navigation.PopAsync();
 
             }

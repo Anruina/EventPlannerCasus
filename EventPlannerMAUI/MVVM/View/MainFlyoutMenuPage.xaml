@@ -28,28 +28,23 @@
 
                     <models:FlyoutPageItem 
                         Title="Home"
-                        TargetType="{x:Type local:EventListPage}" 
-                        RequiresAuthentication="False" />
+                        TargetType="{x:Type local:EventListPage}" />
 
                     <models:FlyoutPageItem
                         Title="History"
-                        TargetType="{x:Type local:HistoryViewPage}"
-                        RequiresAuthentication="True" />
+                        TargetType="{x:Type local:HistoryViewPage}" />
 
                     <models:FlyoutPageItem
                         Title="Profile"
-                        TargetType="{x:Type local:UserProfilePage}"
-                        RequiresAuthentication="True" />
+                        TargetType="{x:Type local:UserProfilePage}" />
 
                     <models:FlyoutPageItem
                         Title="Manage Events"
-                        TargetType="{x:Type local:ManageEventsPage}"
-                        RequiresAuthentication="True" />
+                        TargetType="{x:Type local:ManageEventsPage}" />
 
                     <models:FlyoutPageItem
                         Title="Settings"
-                        TargetType="{x:Type local:SettingsPage}"
-                        RequiresAuthentication="False" />
+                        TargetType="{x:Type local:SettingsPage}" />
 
                 </x:Array>
                 

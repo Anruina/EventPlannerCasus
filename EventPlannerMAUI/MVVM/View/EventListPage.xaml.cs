@@ -28,11 +28,13 @@ public partial class EventListPage : ContentPage
 
     }
 
+
+    // Event handler voor het toevoegen van een evenement
     private async void OnAddEventClicked(object sender, EventArgs e)
     {
-
-        await Navigation.PushAsync(new SaveEventPage());
-
+        // Hier kun je de logica voor het toevoegen van een nieuw evenement implementeren
+        // bijvoorbeeld door een nieuw venster te openen of een nieuw scherm weer te geven.
+        // Je zou dan de gegevens van het nieuwe evenement aan de 'events' verzameling toevoegen.
     }
 
     private async void ShowMap(object sender, EventArgs e)
