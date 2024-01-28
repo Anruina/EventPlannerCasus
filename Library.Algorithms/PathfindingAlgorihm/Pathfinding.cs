@@ -8,7 +8,7 @@
         {
 
             List<Node> openList = new List<Node>();
-            List<Node> closedList = new List<Node>();
+            HashSet<string> closedList = new HashSet<string>();
 
             startNode.GCost = 0;
             startNode.HCost = CalculateDistance(startNode, endNode);
@@ -28,31 +28,36 @@
                 currentNode = openList[nodeIndex];
 
                 openList.RemoveAt(nodeIndex);
-                closedList.Add(currentNode);
+                closedList.Add(currentNode.Name);
 
-                if (currentNode.Id == endNode.Id)
-                    return ReconstructPath(closedList[closedList.Count - 1]);
+                if (currentNode.Name == endNode.Name)
+                    return ReconstructPath(currentNode);
 
                 foreach (Node neighbor in currentNode.Neighbours)
                 {
 
-                    Node newNeighbor = new Node(neighbor);
-
-                    newNeighbor.Parent = currentNode;
-                    newNeighbor.GCost = currentNode.GCost + CalculateDistance(newNeighbor, currentNode);
-                    newNeighbor.HCost = CalculateDistance(newNeighbor, endNode);
-                    newNeighbor.FCost = newNeighbor.HCost + newNeighbor.GCost;
-
-                    int otherNodeIndex = openList.FindIndex(n => n.Id == newNeighbor.Id);
-                    if (otherNodeIndex > -1)
+                    if (!closedList.Contains(neighbor.Name))
                     {
 
-                        if (openList[otherNodeIndex].FCost > newNeighbor.FCost)
-                            openList[otherNodeIndex] = newNeighbor;
+                        Node newNeighbor = new Node(neighbor);
+
+                        newNeighbor.Parent = currentNode;
+                        newNeighbor.GCost = currentNode.GCost + CalculateDistance(newNeighbor, currentNode);
+                        newNeighbor.HCost = CalculateDistance(newNeighbor, endNode);
+                        newNeighbor.FCost = newNeighbor.HCost + newNeighbor.GCost;
+
+                        int otherNodeIndex = openList.FindIndex(n => n.Name == newNeighbor.Name);
+                        if (otherNodeIndex > -1)
+                        {
+
+                            if (openList[otherNodeIndex].FCost > newNeighbor.FCost)
+                                openList[otherNodeIndex] = newNeighbor;
+
+                        }
+                        else
+                            openList.Add(newNeighbor);
 
                     }
-                    else if (closedList.FindIndex(n => n.Id == newNeighbor.Id) == -1)
-                        openList.Add(newNeighbor);
 
                 }
 

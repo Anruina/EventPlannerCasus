@@ -4,7 +4,6 @@
     public class Node
     {
 
-        public int Id { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
         public string Name { get; set; }
@@ -17,10 +16,9 @@
 
         public List<Node> Neighbours { get; set; }
 
-        public Node(int id, float x, float y, string name)
+        public Node(float x, float y, string name)
         {
 
-            Id = id;
             X = x;
             Y = y;
 
@@ -29,12 +27,15 @@
             Neighbours = new List<Node>();
             Parent = null;
 
+            GCost = 0;
+            FCost = 0;
+            HCost = 0;
+
         }
 
         public Node(Node otherNode)
         {
 
-            Id = otherNode.Id;
             X = otherNode.X;
             Y = otherNode.Y;
 
