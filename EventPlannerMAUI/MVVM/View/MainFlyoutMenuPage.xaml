@@ -29,26 +29,31 @@
                     <models:FlyoutPageItem 
                         Title="Home"
                         TargetType="{x:Type local:EventListPage}" 
+                        IconSource="flyouticons/homeicon.svg"
                         RequiresAuthentication="False" />
 
                     <models:FlyoutPageItem
                         Title="History"
                         TargetType="{x:Type local:HistoryViewPage}"
-                        RequiresAuthentication="True" />
-
-                    <models:FlyoutPageItem
-                        Title="Profile"
-                        TargetType="{x:Type local:UserProfilePage}"
+                        IconSource="flyouticons/historyicon.svg"
                         RequiresAuthentication="True" />
 
                     <models:FlyoutPageItem
                         Title="Manage Events"
                         TargetType="{x:Type local:ManageEventsPage}"
+                        IconSource="flyouticons/manageeventicon.svg"
+                        RequiresAuthentication="True" />
+
+                    <models:FlyoutPageItem
+                        Title="Profile"
+                        TargetType="{x:Type local:UserProfilePage}"
+                        IconSource="flyouticons/profileicon.svg"
                         RequiresAuthentication="True" />
 
                     <models:FlyoutPageItem
                         Title="Settings"
                         TargetType="{x:Type local:SettingsPage}"
+                        IconSource="flyouticons/ settingsicon.svg"
                         RequiresAuthentication="False" />
 
                 </x:Array>
@@ -60,7 +65,7 @@
                 <DataTemplate>
 
                     <Grid
-                        Padding="5, 10">
+                        Padding="5,10">
 
                         <Grid.ColumnDefinitions>
 
@@ -68,6 +73,9 @@
                             <ColumnDefinition Width="*" />
 
                         </Grid.ColumnDefinitions>
+
+                        <Image 
+                            Source="{Binding IconSource}" />
 
                         <Label
                             Grid.Column="1"

@@ -93,6 +93,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Include="Resources\Images\flyouticons\historyicon.svg" />
+	  <MauiImage Include="Resources\Images\flyouticons\homeicon.svg" />
+	  <MauiImage Include="Resources\Images\flyouticons\manageeventicon.svg" />
+	  <MauiImage Include="Resources\Images\flyouticons\profileicon.svg" />
+	  <MauiImage Include="Resources\Images\flyouticons\settingsicon.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <ProjectReference Include="..\ApiService\Library.ApiService.csproj" />
 	  <ProjectReference Include="..\Library.ApiModels\Library.ApiModels.csproj" />
 	  <ProjectReference Include="..\Models\Library.Models.csproj" />
