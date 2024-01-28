@@ -2,123 +2,101 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.MainPage"
-             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
-             NavigationPage.HasNavigationBar="False" >
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material" >
 
     <ScrollView>
 
-        <StackLayout>
+        <VerticalStackLayout
+            x:Name="LoginVerticalStackLayout"
+            Spacing="25"
+            VerticalOptions="CenterAndExpand">
 
-            <StackLayout
-                x:Name="LoadingStackLayout"
-                IsVisible="True"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" >
+            <Grid>
 
-                <ActivityIndicator 
-                    IsRunning="True" 
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-                <Label 
-                    Text="Trying to login..." 
-                    FontFamily="Montserrat-Bold" />
+                <AbsoluteLayout
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All" >
 
-            </StackLayout>
+                    <Image
+                        Source="wallpaper1.png" 
+                        Aspect="AspectFill" />
 
-            <VerticalStackLayout
-                x:Name="LoginVerticalStackLayout"
-                Spacing="25"
-                VerticalOptions="CenterAndExpand"
-                IsVisible="False" >
+                </AbsoluteLayout>
+                <VerticalStackLayout
+                    Spacing="20"
+                    Padding="20,20" >
+                    
+                    <Image
+                    Source="zuydeventslogo.png"
+                    HeightRequest="300"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
 
-                <Grid>
+                </VerticalStackLayout>
 
-                    <AbsoluteLayout
-                        AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        AbsoluteLayout.LayoutFlags="All" >
-
-                        <Image
-                            Source="wallpaper1.png" 
-                            Aspect="AspectFill" />
-
-                    </AbsoluteLayout>
-                    <VerticalStackLayout
-                        Spacing="20"
-                        Padding="20,20" >
-                        
-                        <Image
-                        Source="zuydeventslogo.png"
-                        HeightRequest="300"
-                        WidthRequest="300"
-                        HorizontalOptions="Center"/>
-
-                    </VerticalStackLayout>
-
-                    <StackLayout 
-                        Spacing="20"
-                        Padding="20, 100, 20, 20"
-                        VerticalOptions="Center" >
+                <StackLayout 
+                    Spacing="20"
+                    Padding="20, 100, 20, 20"
+                    VerticalOptions="Center" >
 
 
-                        <StackLayout
-                            Spacing="10">
+                    <StackLayout
+                        Spacing="10">
 
-                            <material:TextField
-                                x:Name="EmailEntry"
-                                Title="E-mail"
-                                AccentColor="Black"
-                                AllowClear="True"/>
+                        <material:TextField
+                            x:Name="EmailEntry"
+                            Title="E-mail"
+                            AccentColor="Black"
+                            AllowClear="True"/>
 
-                            <material:TextField 
-                                x:Name="PasswordEntry"
-                                Title="Password"
-                                IsPassword="True"
-                                AccentColor="Black"
-                                >
-                                <material:TextField.Attachments>
-                                    <material:TextFieldPasswordShowHideAttachment />
-                                </material:TextField.Attachments>
-                            </material:TextField>
+                        <material:TextField 
+                            x:Name="PasswordEntry"
+                            Title="Password"
+                            IsPassword="True"
+                            AccentColor="Black"
+                            >
+                            <material:TextField.Attachments>
+                                <material:TextFieldPasswordShowHideAttachment />
+                            </material:TextField.Attachments>
+                        </material:TextField>
 
-                            <Label
-                                x:Name="LogginFailedLabel"
-                                Text="Wrong password or username entered!"
-                                HorizontalTextAlignment="Center" 
-                                TextColor="Red"
-                                IsVisible="False" />
-
-                        </StackLayout>
-
-                        <Button 
-                            x:Name="LoginButton"
-                            Text="Login"
-                            FontSize="24"
-                            Clicked="OnLoginClick"
-                            Padding="10"
-                            HeightRequest="55" 
-                            WidthRequest="150" />
-
-                        <Button
-                            x:Name="RegisterButton"
-                            Text="Register"
-                            FontSize="16"
-                            Clicked="OnRegisterClick"
-                            HeightRequest="45" 
-                            WidthRequest="100" />
-
-                        <Button
-                            Text="Forgot Password" 
-                            HorizontalOptions="Center"
-                            TextColor="#1F5ABC" 
-                            BackgroundColor="Transparent" />
+                        <Label
+                            x:Name="LogginFailedLabel"
+                            Text="Wrong password or username entered!"
+                            HorizontalTextAlignment="Center" 
+                            TextColor="Red"
+                            IsVisible="False" />
 
                     </StackLayout>
 
-                </Grid>
+                    <Button 
+                        x:Name="LoginButton"
+                        Text="Login"
+                        FontSize="24"
+                        Clicked="OnLoginClick"
+                        Padding="10"
+                        HeightRequest="55" 
+                        WidthRequest="150" />
 
-            </VerticalStackLayout>
+                    <Button
+                        x:Name="RegisterButton"
+                        Text="Register"
+                        FontSize="16"
+                        Clicked="OnRegisterClick"
+                        HeightRequest="45" 
+                        WidthRequest="100" />
 
-        </StackLayout>
+                    <Button
+                        Text="Forgot Password" 
+                        HorizontalOptions="Center"
+                        TextColor="#1F5ABC" 
+                        BackgroundColor="Transparent" />
+
+                </StackLayout>
+
+            </Grid>
+
+        </VerticalStackLayout>
 
     </ScrollView>
 

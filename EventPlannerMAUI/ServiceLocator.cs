@@ -7,6 +7,7 @@ namespace EventPlannerMAUI.MobileApp
     {
 
         public static ApiService apiService = new ApiService();
+        public static bool LoggedIn = false;
 
     }
 
