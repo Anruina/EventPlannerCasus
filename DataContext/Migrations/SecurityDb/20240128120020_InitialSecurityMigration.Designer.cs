@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataContext.Migrations.SecurityDb
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20240120124430_SecurityMigration")]
-    partial class SecurityMigration
+    [Migration("20240128120020_InitialSecurityMigration")]
+    partial class InitialSecurityMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
