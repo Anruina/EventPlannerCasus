@@ -105,6 +105,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ApiService\Library.ApiService.csproj" />
+	  <ProjectReference Include="..\Library.Algorithms\Library.Algorithms.csproj" />
 	  <ProjectReference Include="..\Library.ApiModels\Library.ApiModels.csproj" />
 	  <ProjectReference Include="..\Models\Library.Models.csproj" />
 	</ItemGroup>

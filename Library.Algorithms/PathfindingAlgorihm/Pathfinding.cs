@@ -20,34 +20,39 @@
             while (openList.Count > 0)
             {
 
-                currentNode = openList.MinBy(node => node.FCost);
+                int nodeIndex = 0;
+                for (int i = 0; i < openList.Count(); i++)
+                    if (openList[nodeIndex].FCost > openList[i].FCost)
+                        nodeIndex = i;
 
-                openList.Remove(currentNode);
+                currentNode = openList[nodeIndex];
+
+                openList.RemoveAt(nodeIndex);
                 closedList.Add(currentNode);
 
-                if (currentNode.Name == endNode.Name)
-                    return ReconstructPath(currentNode);
+                if (currentNode.Id == endNode.Id)
+                    return ReconstructPath(closedList[closedList.Count - 1]);
 
                 foreach (Node neighbor in currentNode.Neighbours)
                 {
 
-                    if (closedList.FindIndex(n => n.Name == neighbor.Name) == -1)
+                    Node newNeighbor = new Node(neighbor);
+
+                    newNeighbor.Parent = currentNode;
+                    newNeighbor.GCost = currentNode.GCost + CalculateDistance(newNeighbor, currentNode);
+                    newNeighbor.HCost = CalculateDistance(newNeighbor, endNode);
+                    newNeighbor.FCost = newNeighbor.HCost + newNeighbor.GCost;
+
+                    int otherNodeIndex = openList.FindIndex(n => n.Id == newNeighbor.Id);
+                    if (otherNodeIndex > -1)
                     {
 
-                        Node newNeighbor = new Node(neighbor);
-
-                        newNeighbor.Parent = currentNode;
-                        newNeighbor.GCost = currentNode.GCost + CalculateDistance(newNeighbor, currentNode);
-                        newNeighbor.HCost = CalculateDistance(newNeighbor, endNode);
-                        newNeighbor.FCost = newNeighbor.HCost + newNeighbor.GCost;
-
-                        int otherNodeIndex = openList.FindIndex(n => n.Name == newNeighbor.Name);
-                        if (otherNodeIndex == -1)
-                            openList.Add(newNeighbor);
-                        else if (openList[otherNodeIndex].FCost > newNeighbor.FCost)
+                        if (openList[otherNodeIndex].FCost > newNeighbor.FCost)
                             openList[otherNodeIndex] = newNeighbor;
 
                     }
+                    else if (closedList.FindIndex(n => n.Id == newNeighbor.Id) == -1)
+                        openList.Add(newNeighbor);
 
                 }
 
@@ -77,7 +82,6 @@
 
             }
 
-            path.Reverse();
             return path;
 
         }

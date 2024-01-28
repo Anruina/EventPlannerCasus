@@ -4,10 +4,10 @@
     public class Node
     {
 
-        public string Name { get; set; }
-
+        public int Id { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
+        public string Name { get; set; }
 
         public Node? Parent { get; set; }
 
@@ -17,13 +17,14 @@
 
         public List<Node> Neighbours { get; set; }
 
-        public Node(string name, float x, float y)
+        public Node(int id, float x, float y, string name)
         {
 
-            Name = name;
-
+            Id = id;
             X = x;
             Y = y;
+
+            Name = name;
 
             Neighbours = new List<Node>();
             Parent = null;
@@ -33,10 +34,11 @@
         public Node(Node otherNode)
         {
 
-            Name = otherNode.Name;
-
+            Id = otherNode.Id;
             X = otherNode.X;
             Y = otherNode.Y;
+
+            Name = otherNode.Name;
 
             Neighbours = otherNode.Neighbours;
             Parent = otherNode.Parent;
