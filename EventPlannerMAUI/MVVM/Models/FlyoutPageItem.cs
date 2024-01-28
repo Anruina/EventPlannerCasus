@@ -7,6 +7,7 @@
         public string? Title { get; set; }
         public string? IconSource { get; set; }
         public required Type TargetType { get; set; }
+        public bool RequiresAuthentication { get; set; }
 
     }
 
