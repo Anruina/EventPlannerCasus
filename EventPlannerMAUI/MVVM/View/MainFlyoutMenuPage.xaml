@@ -53,7 +53,7 @@
                     <models:FlyoutPageItem
                         Title="Settings"
                         TargetType="{x:Type local:SettingsPage}"
-                        IconSource="flyouticons/ settingsicon.svg"
+                        IconSource="flyouticons/settingsicon.svg"
                         RequiresAuthentication="False" />
 
                 </x:Array>

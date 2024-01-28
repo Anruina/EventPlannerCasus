@@ -8,14 +8,14 @@
 
     <local:EventInfoPage 
         Title="Event Info"
-        IconImageSource="eventinfoicon.png" />
+        IconImageSource="eventdetailtabbedpageicons/infoicon.svg" />
 
     <local:ActivitySchedulePage 
         Title="Schedule" 
-        IconImageSource="scheduleicon.png" />
+        IconImageSource="eventdetailtabbedpageicons/scheduleicon.svg" />
 
     <local:EventDetailMapPage 
         Title="Map"
-        IconImageSource="mapicon.png" />
+        IconImageSource="eventdetailtabbedpageicons/mapicon.svg" />
 
 </TabbedPage>
