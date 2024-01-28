@@ -67,10 +67,10 @@ namespace EventPlannerMAUI.Drawables
 
                     }
 
-                    canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 6);
+                    canvas.FillCircle((FastestPath[0].X * ScaleFactor) + 5, (FastestPath[0].Y * ScaleFactor) + 5, 6);
 
                     canvas.FillColor = Colors.LightGreen;
-                    canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 5);
+                    canvas.FillCircle((FastestPath[0].X * ScaleFactor) + 5, (FastestPath[0].Y * ScaleFactor) + 5, 5);
 
                 }
 
@@ -111,10 +111,10 @@ namespace EventPlannerMAUI.Drawables
 
                     }
 
-                    canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 6);
+                    canvas.FillCircle((FastestPath[0].X * ScaleFactor) + 5, (FastestPath[0].Y * ScaleFactor) + 5, 6);
 
                     canvas.FillColor = Colors.LightGreen;
-                    canvas.FillCircle((FastestPath[FastestPath.Count() - 1].X * ScaleFactor) + 5, (FastestPath[FastestPath.Count() - 1].Y * ScaleFactor) + 5, 5);
+                    canvas.FillCircle((FastestPath[0].X * ScaleFactor) + 5, (FastestPath[0].Y * ScaleFactor) + 5, 5);
 
                 }
 
