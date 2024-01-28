@@ -92,7 +92,7 @@ namespace Library.DataContext.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    MaxParticapents = table.Column<int>(type: "int", nullable: false),
+                    MaxParticipants = table.Column<int>(type: "int", nullable: false),
                     ParticipantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

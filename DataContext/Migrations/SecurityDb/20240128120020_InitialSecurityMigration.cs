@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Library.DataContext.Migrations.SecurityDb
 {
     /// <inheritdoc />
-    public partial class SecurityMigration : Migration
+    public partial class InitialSecurityMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

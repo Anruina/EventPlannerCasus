@@ -35,11 +35,14 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> GetSpecific<T>(string apiFunction)
+        public async Task<T?> GetSpecific<T>(string apiFunction, int? id = null)
         {
 
             try
             {
+
+                if (id != null)
+                    apiFunction += id.ToString();
 
                 HttpResponseMessage Response = await _httpClient.GetAsync(apiFunction);
 
@@ -95,7 +98,7 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> CreateObject<T>(string apiFunction, T Object)
+        public async Task<T?> CreateObject<T>(string apiFunction, T? Object)
         {
 
             try
@@ -143,13 +146,16 @@ namespace Library.ApiService
 
         }
 
-        public async Task<bool> DeleteObject(string apiFunction, int id)
+        public async Task<bool> DeleteObject(string apiFunction, int? id = null)
         {
 
             try
             {
 
-                HttpResponseMessage Response = await _httpClient.DeleteAsync(apiFunction + id.ToString());
+                if (id != null)
+                    apiFunction += id.ToString();
+
+                HttpResponseMessage Response = await _httpClient.DeleteAsync(apiFunction);
                 return Response.IsSuccessStatusCode;
 
             }

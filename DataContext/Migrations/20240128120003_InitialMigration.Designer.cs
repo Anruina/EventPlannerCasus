@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240120131529_SecurityMigration")]
-    partial class SecurityMigration
+    [Migration("20240128120003_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,9 @@ namespace Library.DataContext.Migrations
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("MaxParticipants")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -251,7 +254,7 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.Event", b =>
                 {
                     b.HasOne("Library.Models.Address", "Address")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -280,7 +283,7 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.Participant", b =>
                 {
                     b.HasOne("Library.Models.Address", "Address")
-                        .WithMany()
+                        .WithMany("Participants")
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
@@ -317,6 +320,13 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.Activity", b =>
                 {
                     b.Navigation("PlannedActivities");
+                });
+
+            modelBuilder.Entity("Library.Models.Address", b =>
+                {
+                    b.Navigation("Events");
+
+                    b.Navigation("Participants");
                 });
 
             modelBuilder.Entity("Library.Models.Event", b =>
