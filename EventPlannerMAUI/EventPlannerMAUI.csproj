@@ -115,6 +115,9 @@
 	  <Compile Update="MVVM\View\EventDetailMapPage.xaml.cs">
 	    <DependentUpon>EventDetailMapPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="MVVM\View\QRTicketPage.xaml.cs">
+	    <DependentUpon>QRTicketPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -137,6 +140,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\ManageEventsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\QRTicketPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\RegisterPage.xaml">
