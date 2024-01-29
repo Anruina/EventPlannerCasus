@@ -44,7 +44,6 @@ namespace EventPlannerMAUI.Drawables
             canvas.DrawImage(floor2Image, 0, floor3Image.Height / 2.10f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
 
             int ScaleFactor = 8;
-
             if (!Emergency)
             {
 
@@ -86,15 +85,15 @@ namespace EventPlannerMAUI.Drawables
                     List<Node> FastestPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["C" + currentFloor + ".1 Stair"]);
                     List<Node> OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".1 Stair"]);
 
-                    if (FastestPath[0].GCost > OtherPath[0].GCost)
+                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
                         FastestPath = OtherPath;
 
                     OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".1 Exit"]);
-                    if (FastestPath[0].GCost > OtherPath[0].GCost)
+                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
                         FastestPath = OtherPath;
 
                     OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".104 Exit"]);
-                    if (FastestPath[0].GCost > OtherPath[0].GCost)
+                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
                         FastestPath = OtherPath;
 
                     canvas.FillColor = Colors.Navy;
