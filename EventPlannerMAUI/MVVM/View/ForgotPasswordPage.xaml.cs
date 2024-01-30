@@ -3,10 +3,7 @@ namespace EventPlannerMAUI.MVVM.View;
 
     public partial class ForgotPasswordPage : ContentPage
 {
-    public ForgotPasswordPage()
-    {
-        InitializeComponent();
-    }
+    public ForgotPasswordPage() => InitializeComponent();
 
     private async void OnCancelClicked(object sender, EventArgs e)
     {
@@ -20,6 +17,13 @@ namespace EventPlannerMAUI.MVVM.View;
 
         // Optioneel: Navigeer terug naar login na succes.
         await Navigation.PopAsync();
+    }
+    
+    private async void
+        OnInstructionsClicked(object sender, 
+        EventArgs e)
+    { 
+        await Navigation.PushAsync(new PasswordResetInstructionsPage()); 
     }
 }
 
