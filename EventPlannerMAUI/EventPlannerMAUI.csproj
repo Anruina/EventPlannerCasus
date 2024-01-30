@@ -125,7 +125,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="MVVM\View\ActivitySchedulePage.xaml">
+	  <MauiXaml Update="MVVM\View\EventDetailActivitySchedule.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\EventDetailTabbedPage.xaml">
