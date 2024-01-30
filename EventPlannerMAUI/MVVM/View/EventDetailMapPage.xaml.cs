@@ -2,7 +2,7 @@ namespace EventPlannerMAUI.MVVM.View;
 
 public partial class EventDetailMapPage : ContentPage
 {
-	
+
     public EventDetailMapPage()
 	{
 	
@@ -34,6 +34,32 @@ public partial class EventDetailMapPage : ContentPage
 
             MainMapPath.Emergency = true;
             MapView.Invalidate();
+
+        }
+
+    }
+
+    private void OnMapPinch(object sender, PinchGestureUpdatedEventArgs e)
+    {
+
+        if (e.Status == GestureStatus.Started)
+        {
+
+            MapView.AnchorX = 0;
+            MapView.AnchorY = 0;
+
+        }
+        else if (e.Status == GestureStatus.Running)
+        {
+
+            if ((MapView.Scale < 1.8f && e.Scale >= 1.0f) || (MapView.Scale > 0.85f && e.Scale <= 1.0f))
+            {
+
+                MapView.WidthRequest *= e.Scale;
+                MapView.HeightRequest *= e.Scale;
+                MapView.Scale *= e.Scale;
+
+            }
 
         }
 

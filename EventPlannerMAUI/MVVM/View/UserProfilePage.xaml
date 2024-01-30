@@ -2,126 +2,186 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.UserProfilePage"
-             Title="Profile">
+             Title="Profile" >
 
-    <StackLayout>
+    <StackLayout Margin="20">
 
         <Label 
             Text="User Info" 
             HorizontalOptions="CenterAndExpand"
             FontAttributes="Bold" 
-            Margin="0,10,0,0"
-            FontSize="20" />
+            FontSize="24" />
 
         <BoxView 
             HeightRequest="1" 
-            Color="#000000"
+            Color="Gray"
             HorizontalOptions="FillAndExpand" 
-            Margin="10" />
+            Margin="0,10,0,20" />
 
         <StackLayout
             x:Name="UserDataStackLayout"
-            BindingContext="{Binding Participant}"
-            Margin="10" >
+            BindingContext="{Binding Participant}">
 
             <StackLayout
                 Orientation="Horizontal" 
-                Margin="10,0" >
+                Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Email: " />
+                    Text="Name:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
                 <Label 
-                    Text="{Binding Name}" />
+                    Text="{Binding Name}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
             </StackLayout>
 
             <StackLayout
-                Margin="10" >
+                Orientation="Horizontal" 
+                Margin="0,0,0,10" >
 
-                <StackLayout
-                    Orientation="Horizontal" 
-                    Margin="0,0,0,10" >
+                <Label 
+                    Text="Email:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label
-                        Text="Address: " />
+                <Label 
+                    Text="{Binding Name}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label
-                        Text="{Binding Address.StreetNumber}" />
+            </StackLayout>
 
-                    <Label
-                        Text="{Binding Address.AdditionHouseNumber}" />
+            <BoxView 
+                HeightRequest="1" 
+                Color="LightGray"
+                HorizontalOptions="FillAndExpand" 
+                Margin="0,10,0,20" />
 
-                    <Label
-                        Text="{Binding Address.Street}" />
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,0,0,10" >
 
-                </StackLayout>
+                <Label 
+                    Text="Address:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                <StackLayout
-                    Orientation="Horizontal"
-                    Margin="0,0,0,10" >
+                <Label 
+                    Text="{Binding Address.StreetNumber}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label 
-                        Text="City: " />
+                <Label
+                    Text="{Binding Address.AdditionHouseNumber}"
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center" />
 
-                    <Label 
-                        Text="{Binding Address.City}" />
+                <Label
+                    Text="{Binding Address.Street}"
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center" />
 
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout
-                    Orientation="Horizontal"
-                    Margin="0,0,0,10" >
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,0,0,10" >
 
-                    <Label 
-                        Text="Province: " />
+                <Label 
+                    Text="City:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label 
-                        Text="{Binding Address.Province}" />
+                <Label 
+                    Text="{Binding Address.City}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout
-                    Orientation="Horizontal" 
-                    Margin="0,0,0,10" >
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,0,0,10" >
 
-                    <Label 
-                        Text="Country: " />
+                <Label 
+                    Text="Province:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label 
-                        Text="{Binding Address.Country}" />
+                <Label 
+                    Text="{Binding Address.Province}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                </StackLayout>
+            </StackLayout>
 
-                <StackLayout
-                    Orientation="Horizontal" >
+            <StackLayout
+                Orientation="Horizontal"
+                Margin="0,0,0,10" >
 
-                    <Label
-                        Text="Postal Code: " />
+                <Label 
+                    Text="Country:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                    <Label
-                        Text="{Binding Address.PostalCode}" />
+                <Label 
+                    Text="{Binding Address.Country}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
-                </StackLayout>
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal" >
+
+                <Label
+                    Text="Postal Code:" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    Text="{Binding Address.PostalCode}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
 
             </StackLayout>
 
         </StackLayout>
 
+        <BoxView 
+            HeightRequest="1" 
+            Color="LightGray"
+            HorizontalOptions="FillAndExpand" 
+            Margin="0,10,0,20" />
+
         <Button 
             Text="Delete Account" 
             VerticalOptions="EndAndExpand" 
-            HorizontalOptions="CenterAndExpand"
+            HorizontalOptions="FillAndExpand"
             Clicked="OnDeleteClick"
-            Margin="10" />
-
-        <Button 
-            Text="Logout" 
-            VerticalOptions="End"
-            HorizontalOptions="CenterAndExpand"
-            Clicked="OnLogoutClick"
-            Margin="10"/>
+            BackgroundColor="#E74C3C"
+            TextColor="#ecf0f1"
+            Margin="0,20,0,0"/>
 
     </StackLayout>
-    
+
 </ContentPage>
