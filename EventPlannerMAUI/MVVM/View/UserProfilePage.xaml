@@ -27,25 +27,7 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Name:" 
-                    TextColor="#2C3E50"
-                    FontSize="16"
-                    VerticalOptions="Center"/>
-
-                <Label 
-                    Text="{Binding Name}" 
-                    TextColor="#2C3E50"
-                    FontSize="16"
-                    VerticalOptions="Center"/>
-
-            </StackLayout>
-
-            <StackLayout
-                Orientation="Horizontal" 
-                Margin="0,0,0,10" >
-
-                <Label 
-                    Text="Email:" 
+                    Text="Email: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
@@ -69,7 +51,7 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Address:" 
+                    Text="Address: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
@@ -99,7 +81,7 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="City:" 
+                    Text="City: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
@@ -117,7 +99,7 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Province:" 
+                    Text="Province: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
@@ -135,7 +117,7 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Country:" 
+                    Text="Country: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
@@ -152,7 +134,7 @@
                 Orientation="Horizontal" >
 
                 <Label
-                    Text="Postal Code:" 
+                    Text="Postal Code: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
