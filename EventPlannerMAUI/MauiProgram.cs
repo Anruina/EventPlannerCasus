@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Camera.MAUI;
+using Microsoft.Extensions.Logging;
 using UraniumUI;
 
 namespace EventPlannerMAUI
@@ -9,7 +10,11 @@ namespace EventPlannerMAUI
         {
             var builder = MauiApp.CreateBuilder();
 
-            builder.UseMauiApp<App>().UseUraniumUI().UseUraniumUIMaterial().ConfigureFonts(fonts =>
+            builder.UseMauiApp<App>()
+                .UseUraniumUI() // for user interface
+                .UseUraniumUIMaterial() // for icons
+                .UseMauiCameraView() // for barcode generator
+                .ConfigureFonts(fonts =>
             {
 
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

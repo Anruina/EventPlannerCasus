@@ -68,6 +68,10 @@
                             IsVisible="False" />
 
                     </StackLayout>
+                    <Button
+                        Text="TestQR"
+                        Clicked="testclick"
+                        />
 
                     <Button 
                         x:Name="LoginButton"
