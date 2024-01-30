@@ -85,15 +85,15 @@ namespace EventPlannerMAUI.Drawables
                     List<Node> FastestPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["C" + currentFloor + ".1 Stair"]);
                     List<Node> OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".1 Stair"]);
 
-                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
+                    if (FastestPath[0].GCost > OtherPath[0].GCost)
                         FastestPath = OtherPath;
 
                     OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".1 Exit"]);
-                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
+                    if (FastestPath[0].GCost > OtherPath[0].GCost)
                         FastestPath = OtherPath;
 
                     OtherPath = Pathfinding.AStarAlgorithm(data.ComplexPath[StartPos], data.ComplexPath["B" + currentFloor + ".104 Exit"]);
-                    if (FastestPath[0].TotalCost > OtherPath[0].TotalCost)
+                    if (FastestPath[0].GCost > OtherPath[0].GCost)
                         FastestPath = OtherPath;
 
                     canvas.FillColor = Colors.Navy;

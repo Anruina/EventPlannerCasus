@@ -11,7 +11,9 @@
 
         public Node? Parent { get; set; }
 
-        public float TotalCost { get; set; }
+        public float GCost { get; set; }
+        public float HCost { get; set; }
+        public float FCost { get; set; }
 
         public List<Node> Neighbours { get; set; }
 
@@ -26,7 +28,9 @@
             Neighbours = new List<Node>();
             Parent = null;
 
-            TotalCost = 0;
+            GCost = 0;
+            HCost = 0;
+            FCost = 0;
 
         }
 
@@ -41,7 +45,9 @@
             Neighbours = otherNode.Neighbours;
             Parent = otherNode.Parent;
 
-            TotalCost = 0;
+            GCost = 0;
+            HCost = 0;
+            FCost = 0;
 
         }
 

@@ -22,7 +22,7 @@ namespace Library.ApiService
                 ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
 
             });
-            _httpClient.BaseAddress = new Uri("https://10.0.2.2:7119");//"https://192.168.178.20:7119");
+            _httpClient.BaseAddress = new Uri("https://192.168.178.20:7119");//"https://10.0.2.2:7119");
 
             _jsonSerializerOptions = new JsonSerializerOptions
             {

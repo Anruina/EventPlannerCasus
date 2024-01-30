@@ -23,29 +23,24 @@ public partial class UserProfilePage : ContentPage
 	private async void OnCreate()
 	{
 
-		if (ServiceLocator.LoggedIn)
+		Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+
+		if (participant != null)
 		{
 
-			Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+			if (participant.Address == null)
+				participant.Address = new Address() { City = "None", Country = "None", PostalCode = "None", Province = "None", Street = "None" };
 
-			if (participant != null)
-			{
+			UserDataStackLayout.BindingContext = participant;
 
-				if (participant.Address == null)
-					participant.Address = new Address() { City = "None", Country = "None", PostalCode = "None", Province = "None", Street = "None" }; 
+		}
+		else
+		{
 
-				UserDataStackLayout.BindingContext = participant;
+			Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
 
-			}
-			else
-			{
-
-				Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
-
-				if (organizer != null)
-					UserDataStackLayout.BindingContext = organizer;
-
-			}
+			if (organizer != null)
+				UserDataStackLayout.BindingContext = organizer;
 
 		}
 
@@ -69,7 +64,6 @@ public partial class UserProfilePage : ContentPage
 		{
 
 			await _apiService.DeleteObject("Api/User/Account");
-			ServiceLocator.LoggedIn = false;
 
 			SecureStorage.Remove("Username");
 			SecureStorage.Remove("Password");
@@ -77,23 +71,5 @@ public partial class UserProfilePage : ContentPage
 		}
 
 	}
-
-    private async void OnLogoutClick(object sender, EventArgs e)
-	{
-
-        bool answer = await DisplayAlert("Logout", "Are you sure you want to logout of this account?", "Yes", "No");
-
-		if (answer)
-		{
-
-			await _apiService.CreateObject<AccountModel>("Api/Logout", null);
-			ServiceLocator.LoggedIn = false;
-
-			SecureStorage.Remove("Username");
-			SecureStorage.Remove("Password");
-
-		}
-
-    }
 
 }

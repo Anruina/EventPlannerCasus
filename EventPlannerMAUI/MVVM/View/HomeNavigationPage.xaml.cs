@@ -17,6 +17,7 @@ namespace EventPlannerMAUI.MVVM.View
             _apiService = ServiceLocator.apiService;
 
             MainFlyoutPage.NavigationOptionsCollectionView.SelectionChanged += OnSelectionChanged;
+            MainFlyoutPage.LogoutButton.Clicked += OnLogoutClick;
 
             OnCreate();
 
@@ -30,10 +31,12 @@ namespace EventPlannerMAUI.MVVM.View
 
                 AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
 
-                if (account != null)
-                    ServiceLocator.LoggedIn = true;
+                if (account == null)
+                    await Detail.Navigation.PushAsync(new MainPage());
 
             }
+            else
+                await Detail.Navigation.PushAsync(new MainPage());
 
         }
 
@@ -49,8 +52,25 @@ namespace EventPlannerMAUI.MVVM.View
                 if (!((IFlyoutPageController)this).ShouldShowSplitMode)
                     IsPresented = false;
 
-                if (item.RequiresAuthentication && !ServiceLocator.LoggedIn)
-                    Detail.Navigation.PushAsync(new MainPage());
+            }
+
+        }
+
+        private async void OnLogoutClick(object sender, EventArgs e)
+        {
+
+            bool answer = await DisplayAlert("Logout", "Are you sure you want to logout of this account?", "Yes", "No");
+
+            if (answer)
+            {
+
+                await _apiService.CreateObject<AccountModel>("Api/Logout", null);
+
+                SecureStorage.Remove("Username");
+                SecureStorage.Remove("Password");
+
+                IsPresented = false;
+                await Detail.Navigation.PushAsync(new MainPage());
 
             }
 

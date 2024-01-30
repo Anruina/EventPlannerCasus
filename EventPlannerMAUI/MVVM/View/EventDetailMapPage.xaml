@@ -19,7 +19,7 @@
         VerticalOptions="FillAndExpand" >
 
         <Grid>
-           
+
             <ScrollView
                 Orientation="Both"
                 HeightRequest="400"
@@ -39,6 +39,13 @@
                     AnchorX="0"
                     AnchorY="0" />
 
+                <ScrollView.GestureRecognizers>
+
+                    <PinchGestureRecognizer 
+                        PinchUpdated="OnMapPinch" />
+
+                </ScrollView.GestureRecognizers>
+
             </ScrollView>
 
             <AbsoluteLayout 
@@ -51,12 +58,16 @@
                 <HorizontalStackLayout>
 
                     <Button 
-                        Text="-"
+                        Text="zoom_out"
+                        FontFamily="MaterialIcon"
+                        FontSize="25"
                         Clicked="OnZoomOutClick"
                         Margin="0,0,5,0" />
 
                     <Button 
-                        Text="+"
+                        Text="zoom_in"
+                        FontFamily="MaterialIcon"
+                        FontSize="25"
                         Clicked="OnZoomInClick" />
 
                 </HorizontalStackLayout>

@@ -10,14 +10,16 @@
             List<Node> openList = new List<Node>();
             HashSet<string> closedList = new HashSet<string>();
 
-            startNode.TotalCost = 0;
+            startNode.GCost = 0;
+            startNode.HCost = CalculateDistance(startNode, endNode);
+            startNode.FCost = startNode.HCost;
             openList.Add(startNode);
 
             Node? currentNode = null;
             while (openList.Count > 0)
             {
 
-                currentNode = openList.MinBy(node => node.TotalCost);
+                currentNode = openList.MinBy(node => node.FCost);
 
                 openList.Remove(currentNode);
                 closedList.Add(currentNode.Name);
@@ -34,12 +36,14 @@
                         Node newNeighbor = new Node(neighbor);
 
                         newNeighbor.Parent = currentNode;
-                        newNeighbor.TotalCost = currentNode.TotalCost + CalculateDistance(currentNode, newNeighbor);
+                        newNeighbor.GCost = currentNode.GCost + CalculateDistance(currentNode, newNeighbor);
+                        newNeighbor.HCost = CalculateDistance(newNeighbor, endNode);
+                        newNeighbor.FCost = newNeighbor.GCost + newNeighbor.HCost;
 
                         int otherNodeIndex = openList.FindIndex(n => n.Name.Equals(newNeighbor.Name));
                         if (otherNodeIndex == -1)
                             openList.Add(newNeighbor);
-                        else if (openList[otherNodeIndex].TotalCost > newNeighbor.TotalCost)
+                        else if (openList[otherNodeIndex].FCost > newNeighbor.FCost)
                             openList[otherNodeIndex] = newNeighbor;
 
                     }
@@ -56,7 +60,6 @@
         {
 
             return (float)Math.Abs(startNode.X - endNode.X) + Math.Abs(startNode.Y - endNode.Y);
-            //return (float)Math.Sqrt((startNode.X - endNode.X) * (startNode.X - endNode.X) + (startNode.Y - endNode.Y) * (startNode.Y - endNode.Y));
 
         }
 

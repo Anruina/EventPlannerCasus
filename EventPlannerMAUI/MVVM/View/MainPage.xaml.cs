@@ -31,7 +31,6 @@ namespace EventPlannerMAUI.MVVM.View
                 await SecureStorage.SetAsync("Password", PasswordEntry.Text);
 
                 LogginFailedLabel.IsVisible = false;
-                ServiceLocator.LoggedIn = true;
                 await Navigation.PopAsync();
 
             }
@@ -51,6 +50,13 @@ namespace EventPlannerMAUI.MVVM.View
         {
 
             await Navigation.PushAsync(new ForgotPasswordPage());
+
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+
+            return true;
 
         }
 
