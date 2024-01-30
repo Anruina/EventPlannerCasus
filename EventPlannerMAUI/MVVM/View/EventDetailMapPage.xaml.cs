@@ -3,12 +3,17 @@ namespace EventPlannerMAUI.MVVM.View;
 public partial class EventDetailMapPage : ContentPage
 {
 
+    double currentScale = 1;
+    double startScale = 1;
+    double xOffset = 0;
+    double yOffset = 0;
+
     public EventDetailMapPage()
-	{
-	
+    {
+
         InitializeComponent();
 
-	}
+    }
 
     private void OnRefresh(object sender, EventArgs e)
     {
@@ -44,52 +49,42 @@ public partial class EventDetailMapPage : ContentPage
 
         if (e.Status == GestureStatus.Started)
         {
-
-            MapView.AnchorX = 0;
-            MapView.AnchorY = 0;
-
-        }
-        else if (e.Status == GestureStatus.Running)
-        {
-
-            if ((MapView.Scale < 1.8f && e.Scale >= 1.0f) || (MapView.Scale > 0.85f && e.Scale <= 1.0f))
-            {
-
-                MapView.WidthRequest *= e.Scale;
-                MapView.HeightRequest *= e.Scale;
-                MapView.Scale *= e.Scale;
-
-            }
+            
+            startScale = Content.Scale;
+            Content.AnchorX = 0;
+            Content.AnchorY = 0;
 
         }
-
-    }
-
-    private void OnZoomInClick(object sender, EventArgs e)
-    {
-
-        if (MapView.Scale < 1.8f)
+        if (e.Status == GestureStatus.Running)
         {
 
-            MapView.WidthRequest *= 1.1f;
-            MapView.HeightRequest *= 1.1f;
+            currentScale += (e.Scale - 1) * startScale;
+            currentScale = Math.Max(1, currentScale);
 
-            MapView.Scale *= 1.1f;
+            double renderedX = Content.X + xOffset;
+            double deltaX = renderedX / Width;
+            double deltaWidth = Width / (Content.Width * startScale);
+            double originX = (e.ScaleOrigin.X - deltaX) * deltaWidth;
+
+            double renderedY = Content.Y + yOffset;
+            double deltaY = renderedY / Height;
+            double deltaHeight = Height / (Content.Height * startScale);
+            double originY = (e.ScaleOrigin.Y - deltaY) * deltaHeight;
+
+            double targetX = xOffset - (originX * Content.Width) * (currentScale - startScale);
+            double targetY = yOffset - (originY * Content.Height) * (currentScale - startScale);
+
+            Content.TranslationX = Math.Clamp(targetX, -Content.Width * (currentScale - 1), 0);
+            Content.TranslationY = Math.Clamp(targetY, -Content.Height * (currentScale - 1), 0);
+
+            Content.Scale = currentScale;
 
         }
-
-    }
-
-    private void OnZoomOutClick(object sender, EventArgs e)
-    {
-
-        if (MapView.Scale > 0.85f)
+        if (e.Status == GestureStatus.Completed)
         {
 
-            MapView.WidthRequest /= 1.1f;
-            MapView.HeightRequest /= 1.1f;
-
-            MapView.Scale /= 1.1f;
+            xOffset = Content.TranslationX;
+            yOffset = Content.TranslationY;
 
         }
 

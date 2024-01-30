@@ -5,101 +5,99 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasNavigationBar="False" >
 
-    <ScrollView>
 
-        <VerticalStackLayout
-            x:Name="LoginVerticalStackLayout"
-            Spacing="25"
-            VerticalOptions="CenterAndExpand">
+    <VerticalStackLayout
+        x:Name="LoginVerticalStackLayout"
+        Spacing="25"
+        VerticalOptions="CenterAndExpand">
 
-            <Grid>
+        <Grid>
 
-                <AbsoluteLayout
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All" >
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All" >
 
-                    <Image
-                        Source="wallpaper1.png" 
-                        Aspect="AspectFill" />
+                <Image
+                    Source="wallpaper1.png" 
+                    Aspect="AspectFit" />
 
-                </AbsoluteLayout>
-                <VerticalStackLayout
-                    Spacing="20"
-                    Padding="20,20" >
-                    
-                    <Image
-                    Source="zuydeventslogo.png"
-                    HeightRequest="300"
-                    WidthRequest="300"
-                    HorizontalOptions="Center"/>
+            </AbsoluteLayout>
+            
+            <VerticalStackLayout
+                Spacing="20"
+                Padding="20,20" >
+                
+                <Image
+                Source="zuydeventslogo.png"
+                HeightRequest="300"
+                WidthRequest="300"
+                HorizontalOptions="Center"/>
 
-                </VerticalStackLayout>
+            </VerticalStackLayout>
 
-                <StackLayout 
-                    Spacing="20"
-                    Padding="20, 100, 20, 20"
-                    VerticalOptions="Center" >
+            <StackLayout 
+                Spacing="20"
+                Padding="20, 100, 20, 20"
+                VerticalOptions="Center" >
 
 
-                    <StackLayout
-                        Spacing="10">
+                <StackLayout
+                    Spacing="10">
 
-                        <material:TextField
-                            x:Name="EmailEntry"
-                            Title="E-mail"
-                            AccentColor="Black"
-                            AllowClear="True"/>
+                    <material:TextField
+                        x:Name="EmailEntry"
+                        Title="E-mail"
+                        AccentColor="Black"
+                        AllowClear="True"/>
 
-                        <material:TextField 
-                            x:Name="PasswordEntry"
-                            Title="Password"
-                            IsPassword="True"
-                            AccentColor="Black"
-                            >
-                            <material:TextField.Attachments>
-                                <material:TextFieldPasswordShowHideAttachment />
-                            </material:TextField.Attachments>
-                        </material:TextField>
+                    <material:TextField 
+                        x:Name="PasswordEntry"
+                        Title="Password"
+                        IsPassword="True"
+                        AccentColor="Black"
+                        >
+                        <material:TextField.Attachments>
+                            <material:TextFieldPasswordShowHideAttachment />
+                        </material:TextField.Attachments>
+                    </material:TextField>
 
-                        <Label
-                            x:Name="LogginFailedLabel"
-                            Text="Wrong password or username entered!"
-                            HorizontalTextAlignment="Center" 
-                            TextColor="Red"
-                            IsVisible="False" />
-
-                    </StackLayout>
-
-                    <Button 
-                        x:Name="LoginButton"
-                        Text="Login"
-                        FontSize="24"
-                        Clicked="OnLoginClick"
-                        Padding="10"
-                        HeightRequest="55" 
-                        WidthRequest="150" />
-
-                    <Button
-                        x:Name="RegisterButton"
-                        Text="Register"
-                        FontSize="16"
-                        Clicked="OnRegisterClick"
-                        HeightRequest="45" 
-                        WidthRequest="100" />
-
-                        <Button
-                            Text="Forgot Password" 
-                            HorizontalOptions="Center"
-                            Clicked="OnForgotPasswordClick"
-                            TextColor="#1F5ABC" 
-                            BackgroundColor="Transparent" />
+                    <Label
+                        x:Name="LogginFailedLabel"
+                        Text="Wrong password or username entered!"
+                        HorizontalTextAlignment="Center" 
+                        TextColor="Red"
+                        IsVisible="False" />
 
                 </StackLayout>
 
-            </Grid>
+                <Button 
+                    x:Name="LoginButton"
+                    Text="Login"
+                    FontSize="24"
+                    Clicked="OnLoginClick"
+                    Padding="10"
+                    HeightRequest="55" 
+                    WidthRequest="150" />
 
-        </VerticalStackLayout>
+                <Button
+                    x:Name="RegisterButton"
+                    Text="Register"
+                    FontSize="16"
+                    Clicked="OnRegisterClick"
+                    HeightRequest="45" 
+                    WidthRequest="100" />
 
-    </ScrollView>
+                 <Button
+                    Text="Forgot Password" 
+                    HorizontalOptions="Center"
+                    Clicked="OnForgotPasswordClick"
+                    TextColor="#1F5ABC" 
+                    BackgroundColor="Transparent" />
+
+            </StackLayout>
+
+        </Grid>
+
+    </VerticalStackLayout>
 
 </ContentPage>
