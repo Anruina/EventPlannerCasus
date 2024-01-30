@@ -17,8 +17,15 @@
     <VerticalStackLayout
         VerticalOptions="FillAndExpand" >
 
-        <ScrollView>
+        <Grid>
 
+            <Grid.RowDefinitions>
+                
+                <RowDefinition Height="420" />
+                <RowDefinition Height="*" />
+
+            </Grid.RowDefinitions>
+        
             <GraphicsView 
                 x:Name="MapView"
                 HorizontalOptions="StartAndExpand"
@@ -27,46 +34,72 @@
                 Drawable="{StaticResource MyDrawable}" 
                 Scale="0.85"
                 TranslationX="0"
-                TranslationY="0"
+                TranslationY="120"
                 AnchorX="0"
-                AnchorY="0" />
+                AnchorY="0"
+                Grid.Row="0">
 
-            <ScrollView.GestureRecognizers>
+                <GraphicsView.GestureRecognizers>
 
-                <PinchGestureRecognizer PinchUpdated="OnMapPinch" />
+                    <PinchGestureRecognizer PinchUpdated="OnMapPinch" />
+                    <PanGestureRecognizer PanUpdated="OnMapPan" />
 
-            </ScrollView.GestureRecognizers>
+                </GraphicsView.GestureRecognizers>
 
-        </ScrollView>
+            </GraphicsView>
 
-        <StackLayout
-            Orientation="Horizontal">
+            <AbsoluteLayout
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                AbsoluteLayout.LayoutFlags="All" 
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="EndAndExpand"
+                Grid.Row="1"
+                BackgroundColor="#F2F2F2" >
 
-            <Entry
-                x:Name="StartPos"
-                Placeholder="Start..." 
-                VerticalOptions="End" 
-                HorizontalOptions="FillAndExpand"/>
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand" >
 
-            <Entry 
-                x:Name="EndPos"
-                Placeholder="End..."
-                VerticalOptions="End"
-                HorizontalOptions="FillAndExpand" />
+                    <BoxView 
+                        HeightRequest="1"
+                        WidthRequest="360"
+                        Color="Gray" />
 
-        </StackLayout>
+                    <StackLayout
+                        VerticalOptions="CenterAndExpand"
+                        Orientation="Horizontal">
 
-        <Button 
-            Text="Calculate path..." 
-            Clicked="OnRefresh" />
+                        <Entry
+                            x:Name="StartPos"
+                            Placeholder="Start..." 
+                            VerticalOptions="End" 
+                            HorizontalOptions="FillAndExpand" />
 
-        <Button 
-            Text="Locate emercengy exit"
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="CenterAndExpand"
-            Margin="10"
-            Clicked="OnEmergencyClick" />
+                        <Entry 
+                            x:Name="EndPos"
+                            Placeholder="End..."
+                            VerticalOptions="End"
+                            HorizontalOptions="FillAndExpand" />
 
+                    </StackLayout>
+
+                    <Button 
+                        Text="Calculate path..." 
+                        Clicked="OnRefresh" />
+
+                    <Button 
+                        Text="Locate emercengy exit"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="10"
+                        Clicked="OnEmergencyClick" />
+
+                </StackLayout>
+            
+            </AbsoluteLayout>
+
+        </Grid>
+        
     </VerticalStackLayout>
     
 </ContentPage>
