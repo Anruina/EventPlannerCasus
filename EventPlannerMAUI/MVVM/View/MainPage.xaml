@@ -113,6 +113,7 @@
                         <Button
                             Text="Forgot Password" 
                             HorizontalOptions="Center"
+                            Clicked="OnForgotPasswordClick"
                             TextColor="#1F5ABC" 
                             BackgroundColor="Transparent" />
 

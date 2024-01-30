@@ -20,8 +20,12 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
+        private void OnCreate()
+        {
+            OnCreate(loadingStackLayout: LoadingStackLayout);
+        }
 
-        private async void OnCreate()
+        private async void OnCreate(StackLayout loadingStackLayout)
         {
 
             if (await SecureStorage.GetAsync("Username") is string Username && await SecureStorage.GetAsync("Password") is string Password)
@@ -34,7 +38,7 @@ namespace EventPlannerMAUI.MVVM.View
 
             }
 
-            LoadingStackLayout.IsVisible = false;
+            loadingStackLayout.IsVisible = false;
             LoginVerticalStackLayout.IsVisible = true;
 
         }
