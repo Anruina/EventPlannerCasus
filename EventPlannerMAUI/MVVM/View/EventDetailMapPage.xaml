@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.EventDetailMapPage"
              xmlns:drawable="clr-namespace:EventPlannerMAUI.Drawables"
-             Title="Event"
              Shell.TitleColor="White"
              Shell.BackgroundColor="#ED1B34" >
     

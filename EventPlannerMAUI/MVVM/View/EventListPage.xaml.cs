@@ -38,7 +38,7 @@ public partial class EventListPage : ContentPage
     private async void ShowMap(object sender, EventArgs e)
     {
 
-        await Navigation.PushAsync(new EventDetailTabbedPage());
+        await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage()));
 
     }
 

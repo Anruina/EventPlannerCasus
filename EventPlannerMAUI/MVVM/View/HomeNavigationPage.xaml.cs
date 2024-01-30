@@ -56,7 +56,7 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
-        private async void OnLogoutClick(object sender, EventArgs e)
+        private async void OnLogoutClick(object? sender, EventArgs e)
         {
 
             bool answer = await DisplayAlert("Logout", "Are you sure you want to logout of this account?", "Yes", "No");
