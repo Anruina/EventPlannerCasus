@@ -17,63 +17,27 @@
     <VerticalStackLayout
         VerticalOptions="FillAndExpand" >
 
-        <Grid>
+        <ScrollView>
 
-            <ScrollView
-                Orientation="Both"
-                HeightRequest="400"
+            <GraphicsView 
+                x:Name="MapView"
+                HorizontalOptions="StartAndExpand"
                 WidthRequest="440"
-                Margin="10"
-                BackgroundColor="White" >
+                HeightRequest="655"
+                Drawable="{StaticResource MyDrawable}" 
+                Scale="0.85"
+                TranslationX="0"
+                TranslationY="0"
+                AnchorX="0"
+                AnchorY="0" />
 
-                <GraphicsView 
-                    x:Name="MapView"
-                    HorizontalOptions="StartAndExpand"
-                    WidthRequest="440"
-                    HeightRequest="655"
-                    Drawable="{StaticResource MyDrawable}" 
-                    Scale="0.85"
-                    TranslationX="40"
-                    TranslationY="0"
-                    AnchorX="0"
-                    AnchorY="0" />
+            <ScrollView.GestureRecognizers>
 
-                <ScrollView.GestureRecognizers>
+                <PinchGestureRecognizer PinchUpdated="OnMapPinch" />
 
-                    <PinchGestureRecognizer 
-                        PinchUpdated="OnMapPinch" />
+            </ScrollView.GestureRecognizers>
 
-                </ScrollView.GestureRecognizers>
-
-            </ScrollView>
-
-            <AbsoluteLayout 
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All" 
-                VerticalOptions="End"
-                HorizontalOptions="End" 
-                Margin="10, 10, 5, 10" >
-
-                <HorizontalStackLayout>
-
-                    <Button 
-                        Text="zoom_out"
-                        FontFamily="MaterialIcon"
-                        FontSize="25"
-                        Clicked="OnZoomOutClick"
-                        Margin="0,0,5,0" />
-
-                    <Button 
-                        Text="zoom_in"
-                        FontFamily="MaterialIcon"
-                        FontSize="25"
-                        Clicked="OnZoomInClick" />
-
-                </HorizontalStackLayout>
-
-            </AbsoluteLayout>
-
-        </Grid>
+        </ScrollView>
 
         <StackLayout
             Orientation="Horizontal">
