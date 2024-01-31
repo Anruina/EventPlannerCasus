@@ -1,4 +1,5 @@
 ﻿using Camera.MAUI;
+using InputKit.Handlers;
 using Microsoft.Extensions.Logging;
 using UraniumUI;
 
@@ -14,15 +15,20 @@ namespace EventPlannerMAUI
                 .UseUraniumUI() // for user interface
                 .UseUraniumUIMaterial() // for icons
                 .UseMauiCameraView() // for barcode generator
+                .ConfigureMauiHandlers(handlers => 
+                {
+                    handlers.AddInputKitHandlers();
+                })
                 .ConfigureFonts(fonts =>
-            {
+                {
 
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcon");
                 fonts.AddMaterialIconFonts();
 
-            });
+                });
+            
 
             #if DEBUG
 

@@ -9,7 +9,7 @@ public partial class SaveEventPage : ContentPage
 
     private void SaveButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new EventInfoPage());
+        Navigation.PushAsync(new EventListPage());
     }
     private void CancelButton_Clicked(object sender, EventArgs e)
     {
