@@ -11,8 +11,8 @@ public partial class SaveEventPage : ContentPage
     {
         Navigation.PushAsync(new EventListPage());
     }
-    private void CancelButton_Clicked(object sender, EventArgs e)
+    private async void CancelButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new EventInfoPage());
+       await Navigation.PopAsync();
     }
 }
