@@ -20,8 +20,19 @@ namespace EventPlannerMAUI.MVVM.View;
     private async void OnResetClicked(object sender, EventArgs e)
     {
 
-        await DisplayAlert("Success", "Reset link sent to your email.", "OK");
-        await Navigation.PushAsync(new PasswordResetInstructionsPage());
+        if (string.IsNullOrEmpty(EmailEntry.Text) || !EmailEntry.Text.Contains('@'))
+        {
+
+            await DisplayAlert("Invalid Email", "The email entered was invalid please check the email again.", "Ok");
+
+        }
+        else
+        {
+
+            await DisplayAlert("Success", "Reset link sent to your email.", "Ok");
+            await Navigation.PushAsync(new PasswordResetInstructionsPage());
+
+        }
 
     }
 
