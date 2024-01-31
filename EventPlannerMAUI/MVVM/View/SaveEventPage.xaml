@@ -25,7 +25,7 @@
                     Aspect="AspectFill" />
 
                     </AbsoluteLayout>
-
+                <!--Title-->
                     <input:FormView Spacing="15">
                         <Label
                         Text="Save Event" 
@@ -38,8 +38,12 @@
                         HorizontalOptions="Center"
                         FontAttributes="Italic"
                         />
-                        <BoxView StyleClass="Divider" />
-
+                        <input:FormView Spacing="0">
+                            <BoxView StyleClass="Divider" />
+                            <Label Text="Information"
+                                   HorizontalOptions="Center" />
+                        </input:FormView>
+                        <!--Main information-->
                         <material:TextField
                         x:Name="EventName"
                         Title="Name" 
@@ -81,12 +85,89 @@
                             <validation:RequiredValidation/>
                             <validation:NumericValidation/>
                         </material:TextField>
+                            
+                        <!--Location-->
+                        <input:FormView Spacing="0">
+                            <BoxView StyleClass="Divider" />
+                            <Label Text="Location"
+                                   HorizontalOptions="Center" />
+                        </input:FormView>
+                            
+                        <material:TextField 
+                            x:Name="EventStreet"
+                            Title="Street"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="50"/>
+                        </material:TextField>
+                        
+                        <material:TextField 
+                            x:Name="EventPostalCode"
+                            Title="PostalCode"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="6"/>
+                            <validation:MaxLengthValidation MaxLength="6"/>
+                        </material:TextField>
 
+                        <material:TextField 
+                            x:Name="EventStreetnumber"
+                            Title="Streetnumber"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="7"/>
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventCity"
+                            Title="City"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="50"/>
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventProvince"
+                            Title="Province"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="50"/>
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventCountry"
+                            Title="Country"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="50"/>
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventRoomLocation"
+                            Title="Room number"
+                            AccentColor="Black" >
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation MinLength="1"/>
+                            <validation:MaxLengthValidation MaxLength="20"/>
+                        </material:TextField>
+
+                        <!--Time & Date-->                            
+                        <input:FormView Spacing="0">
+                            <BoxView StyleClass="Divider"/>
+                            <Label Text="Time &amp; Date"
+                                   HorizontalOptions="Center" />
+                        </input:FormView>
+                            
                         <material:TimePickerField 
-                        x:Name="StartEventTime"
-                        Title="Start Time"
-                        AllowClear="True"
-                        AccentColor="Black" >
+                            x:Name="StartEventTime"
+                            Title="Start Time"
+                            AllowClear="True"
+                            AccentColor="Black" >
                             <validation:RequiredValidation/>
                             <validation:MinValueValidation MinValue="07:00"/>
                             <validation:MaxValueValidation MaxValue="22:00"/>
@@ -98,11 +179,25 @@
                         AllowClear="True"
                         AccentColor="Black" >
                             <validation:RequiredValidation/>
-                            <validation:MinValueValidation MinValue="07:00"/>
-                            <validation:MaxValueValidation MaxValue="22:00"/>
+                            <validation:MinValueValidation MinValue="07:00" />
+                            <validation:MaxValueValidation MaxValue="22:00" />
                         </material:TimePickerField>
+                            
+                        <material:DatePickerField 
+                            Title="Pick a start date"
+                            AllowClear="True" >
+                            <validation:RequiredValidation/>
+                            <validation:MinValueValidation MinValue="1/1/2024"  />
+                        </material:DatePickerField>
 
+                        <material:DatePickerField 
+                            Title="Pick a end date"
+                            AllowClear="True" >
+                            <validation:RequiredValidation/>
+                            <validation:MinValueValidation MinValue="1/1/2024"  />
+                        </material:DatePickerField>
 
+                        <!--Buttons-->
                         <BoxView Margin="10,0" StyleClass="Divider"/>
 
                         <FlexLayout JustifyContent="SpaceEvenly" Wrap="Wrap">
