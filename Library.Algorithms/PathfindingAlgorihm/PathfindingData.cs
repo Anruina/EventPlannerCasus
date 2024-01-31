@@ -156,12 +156,13 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B1.18"] = new Node("B1.18", 46.0f, 95.2f);
             ComplexPath["B1.104A"] = new Node("B1.19", 43.5f, 94.0f);
             ComplexPath["B1.20"] = new Node("B1.20", 45.8f, 98.3f);
+            ComplexPath["B1.22"] = new Node("B1.22", 42.8f, 98.9f);
+            ComplexPath["B1.300"] = new Node("B1.300", 8.5f, 104.0f);
+            ComplexPath["B1.101"] = new Node("B1.101", 34.0f, 103.8f);
+            ComplexPath["B1.207A"] = new Node("B1.207A", 35.0f, 113.8f);
+            ComplexPath["B1.207B"] = new Node("B1.207B", 33.0f, 113.8f);
 
-            ComplexPath["B1.104E"] = new Node("B1.104E", 42.8f, 98.3f);  
-            
-            //ComplexPath["B1.200"] = new Node("B1.200", 36.2f, 102.5f);
             //ComplexPath["B1.202"] = new Node("B1.202", 29.7f, 103.5f);
-            ComplexPath["B1.300"] = new Node("B1.300", 11.0f, 105.0f);
             ComplexPath["C1.1 Hall"] = new Node("C1.1 Hall", 50.0f, 108.5f);
             ComplexPath["C1.1 Stair"] = new Node("C1.1 Stair", 50.0f, 103.5f);
             ComplexPath["B1.1 Stair"] = new Node("B1.1 Stair", 2.7f, 112.5f);
