@@ -17,15 +17,15 @@
                 <Grid>
 
                     <AbsoluteLayout
-                AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="All" >
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All" >
 
                         <Image
                     Source="wallpapereventsplanner.png" 
                     Aspect="AspectFill" />
 
                     </AbsoluteLayout>
-
+                    <!--Title Header-->
                     <input:FormView Spacing="15">
                         <Label
                         Text="Save Activity" 
@@ -38,6 +38,7 @@
                         HorizontalOptions="Center"
                         FontAttributes="Italic"
                         />
+                        <!--indication to which event the activity is being added-->
                         <BoxView StyleClass="Divider" />
                         <input:FormView Spacing="0">
                             <Label
@@ -53,7 +54,7 @@
                             </material:TextField>
                         </input:FormView>
                         <BoxView StyleClass="Divider" />
-                        
+                        <!--Basic information-->
                         <material:TextField
                             x:Name="ActivityName"
                             Title="Name" 
@@ -68,7 +69,7 @@
                             VerticalOptions="FillAndExpand"
                             AccentColor="Black" >
                         </material:EditorField>
-                        
+                        <!--Location-->
                         <material:TextField
                             x:Name="ActivtyLocation"
                             Title="Room" 
@@ -76,7 +77,7 @@
                             <validation:RequiredValidation/>
                             <validation:MinLengthValidation MinLength="5"/>
                         </material:TextField>
-
+                        <!--Time-->
                         <material:TimePickerField 
                             x:Name="StartActivityTime"
                             Title="Start Time"
