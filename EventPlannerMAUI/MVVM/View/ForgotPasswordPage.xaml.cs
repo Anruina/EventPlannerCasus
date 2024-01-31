@@ -19,9 +19,7 @@ namespace EventPlannerMAUI.MVVM.View;
         await Navigation.PopAsync();
     }
     
-    private async void
-        OnInstructionsClicked(object sender, 
-        EventArgs e)
+    private async void OnInstructionsClicked(object sender, EventArgs e)
     { 
         await Navigation.PushAsync(new PasswordResetInstructionsPage()); 
     }

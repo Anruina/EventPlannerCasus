@@ -115,6 +115,9 @@
 	  <Compile Update="MVVM\View\EventDetailMapPage.xaml.cs">
 	    <DependentUpon>EventDetailMapPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="MVVM\View\TicketsViewPage.xaml.cs">
+	    <DependentUpon>TicketsViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="MVVM\View\QRTicketPage.xaml.cs">
 	    <DependentUpon>QRTicketPage.xaml</DependentUpon>
 	  </Compile>
@@ -133,7 +136,7 @@
 	  <MauiXaml Update="MVVM\View\ForgotPasswordPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\HistoryViewPage.xaml">
+	  <MauiXaml Update="MVVM\View\TicketsViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\HomeNavigationPage.xaml">

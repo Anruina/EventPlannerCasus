@@ -34,7 +34,7 @@
 
                     <models:FlyoutPageItem
                         Title="History"
-                        TargetType="{x:Type local:HistoryViewPage}"
+                        TargetType="{x:Type local:TicketsViewPage}"
                         IconSource="flyouticons/historyicon.svg"
                         RequiresAuthentication="True" />
 

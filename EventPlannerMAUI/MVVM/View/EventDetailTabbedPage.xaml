@@ -11,8 +11,9 @@
         IconImageSource="eventdetailtabbedpageicons/infoicon.svg" />
 
     <local:ActivitySchedulePage 
-        Title="Schedule" 
-        IconImageSource="eventdetailtabbedpageicons/scheduleicon.svg" />
+        Title="Activities" 
+        IconImageSource="eventdetailtabbedpageicons/scheduleicon.svg"
+        />
 
     <local:EventDetailMapPage 
         Title="Map"
