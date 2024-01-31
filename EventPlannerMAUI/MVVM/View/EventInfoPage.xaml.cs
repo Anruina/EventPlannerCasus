@@ -9,7 +9,7 @@ public partial class EventInfoPage : ContentPage
 
 		InitializeComponent();
 
-		Library.Models.Event mainEvent = new Library.Models.Event() { Name = "EventName", MaxParticipants = 100, StartDate = new DateTime(2024, 10, 24, 10, 30, 0), EndDate = new DateTime(2024, 10, 24, 17, 0, 0) };
+		Event mainEvent = new Event() { Name = "EventName", MaxParticipants = 100, StartDate = new DateTime(2024, 10, 24, 10, 30, 0), EndDate = new DateTime(2024, 10, 24, 17, 0, 0), Description="This is an event description :)" };
 		EventData.BindingContext = mainEvent;
 
 	}
