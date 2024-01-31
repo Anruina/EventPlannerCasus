@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="EventPlannerMAUI.MVVM.View.SaveActivityPage"
              Title="SaveActivityPage">
+    
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+        <Label
+            x:Name="EventName"
+            Text="idk"
+            Background="White"
+            TextDecorations="Underline"
+            WidthRequest="100"
+            HeightRequest="100"
+            />
+
+        <material:TextField 
+            x:Name="ActivityName"
+            Title="Name"
+            AllowClear="True"
+            AccentColor="Black"/>
+
+        <material:TimePickerField 
+            x:Name="StartActivityTime"
+            Title="Start Time"
+            AllowClear="True" />
+        
+        <material:TimePickerField 
+            x:Name="EndActivityTime"
+            Title="End Time"
+            AllowClear="True" />
+        
+        <material:TextField 
+            x:Name="DescriptionName"
+            Title="Description"
+            AllowClear="True"
+            AccentColor="Black" />
+
+        <BoxView Margin="10,0"/>
+        <FlexLayout JustifyContent="SpaceBetween" Wrap="Wrap">
+            
+            <Button StyleClass="FilledButton"
+                    Text="Cancel" />
+
+            <Button StyleClass="FilledButton"
+                    Text="Save"/>
+                    <!--Clicked="SaveActivity_Clicked"-->
+            
+        </FlexLayout>
+
+
     </VerticalStackLayout>
 </ContentPage>

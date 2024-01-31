@@ -29,27 +29,32 @@
                     <models:FlyoutPageItem 
                         Title="Home"
                         TargetType="{x:Type local:EventListPage}" 
-                        IconSource="flyouticons/homeicon.svg" />
+                        IconSource="flyouticons/homeicon.svg"
+                        RequiresAuthentication="False" />
 
                     <models:FlyoutPageItem
                         Title="History"
-                        TargetType="{x:Type local:HistoryViewPage}"
-                        IconSource="flyouticons/historyicon.svg" />
+                        TargetType="{x:Type local:TicketsViewPage}"
+                        IconSource="flyouticons/historyicon.svg"
+                        RequiresAuthentication="True" />
 
                     <models:FlyoutPageItem
                         Title="Manage Events"
                         TargetType="{x:Type local:ManageEventsPage}"
-                        IconSource="flyouticons/manageeventicon.svg" />
+                        IconSource="flyouticons/manageeventicon.svg"
+                        RequiresAuthentication="True" />
 
                     <models:FlyoutPageItem
                         Title="Profile"
                         TargetType="{x:Type local:UserProfilePage}"
-                        IconSource="flyouticons/profileicon.svg" />
+                        IconSource="flyouticons/profileicon.svg"
+                        RequiresAuthentication="True" />
 
                     <models:FlyoutPageItem
                         Title="Settings"
                         TargetType="{x:Type local:SettingsPage}"
-                        IconSource="flyouticons/settingsicon.svg" />
+                        IconSource="flyouticons/settingsicon.svg"
+                        RequiresAuthentication="False" />
 
                 </x:Array>
                 
@@ -81,51 +86,12 @@
                             VerticalOptions="Center" />
 
                     </Grid>
-
+                    
                 </DataTemplate>
                 
             </CollectionView.ItemTemplate>
             
         </CollectionView>
-
-        <BoxView 
-            HeightRequest="1" 
-            Color="LightGray"
-            HorizontalOptions="FillAndExpand" 
-            VerticalOptions="EndAndExpand" />
-
-        <StackLayout
-            Orientation="Horizontal">
-
-            <Button 
-                Text="logout" 
-                BackgroundColor="Transparent"
-                TextColor="DarkSlateGray"
-                Padding="0"
-                Margin="10,0,0,0"
-                FontSize="25" 
-                FontFamily="MaterialIcon"
-                WidthRequest="30" />
-            
-            <Button 
-                x:Name="LogoutButton"
-                x:FieldModifier="Public"
-                Text="logout" 
-                HorizontalOptions="FillAndExpand"
-                BackgroundColor="Transparent"
-                TextColor="Black"
-                Padding="0,0,150,0"
-                Margin="30,0,0,0"
-                FontSize="20" 
-                FontAttributes="Bold" />
-
-        </StackLayout>
-
-        <BoxView 
-            HeightRequest="1" 
-            Color="LightGray"
-            HorizontalOptions="FillAndExpand" 
-            VerticalOptions="End" />
 
     </StackLayout>
     

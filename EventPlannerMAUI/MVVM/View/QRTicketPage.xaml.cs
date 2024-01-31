@@ -11,6 +11,6 @@ public partial class QRTicketPage : ContentPage
 
     private void QR_REFRESH_CLICKED(object sender, EventArgs e)
     {
-        QRcode.Barcode = "Testing if this changes the text";
+        QRcode.Barcode = "hello";
     }
 }
