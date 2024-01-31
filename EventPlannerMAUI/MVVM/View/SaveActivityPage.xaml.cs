@@ -6,4 +6,13 @@ public partial class SaveActivityPage : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private async void CancelButton_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
+    private void SaveButton_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new EventDetailActivitySchedule());
+    }
 }
