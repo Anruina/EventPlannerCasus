@@ -3,22 +3,34 @@ namespace EventPlannerMAUI.MVVM.View;
 
     public partial class ForgotPasswordPage : ContentPage
 {
-    public ForgotPasswordPage() => InitializeComponent();
+    public ForgotPasswordPage()
+    {
+        InitializeComponent();
+        NavigationPage.SetHasNavigationBar(this, false);
+    }
 
     private async void OnCancelClicked(object sender, EventArgs e)
     {
-        await Navigation.PopAsync();
+        await Navigation.PopToRootAsync();
     }
 
     private async void OnResetClicked(object sender, EventArgs e)
     {
-        // Implementeer hier de logica om een reset link te sturen.
-        await DisplayAlert("Success", "Reset link sent to your email.", "OK");
+        string email = EmailEntry.Text;
 
-        // Optioneel: Navigeer terug naar login na succes.
-        await Navigation.PopAsync();
+        if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
+        {
+            await DisplayAlert("Invalid Email", "Email is not valid: missing '@'.", "OK");
+        }
+        else
+        {
+            // Hier zou eventueel nog de logica kunnen komen om een rest mail te sturen naar de gebruiker.
+            await DisplayAlert("Success", "Reset link sent to your email.", "OK");
+            // Optioneel: Navigeer terug naar de loginpagina of een andere relevante pagina
+        }
     }
-    
+
+
     private async void
         OnInstructionsClicked(object sender, 
         EventArgs e)

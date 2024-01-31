@@ -18,6 +18,9 @@ namespace EventPlannerMAUI.MVVM.View
             // Navigeer terug naar de loginpagina.
             await Navigation.PopToRootAsync();
         }
+
+        private async void OnBackToResetPasswordClicked(object sender, EventArgs e)
+        { await Navigation.PushAsync(new ForgotPasswordPage()); }
     }
 }
 
