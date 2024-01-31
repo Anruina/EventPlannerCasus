@@ -9,6 +9,8 @@ namespace Library.Models
         public string? Name { get; set; }
 
         public int OrganizerId { get; set; }
+
+        public string? Description { get; set; }
         public Organizer? Organizer { get; set; }
 
         public int AddressId { get; set; }
