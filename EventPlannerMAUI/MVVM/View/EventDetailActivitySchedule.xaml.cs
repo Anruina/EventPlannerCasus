@@ -10,4 +10,9 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
+	private void CreateNewActivity_Clicked(object sender, EventArgs e)
+	{
+		Navigation.PushAsync(new SaveActivityPage());
+	}
+
 }
