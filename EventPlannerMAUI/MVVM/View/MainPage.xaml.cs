@@ -19,26 +19,6 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
-        private async void OnLoginClick(object sender, EventArgs e)
-        {
-
-            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = EmailEntry.Text, Password = PasswordEntry.Text });
-
-            if (account != null)
-            {
-
-                await SecureStorage.SetAsync("Username", EmailEntry.Text);
-                await SecureStorage.SetAsync("Password", PasswordEntry.Text);
-
-                LogginFailedLabel.IsVisible = false;
-                await Navigation.PopAsync();
-
-            }
-            else
-                LogginFailedLabel.IsVisible = true;
-
-        }
-
         private async void OnRegisterClick(object sender, EventArgs e)
         {
 

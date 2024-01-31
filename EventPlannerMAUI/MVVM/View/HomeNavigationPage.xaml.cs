@@ -19,6 +19,8 @@ namespace EventPlannerMAUI.MVVM.View
             MainFlyoutPage.NavigationOptionsCollectionView.SelectionChanged += OnSelectionChanged;
             MainFlyoutPage.LogoutButton.Clicked += OnLogoutClick;
 
+            mainPage.LoginButton.Clicked += OnLoginClick;
+
             OnCreate();
 
         }
@@ -31,12 +33,37 @@ namespace EventPlannerMAUI.MVVM.View
 
                 AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
 
-                if (account == null)
-                    await Detail.Navigation.PushAsync(new MainPage());
+                if (account != null)
+                    Detail = new NavigationPage(new EventListPage());
 
             }
             else
-                await Detail.Navigation.PushAsync(new MainPage());
+            {
+
+                mainPage.LoadingStackLayout.IsVisible = false;
+                mainPage.LoginVerticalStackLayout.IsVisible = true;
+
+            }
+
+        }
+
+        private async void OnLoginClick(object? sender, EventArgs e)
+        {
+
+            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = mainPage.EmailEntry.Text, Password = mainPage.PasswordEntry.Text });
+
+            if (account != null)
+            {
+
+                await SecureStorage.SetAsync("Username", mainPage.EmailEntry.Text);
+                await SecureStorage.SetAsync("Password", mainPage.PasswordEntry.Text);
+
+                mainPage.LogginFailedLabel.IsVisible = false;
+                Detail = new NavigationPage(new EventListPage());
+
+            }
+            else
+                mainPage.LogginFailedLabel.IsVisible = true;
 
         }
 
@@ -71,6 +98,9 @@ namespace EventPlannerMAUI.MVVM.View
 
                 IsPresented = false;
                 await Detail.Navigation.PushAsync(new MainPage());
+
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoadingStackLayout.IsVisible = false;
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginVerticalStackLayout.IsVisible = true;
 
             }
 

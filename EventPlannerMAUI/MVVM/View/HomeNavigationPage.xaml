@@ -18,7 +18,8 @@
 
             <x:Arguments>
 
-                <local:EventListPage />
+                <local:MainPage
+                    x:Name="mainPage" />
 
             </x:Arguments>
 
