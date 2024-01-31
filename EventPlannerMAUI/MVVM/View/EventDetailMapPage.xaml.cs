@@ -74,7 +74,7 @@ public partial class EventDetailMapPage : ContentPage
         if ((e.TotalX < 0.0f && MapView.TranslationX > -MapView.WidthRequest + 500) || (e.TotalX > 0.0f && MapView.TranslationX < 0))
             MapView.TranslationX += e.TotalX;
 
-        if ((e.TotalY < 0.0f && MapView.TranslationY > -MapView.HeightRequest + 600) || (e.TotalY > 0.0f && MapView.TranslationY < MapView.HeightRequest - 500))
+        if ((e.TotalY < 0.0f && MapView.TranslationY > -MapView.HeightRequest + 850) || (e.TotalY > 0.0f && MapView.TranslationY < MapView.HeightRequest - 700))
             MapView.TranslationY += e.TotalY;
 
     }

@@ -30,7 +30,7 @@
                 x:Name="MapView"
                 HorizontalOptions="StartAndExpand"
                 WidthRequest="440"
-                HeightRequest="655"
+                HeightRequest="983"
                 Drawable="{StaticResource MyDrawable}" 
                 Scale="0.85"
                 TranslationX="0"
