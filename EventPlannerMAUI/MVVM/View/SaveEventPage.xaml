@@ -6,8 +6,52 @@
              Title="SaveEventPage">
     
     <VerticalStackLayout>
-        <Label
-            Text="Derp?"
+        <material:TextField 
+            x:Name="EventName"
+            Title="Name"/>
+
+        <material:TimePickerField 
+            x:Name="StartEventTime"
+            Title="Start Time"
+            AllowClear="True" />
+
+        <material:TimePickerField 
+            x:Name="EndEventTime"
+            Title="End Time"
+            AllowClear="True" />
+
+        <material:InputField Title="2nd Option" HasValue="True">
+            <TimePicker BackgroundColor="Transparent"/>
+        </material:InputField>
+
+        <material:TextField 
+            x:Name="TypeEvent"
+            Title="Type" />
+
+        <material:TextField
+            x:Name="MaxPeople"
+            Keyboard="Numeric"
+            Title="Maximum Participants"
             />
+
+        <material:TextField 
+            x:Name="Price"
+            Keyboard="Numeric"
+            Title="Price"
+            />
+
+        <BoxView Margin="10,0"/>
+        <FlexLayout JustifyContent="SpaceBetween" Wrap="Wrap">
+
+            <Button StyleClass="FilledButton"
+                    Clicked="CancelButton_Clicked"
+                    Text="Cancel" />
+
+            <Button StyleClass="FilledButton"
+                    Clicked="SaveButton_Clicked"
+                    Text="Save"/>
+
+        </FlexLayout>
+
     </VerticalStackLayout>
 </ContentPage>
