@@ -14,7 +14,7 @@
         private async void OnBackToLoginClicked(object sender, EventArgs e)
         {
 
-            await Navigation.PopAsync();
+            await Navigation.PopToRootAsync();
 
         }
 

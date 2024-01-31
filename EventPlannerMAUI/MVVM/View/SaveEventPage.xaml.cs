@@ -7,12 +7,18 @@ public partial class SaveEventPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void SaveButton_Clicked(object sender, EventArgs e)
+    private async void SaveButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new EventListPage());
+
+        await Navigation.PopAsync();
+
     }
+
     private async void CancelButton_Clicked(object sender, EventArgs e)
     {
-       await Navigation.PopAsync();
+       
+        await Navigation.PopAsync();
+
     }
+
 }

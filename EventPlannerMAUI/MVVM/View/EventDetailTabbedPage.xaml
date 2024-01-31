@@ -5,14 +5,14 @@
             xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
             x:Class="EventPlannerMAUI.MVVM.View.EventDetailTabbedPage"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            android:TabbedPage.IsSwipePagingEnabled="False">
+            android:TabbedPage.IsSwipePagingEnabled="False" >
 
     <local:EventInfoPage 
         Title="Event Info"
         IconImageSource="eventdetailtabbedpageicons/infoicon.svg" />
 
     <local:EventDetailActivitySchedule 
-        Title="Schedule" 
+        Title="Activities" 
         IconImageSource="eventdetailtabbedpageicons/scheduleicon.svg" />
 
     <local:EventDetailMapPage 
