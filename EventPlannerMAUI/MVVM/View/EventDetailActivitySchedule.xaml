@@ -2,16 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
-             x:Class="EventPlannerMAUI.MVVM.View.ActivitySchedulePage"
+             x:Class="EventPlannerMAUI.MVVM.View.EventDetailActivitySchedule"
              Title="ActivitySchedulePage">
-  
+
     <VerticalStackLayout>
+        
         <Button
             Text="+ Create Activity1"
-            Clicked="CreateNewActivity_Clicked"
-            />
+            Clicked="OnAddActivityClick" />
+        
     </VerticalStackLayout>
-    
-    
-    
+
 </ContentPage>

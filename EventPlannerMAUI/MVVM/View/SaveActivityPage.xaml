@@ -46,7 +46,7 @@
                     Text="Cancel" />
 
             <Button StyleClass="FilledButton"
-                    Text="Save"/>
+                    Text="Save" />
                     <!--Clicked="SaveActivity_Clicked"-->
             
         </FlexLayout>
