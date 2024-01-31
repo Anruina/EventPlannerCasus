@@ -15,28 +15,7 @@ namespace EventPlannerMAUI.MVVM.View
         {
             
             InitializeComponent();
-            _apiService = ServiceLocator.apiService;    
-
-        }
-
-        private async void OnLoginClick(object sender, EventArgs e)
-        {
-
-            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = EmailEntry.Text, Password = PasswordEntry.Text });
-
-            if (account != null)
-            {
-
-                await SecureStorage.SetAsync("Username", EmailEntry.Text);
-                await SecureStorage.SetAsync("Password", PasswordEntry.Text);
-
-                LogginFailedLabel.IsVisible = false;
-                ServiceLocator.LoggedIn = true;
-                await Navigation.PopAsync();
-
-            }
-            else
-                LogginFailedLabel.IsVisible = true;
+            _apiService = ServiceLocator.apiService;
 
         }
 
@@ -54,9 +33,11 @@ namespace EventPlannerMAUI.MVVM.View
 
         }
 
-        private async void testclick(object sender, EventArgs e)
+        protected override bool OnBackButtonPressed()
         {
-            await Navigation.PushAsync(new QRTicketPage());
+
+            return true;
+
         }
 
     }

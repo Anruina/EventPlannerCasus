@@ -43,6 +43,14 @@ namespace EventPlannerMAUI.Drawables
 
             canvas.DrawImage(floor2Image, 0, floor3Image.Height / 2.10f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
 
+            // Floor 1 Image
+            IImage floor1Image;
+            using (Stream? stream = GetType().GetTypeInfo().Assembly.GetManifestResourceStream("EventPlannerMAUI.Resources.Images.floor1.png"))
+                floor1Image = PlatformImage.FromStream(stream);
+
+            canvas.DrawImage(floor2Image, 0, (floor3Image.Height / 2.10f) * 2.0f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
+
+
             int ScaleFactor = 8;
 
             if (!Emergency)
