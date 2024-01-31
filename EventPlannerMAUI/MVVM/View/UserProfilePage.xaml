@@ -99,10 +99,7 @@
                     VerticalOptions="Center"/>
 
                 <Label
-                    Text="{Binding Address.AdditionHouseNumber}"
-                    TextColor="#2C3E50"
-                    FontSize="16"
-                    VerticalOptions="Center" />
+                    Text=" " />
 
                 <Label
                     Text="{Binding Address.Street}"
