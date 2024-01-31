@@ -10,6 +10,14 @@
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="MainPage"/>
+    <ShellContent
+        Route="forgotpassword"
+        ContentTemplate="{DataTemplate local:ForgotPasswordPage}"
+        Shell.NavBarIsVisible="False"/>
+    <ShellContent
+        Route="PasswordResetInstructions"
+        ContentTemplate="{DataTemplate local:PasswordResetInstructionsPage}"
+        Shell.NavBarIsVisible="False"/>
 
 </Shell>
