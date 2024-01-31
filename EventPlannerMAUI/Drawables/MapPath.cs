@@ -51,17 +51,6 @@ namespace EventPlannerMAUI.Drawables
             canvas.DrawImage(floor1Image, 0, (floor3Image.Height / 2.10f) * 2.0f, floor2Image.Width / 2.45f, floor2Image.Height / 2.45f);
 
             int ScaleFactor = 8;
-            canvas.FillColor = Colors.Navy;
-            foreach (Node node in data.ComplexPath.Values)
-            {
-
-                canvas.FillCircle((node.X * ScaleFactor) + 5, (node.Y * ScaleFactor) + 5, 5);
-
-                foreach (Node neighbour in node.Neighbours)
-                    canvas.DrawLine(node.X * ScaleFactor + 5, node.Y * ScaleFactor + 5, neighbour.X * ScaleFactor + 5, neighbour.Y * ScaleFactor + 5);
-
-            }
-
             if (!Emergency)
             {
 
