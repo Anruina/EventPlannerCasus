@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations
+namespace Library.DataContext.Migrations.ApplicationDb
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -20,10 +20,9 @@ namespace Library.DataContext.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StreetNumber = table.Column<int>(type: "int", nullable: true),
+                    StreetNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Province = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AdditionHouseNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Province = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,30 +43,17 @@ namespace Library.DataContext.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Organizers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuthenticationId = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Organizers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Participants",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AddressId = table.Column<int>(type: "int", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AuthenticationId = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AuthenticationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,6 +73,7 @@ namespace Library.DataContext.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OrganizerId = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     TypeId = table.Column<int>(type: "int", nullable: true),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -110,9 +97,9 @@ namespace Library.DataContext.Migrations
                         principalTable: "EventTypes",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Events_Organizers_OrganizerId",
+                        name: "FK_Events_Participants_OrganizerId",
                         column: x => x.OrganizerId,
-                        principalTable: "Organizers",
+                        principalTable: "Participants",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -130,6 +117,7 @@ namespace Library.DataContext.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Room = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Duration = table.Column<DateTime>(type: "datetime2", nullable: true),
                     EventId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -256,9 +244,6 @@ namespace Library.DataContext.Migrations
 
             migrationBuilder.DropTable(
                 name: "EventTypes");
-
-            migrationBuilder.DropTable(
-                name: "Organizers");
 
             migrationBuilder.DropTable(
                 name: "Participants");

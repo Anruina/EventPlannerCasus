@@ -37,7 +37,7 @@ public partial class SaveEventPage : ContentPage
                 PostalCode = EventPostalCodeTextField.Text,
                 Province = EventProvinceTextField.Text,
                 Street = EventStreetTextField.Text,
-                StreetNumber = int.Parse(EventStreetnumberTextField.Text),
+                StreetNumber = EventStreetnumberTextField.Text,
             
             },
             StartDate = new DateTime(DateOnly.FromDateTime((DateTime)StartDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)StartEventTimeTimePicker.Time)),

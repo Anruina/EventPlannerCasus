@@ -35,6 +35,13 @@ namespace EventPlannerMAUI.MVVM.View
 
                 if (account != null)
                     Detail = new NavigationPage(new EventListPage());
+                else
+                {
+
+                    mainPage.LoadingStackLayout.IsVisible = false;
+                    mainPage.LoginVerticalStackLayout.IsVisible = true;
+
+                }
 
             }
             else

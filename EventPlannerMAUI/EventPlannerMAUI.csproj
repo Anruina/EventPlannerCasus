@@ -61,6 +61,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="C:\Users\Tristan Franssen\.nuget\packages\inputkit.maui\4.4.1\contentFiles\any\net8.0-android34.0\icon512.png" />
 	  <None Remove="Resources\Fonts\MaterialIcons-Regular.ttf" />
 	  <None Remove="Resources\Images\eventdetailtabbedpageicons\infoicon.svg" />
 	  <None Remove="Resources\Images\eventdetailtabbedpageicons\mapicon.svg" />
@@ -106,7 +107,6 @@
 	  <MauiImage Include="Resources\Images\flyouticons\homeicon.svg" />
 	  <MauiImage Include="Resources\Images\flyouticons\manageeventicon.svg" />
 	  <MauiImage Include="Resources\Images\flyouticons\profileicon.svg" />
-	  <MauiImage Include="Resources\Images\flyouticons\settingsicon.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -163,9 +163,6 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\SaveEventPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="MVVM\View\SettingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\UserProfilePage.xaml">

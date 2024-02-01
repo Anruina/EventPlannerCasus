@@ -12,7 +12,7 @@ public partial class EventListPage : ContentPage
         InitializeComponent();
 
         List<Event> events = new List<Event>();
-        events.Add(new Event { Id = 0, Name = "Evenement 1", StartDate = new DateTime(2024, 2, 24, 15, 20, 0), EndDate = new DateTime(2024, 2, 24, 16, 20, 0), Address = new Address() { Id = 0, Country = "The Netherlands", City = "Heerlen", PostalCode = "7993 MN", Street = "EventStreet", Province = "Limburg", StreetNumber = 20 } });
+        events.Add(new Event { Id = 0, Name = "Evenement 1", StartDate = new DateTime(2024, 2, 24, 15, 20, 0), EndDate = new DateTime(2024, 2, 24, 16, 20, 0), Address = new Address() { Id = 0, Country = "The Netherlands", City = "Heerlen", PostalCode = "7993 MN", Street = "EventStreet", Province = "Limburg", StreetNumber = "20" } });
 
         EventListView.ItemsSource = events;
 

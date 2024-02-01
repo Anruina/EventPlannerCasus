@@ -4,16 +4,19 @@ using Library.DataContext.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations
+namespace Library.DataContext.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240201083953_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,9 @@ namespace Library.DataContext.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Room")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
@@ -56,9 +62,6 @@ namespace Library.DataContext.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AdditionHouseNumber")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
@@ -75,8 +78,8 @@ namespace Library.DataContext.Migrations
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StreetNumber")
-                        .HasColumnType("int");
+                    b.Property<string>("StreetNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -93,6 +96,9 @@ namespace Library.DataContext.Migrations
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -147,31 +153,6 @@ namespace Library.DataContext.Migrations
                     b.ToTable("EventTypes");
                 });
 
-            modelBuilder.Entity("Library.Models.Organizer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AuthenticationId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Organizers");
-                });
-
             modelBuilder.Entity("Library.Models.Participant", b =>
                 {
                     b.Property<int>("Id")
@@ -186,7 +167,18 @@ namespace Library.DataContext.Migrations
                     b.Property<string>("AuthenticationId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("MailAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -194,6 +186,10 @@ namespace Library.DataContext.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Participants");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Participant");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Library.Models.PlannedActivity", b =>
@@ -235,6 +231,13 @@ namespace Library.DataContext.Migrations
                     b.HasIndex("VisitedActivitiesId");
 
                     b.ToTable("ParticipantPlannedActivity");
+                });
+
+            modelBuilder.Entity("Library.Models.Organizer", b =>
+                {
+                    b.HasBaseType("Library.Models.Participant");
+
+                    b.HasDiscriminator().HasValue("Organizer");
                 });
 
             modelBuilder.Entity("Library.Models.Activity", b =>
@@ -338,14 +341,14 @@ namespace Library.DataContext.Migrations
                     b.Navigation("Events");
                 });
 
-            modelBuilder.Entity("Library.Models.Organizer", b =>
-                {
-                    b.Navigation("OrganizedEvents");
-                });
-
             modelBuilder.Entity("Library.Models.Participant", b =>
                 {
                     b.Navigation("VisitedEvents");
+                });
+
+            modelBuilder.Entity("Library.Models.Organizer", b =>
+                {
+                    b.Navigation("OrganizedEvents");
                 });
 #pragma warning restore 612, 618
         }
