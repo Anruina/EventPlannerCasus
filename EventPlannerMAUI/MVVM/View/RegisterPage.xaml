@@ -53,10 +53,9 @@
                     </input:FormView>
                     <!--User information-->
                     <material:TextField
-                x:Name="EmailaddressUser"
-                Title="E-mail" 
-                AccentColor="Black" >
-                        <validation:RequiredValidation/>
+                    x:Name="EmailaddressUser"
+                    Title="E-mail" 
+                    AccentColor="Black" >
                         <validation:RequiredValidation />
                         <validation:RegexValidation Pattern="{x:Static input:AdvancedEntry.REGEX_EMAIL}" Message="Invalid email address" />
                     </material:TextField>
