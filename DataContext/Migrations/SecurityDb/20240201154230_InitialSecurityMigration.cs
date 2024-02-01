@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations
+namespace Library.DataContext.Migrations.SecurityDb
 {
     /// <inheritdoc />
     public partial class InitialSecurityMigration : Migration

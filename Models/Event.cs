@@ -14,7 +14,6 @@
         public Address? Address { get; set; }
 
         public List<Activity>? Activities { get; set; }
-        public List<PlannedActivity>? PlannedActivities { get; set; }
 
         public EventType? Type { get; set; }
 

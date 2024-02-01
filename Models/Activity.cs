@@ -10,12 +10,11 @@
 
         public string? Room { get; set; }
 
-        public DateTime? Duration { get; set; }
+        public TimeOnly? StartDate { get; set; }
+        public TimeOnly? EndDate { get; set; }
 
         public int EventId { get; set; }
         public Event? Event { get; set; }
-
-        public List<PlannedActivity>? PlannedActivities { get; set; }
 
     }
 

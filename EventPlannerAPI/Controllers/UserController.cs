@@ -77,7 +77,7 @@ namespace EventPlannerAPI.Controllers
             {
 
                 Name = newAccountModel.Username,
-                VisitedActivities = new List<PlannedActivity>(),
+                VisitedActivities = new List<Activity>(),
                 VisitedEvents = new List<Event>(),
                 AuthenticationId = newUser.Id,
                 Type = UserType.Participant

@@ -52,7 +52,7 @@
                                 FontSize="Small" />
                             
                             <material:TextField 
-                                x:Name="ActivityEvent"
+                                x:Name="ActivityEventTextField"
                                 Title="Event"
                                 AccentColor="Black" 
                                 IsEnabled="False"
@@ -65,7 +65,7 @@
                         <BoxView StyleClass="Divider" />
                         
                         <material:TextField
-                            x:Name="ActivityName"
+                            x:Name="ActivityNameTextField"
                             Title="Name" 
                             AccentColor="Black" >
                             
@@ -77,7 +77,7 @@
                         </material:TextField>
 
                         <material:EditorField
-                            x:Name="ActivityDescription"
+                            x:Name="ActivityDescriptionTextField"
                             Title="Description"
                             VerticalOptions="FillAndExpand"
                             AccentColor="Black" >
@@ -85,7 +85,7 @@
                         </material:EditorField>
 
                         <material:TextField
-                            x:Name="ActivtyLocation"
+                            x:Name="ActivtyLocationTextField"
                             Title="Room" 
                             AccentColor="Black" >
                             
@@ -97,7 +97,7 @@
                         </material:TextField>
 
                         <material:TimePickerField 
-                            x:Name="StartActivityTime"
+                            x:Name="StartActivityTimeTimePicker"
                             Title="Start Time"
                             AllowClear="True"
                             AccentColor="Black" >
@@ -113,7 +113,7 @@
                         </material:TimePickerField>
 
                         <material:TimePickerField 
-                            x:Name="EndActivityTime"
+                            x:Name="EndActivityTimeTimePicker"
                             Title="End Time"
                             AllowClear="True"
                             AccentColor="Black" >

@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations.ApplicationDb
+namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201135143_InitialMigration")]
+    [Migration("20240201154139_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -51,8 +51,8 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Duration")
-                        .HasColumnType("datetime2");
+                    b.Property<TimeOnly?>("EndDate")
+                        .HasColumnType("time");
 
                     b.Property<int>("EventId")
                         .HasColumnType("int");
@@ -63,9 +63,17 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.Property<string>("Room")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<TimeOnly?>("StartDate")
+                        .HasColumnType("time");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Activities");
                 });
@@ -158,32 +166,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.ToTable("EventTypes");
                 });
 
-            modelBuilder.Entity("Library.Models.PlannedActivity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("ActivityId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("EventId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("TimeSlot")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
-
-                    b.HasIndex("EventId");
-
-                    b.ToTable("PlannedActivities");
-                });
-
             modelBuilder.Entity("Library.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -217,21 +199,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PlannedActivityUser", b =>
-                {
-                    b.Property<int>("ParticipantsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VisitedActivitiesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ParticipantsId", "VisitedActivitiesId");
-
-                    b.HasIndex("VisitedActivitiesId");
-
-                    b.ToTable("PlannedActivityUser");
-                });
-
             modelBuilder.Entity("EventUser", b =>
                 {
                     b.HasOne("Library.Models.User", null)
@@ -255,6 +222,10 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Library.Models.User", null)
+                        .WithMany("VisitedActivities")
+                        .HasForeignKey("UserId");
+
                     b.Navigation("Event");
                 });
 
@@ -275,19 +246,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("Library.Models.PlannedActivity", b =>
-                {
-                    b.HasOne("Library.Models.Activity", "Activity")
-                        .WithMany("PlannedActivities")
-                        .HasForeignKey("ActivityId");
-
-                    b.HasOne("Library.Models.Event", null)
-                        .WithMany("PlannedActivities")
-                        .HasForeignKey("EventId");
-
-                    b.Navigation("Activity");
-                });
-
             modelBuilder.Entity("Library.Models.User", b =>
                 {
                     b.HasOne("Library.Models.Address", "Address")
@@ -295,26 +253,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("PlannedActivityUser", b =>
-                {
-                    b.HasOne("Library.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("ParticipantsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Library.Models.PlannedActivity", null)
-                        .WithMany()
-                        .HasForeignKey("VisitedActivitiesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Library.Models.Activity", b =>
-                {
-                    b.Navigation("PlannedActivities");
                 });
 
             modelBuilder.Entity("Library.Models.Address", b =>
@@ -327,13 +265,16 @@ namespace Library.DataContext.Migrations.ApplicationDb
             modelBuilder.Entity("Library.Models.Event", b =>
                 {
                     b.Navigation("Activities");
-
-                    b.Navigation("PlannedActivities");
                 });
 
             modelBuilder.Entity("Library.Models.EventType", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("Library.Models.User", b =>
+                {
+                    b.Navigation("VisitedActivities");
                 });
 #pragma warning restore 612, 618
         }

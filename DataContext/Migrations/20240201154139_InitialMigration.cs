@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations.ApplicationDb
+namespace Library.DataContext.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -105,8 +105,10 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Room = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Duration = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    EventId = table.Column<int>(type: "int", nullable: false)
+                    StartDate = table.Column<TimeOnly>(type: "time", nullable: true),
+                    EndDate = table.Column<TimeOnly>(type: "time", nullable: true),
+                    EventId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,6 +119,11 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         principalTable: "Events",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Activities_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -143,59 +150,15 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "PlannedActivities",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ActivityId = table.Column<int>(type: "int", nullable: true),
-                    TimeSlot = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EventId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlannedActivities", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlannedActivities_Activities_ActivityId",
-                        column: x => x.ActivityId,
-                        principalTable: "Activities",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_PlannedActivities_Events_EventId",
-                        column: x => x.EventId,
-                        principalTable: "Events",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlannedActivityUser",
-                columns: table => new
-                {
-                    ParticipantsId = table.Column<int>(type: "int", nullable: false),
-                    VisitedActivitiesId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlannedActivityUser", x => new { x.ParticipantsId, x.VisitedActivitiesId });
-                    table.ForeignKey(
-                        name: "FK_PlannedActivityUser_PlannedActivities_VisitedActivitiesId",
-                        column: x => x.VisitedActivitiesId,
-                        principalTable: "PlannedActivities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PlannedActivityUser_Users_ParticipantsId",
-                        column: x => x.ParticipantsId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Activities_EventId",
                 table: "Activities",
                 column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activities_UserId",
+                table: "Activities",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Events_AddressId",
@@ -213,21 +176,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 column: "VisitedEventsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlannedActivities_ActivityId",
-                table: "PlannedActivities",
-                column: "ActivityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlannedActivities_EventId",
-                table: "PlannedActivities",
-                column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlannedActivityUser_VisitedActivitiesId",
-                table: "PlannedActivityUser",
-                column: "VisitedActivitiesId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Users_AddressId",
                 table: "Users",
                 column: "AddressId");
@@ -237,28 +185,22 @@ namespace Library.DataContext.Migrations.ApplicationDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EventUser");
-
-            migrationBuilder.DropTable(
-                name: "PlannedActivityUser");
-
-            migrationBuilder.DropTable(
-                name: "PlannedActivities");
-
-            migrationBuilder.DropTable(
-                name: "Users");
-
-            migrationBuilder.DropTable(
                 name: "Activities");
+
+            migrationBuilder.DropTable(
+                name: "EventUser");
 
             migrationBuilder.DropTable(
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "EventTypes");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
         }
     }
 }
