@@ -75,11 +75,10 @@ namespace EventPlannerAPI.Controllers
         /// Participant gets removed and converted to organizer.
         /// </summary>
         /// <param name="id">Id of participant that has to become organizer</param>
-        /// <param name="newOrganizer">The new organizer that has to be created</param>
         /// <returns>Created organizer</returns>
         [HttpPost("{id}")]
         [Authorize]
-        public async Task<ActionResult<Organizer>> PostOrganizer(int id, Organizer newOrganizer)
+        public async Task<ActionResult<Organizer>> PostOrganizer(int id)
         {
 
             if (_userManager == null)
@@ -94,7 +93,7 @@ namespace EventPlannerAPI.Controllers
             if (participant == null || participant.Id != id || participant.AuthenticationId != user.Id)
                 return BadRequest();
 
-            newOrganizer = participant;
+            Organizer newOrganizer = new Organizer() { Name = participant.Name, MailAddress = participant.MailAddress, PhoneNumber = participant.PhoneNumber, Address = participant.Address, AuthenticationId = participant.AuthenticationId, VisitedEvents = participant.VisitedEvents, VisitedActivities = participant.VisitedActivities };
 
             await _dataAccessService.DeleteParticipant(user.Id);
             Organizer? createdOrganizer = await _dataAccessService.SaveOrganizer(newOrganizer);

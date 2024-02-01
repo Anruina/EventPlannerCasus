@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations.SecurityDb
+namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20240128120020_InitialSecurityMigration")]
+    [Migration("20240201083755_InitialSecurityMigration")]
     partial class InitialSecurityMigration
     {
         /// <inheritdoc />

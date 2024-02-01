@@ -46,11 +46,6 @@
                         TargetType="{x:Type local:UserProfilePage}"
                         IconSource="flyouticons/profileicon.svg" />
 
-                    <models:FlyoutPageItem
-                        Title="Settings"
-                        TargetType="{x:Type local:SettingsPage}"
-                        IconSource="flyouticons/settingsicon.svg" />
-
                 </x:Array>
 
             </CollectionView.ItemsSource>
