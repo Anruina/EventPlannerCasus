@@ -108,6 +108,7 @@ namespace EventPlannerMAUI.MVVM.View
 
                 ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoadingStackLayout.IsVisible = false;
                 ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginVerticalStackLayout.IsVisible = true;
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginButton.Clicked += OnLoginClick;
 
             }
 
