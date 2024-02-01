@@ -32,7 +32,7 @@
                         IconSource="flyouticons/homeicon.svg" />
 
                     <models:FlyoutPageItem
-                        Title="History"
+                        Title="Tickets"
                         TargetType="{x:Type local:TicketsViewPage}"
                         IconSource="flyouticons/historyicon.svg" />
 

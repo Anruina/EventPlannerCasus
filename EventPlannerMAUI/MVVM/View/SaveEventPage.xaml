@@ -92,23 +92,12 @@
                             Keyboard="Numeric"
                             Title="Maximum Participants"
                             AccentColor="Black" >
-                            
+
                             <validation:RequiredValidation/>
                             <validation:NumericValidation/>
-                            
+
                         </material:TextField>
 
-                        <material:TextField 
-                            x:Name="PriceTextField"
-                            Keyboard="Numeric"
-                            Title="Price"
-                            AccentColor="Black" >
-                            
-                            <validation:RequiredValidation/>
-                            <validation:NumericValidation/>
-                            
-                        </material:TextField>
-                            
                         <input:FormView 
                             Spacing="0">
                             

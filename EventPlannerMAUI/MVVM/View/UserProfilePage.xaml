@@ -27,13 +27,49 @@
                 Margin="0,0,0,10" >
 
                 <Label 
-                    Text="Email: " 
+                    Text="Name: " 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
 
                 <Label 
                     Text="{Binding Name}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal" 
+                Margin="0,0,0,10" >
+
+                <Label 
+                    Text="Email: " 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
+
+                <Label 
+                    Text="{Binding Email}" 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal" 
+                Margin="0,0,0,10" >
+
+                <Label 
+                    Text="Phone number: " 
+                    TextColor="#2C3E50"
+                    FontSize="16"
+                    VerticalOptions="Center"/>
+
+                <Label 
+                    Text="{Binding PhoneNumber}" 
                     TextColor="#2C3E50"
                     FontSize="16"
                     VerticalOptions="Center"/>
