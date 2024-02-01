@@ -20,8 +20,8 @@ public partial class SaveEventPage : ContentPage
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
 
-        Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
-        if (organizer == null)
+        User? user = await _apiService.GetSpecific<User>("Api/User");
+        if (user == null || user.Type != UserType.Organizer)
             await Navigation.PopAsync();
 
         Event newEvent = new Event()
@@ -42,7 +42,7 @@ public partial class SaveEventPage : ContentPage
             },
             StartDate = new DateTime(DateOnly.FromDateTime((DateTime)StartDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)StartEventTimeTimePicker.Time)),
             EndDate = new DateTime(DateOnly.FromDateTime((DateTime)EndDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)EndEventTimeTimePicker.Time)),
-            OrganizerId = organizer.Id,
+            OrganizerId = user.Id,
             MaxParticipants = int.Parse(MaxPeopleTextField.Text),
             Type = new EventType() { Name = TypeEventTextField.Text }
 

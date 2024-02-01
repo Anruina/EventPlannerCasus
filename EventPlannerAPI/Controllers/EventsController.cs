@@ -98,11 +98,11 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
-            newEvent.Organizer = organizer;
+            newEvent.OrganizerId = currentUser.Id;
             Event? createdEvent = await _dataAccessService.SaveEvent(newEvent);
 
             if (createdEvent == null)
@@ -138,11 +138,11 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.Organizer?.Id != organizer.Id || await _dataAccessService.SaveEvent(updatedEvent) == null)
+            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.OrganizerId != currentUser.Id || await _dataAccessService.SaveEvent(updatedEvent) == null)
                 return BadRequest();
 
             return NoContent();
@@ -171,12 +171,12 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
             Event? deleteEvent = await _dataAccessService.GetEvent(id);
-            if (deleteEvent == null || deleteEvent.Organizer != organizer || await _dataAccessService.DeleteEvent(id) == false)
+            if (deleteEvent == null || deleteEvent.OrganizerId != currentUser.Id || await _dataAccessService.DeleteEvent(id) == false)
                 return BadRequest();
 
             return NoContent();

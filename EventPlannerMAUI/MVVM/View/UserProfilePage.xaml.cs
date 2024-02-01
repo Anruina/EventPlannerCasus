@@ -23,24 +23,15 @@ public partial class UserProfilePage : ContentPage
 	private async void OnCreate()
 	{
 
-		Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+		User? user = await _apiService.GetSpecific<User>("Api/User");
 
-		if (participant != null)
+		if (user != null)
 		{
 
-			if (participant.Address == null)
-				participant.Address = new Address() { City = "None", Country = "None", PostalCode = "None", Province = "None", Street = "None" };
+			if (user.Address == null)
+				user.Address = new Address() { City = "None", Country = "None", PostalCode = "None", Province = "None", Street = "None" };
 
-			UserDataStackLayout.BindingContext = participant;
-
-		}
-		else
-		{
-
-			Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
-
-			if (organizer != null)
-				UserDataStackLayout.BindingContext = organizer;
+			UserDataStackLayout.BindingContext = user;
 
 		}
 
@@ -58,9 +49,9 @@ public partial class UserProfilePage : ContentPage
 	private async void OnBecomeOrganizerClick(object sender, EventArgs e)
 	{
 
-		Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+		User? user = await _apiService.GetSpecific<User>("Api/User");
 
-		if (participant == null)
+		if (user == null || user.Type == UserType.Organizer)
 		{
 
 			await DisplayAlert("Account Failure", "Account already is an organizer.", "Ok");
@@ -69,13 +60,11 @@ public partial class UserProfilePage : ContentPage
 		else
 		{
 
-			Participant? organizer = await _apiService.CreateObject<Participant>("Api/Organizers/", participant);
-
-			if (organizer != null)
-				await DisplayAlert("Account Upgrade", "Account has been upgraded to organizer.", "Ok");
-			else
-                await DisplayAlert("Account Failure", "Could not upgrade account to an organizer.", "Ok");
-
+			user.Type = UserType.Organizer;
+			
+			await _apiService.UpdateObject<User>("Api/User/", user.Id, user);
+			await DisplayAlert("Account Upgrade", "Account has been upgraded to organizer.", "Ok");
+			
         }
 
     }

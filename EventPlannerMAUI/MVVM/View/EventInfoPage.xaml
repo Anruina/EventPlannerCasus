@@ -1,62 +1,195 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EventPlannerMAUI.MVVM.View.EventInfoPage" >
+             x:Class="EventPlannerMAUI.MVVM.View.EventInfoPage"
+             BindingContext="{Binding Event}" >
 
     <StackLayout>
 
         <StackLayout
-            x:Name="EventData"
-            BindingContext="{Binding Event}"
-            HorizontalOptions="CenterAndExpand" >
+            HorizontalOptions="FillAndExpand"
+            Margin="10" >
 
             <Label 
                 Text="{Binding Name}"
-                HorizontalOptions="CenterAndExpand" />
+                FontSize="Title"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="Red"  />
+
+            <BoxView StyleClass="Divider" />
+
+        </StackLayout>
+
+        <StackLayout
+            HorizontalOptions="FillAndExpand" 
+            Margin="5,0,0,0" >
 
             <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand" >
+                Margin="0,0,0,10" >
 
-                <Label 
-                    Text="Max participants: " />
+                <Label
+                    Text="Type: "
+                    FontSize="16" />
 
-                <Label 
-                    Text="{Binding MaxParticipants}" />
+                <Label
+                    Text="{Binding Type.Name}"
+                    FontSize="16" />
 
             </HorizontalStackLayout>
-
+            
             <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand" >
-
-                <Label
-                    Text="Start Date: " />
-
-                <Label
-                    Text="{Binding StartDate}" />
-
-            </HorizontalStackLayout>
-
-            <HorizontalStackLayout
-                HorizontalOptions="CenterAndExpand" >
-
-                <Label
-                    Text="End Date: " />
+                Margin="0,0,0,10" >
 
                 <Label 
-                    Text="{Binding EndDate}" />
+                    Text="Max participants: "
+                    FontSize="16" />
+
+                <Label 
+                    Text="{Binding MaxParticipants}"
+                    FontSize="16" />
 
             </HorizontalStackLayout>
 
             <StackLayout
-                Orientation="Horizontal" >
+                Margin="0,0,0,10" >
 
-                <Label
-                    Text="Description: " />
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
 
-                <Label 
-                    Text="{Binding Description}"/>
+                    <Label
+                        Text="Start Date: "
+                        FontSize="16" />
+
+                    <Label
+                        Text="{Binding StartDate}"
+                        Margin="0,0,10,0"
+                        FontSize="16" />
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal" >
+
+                    <Label
+                        Text="End Date: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding EndDate}"
+                        FontSize="16" />
+
+                </StackLayout>
 
             </StackLayout>
+
+            <BoxView 
+                StyleClass="Divider"
+                Margin="0,0,0,10" />
+
+            <StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label 
+                        Text="Address: " 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label 
+                        Text="{Binding Address.Street}" 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label
+                        Text=" " />
+
+                    <Label
+                        Text="{Binding Address.StreetNumber}"
+                        FontSize="16"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label 
+                        Text="City: " 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label 
+                        Text="{Binding Address.City}" 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label 
+                        Text="Province: " 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label 
+                        Text="{Binding Address.Province}" 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label 
+                        Text="Country: " 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label 
+                        Text="{Binding Address.Country}" 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Postal Code: " 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                    <Label
+                        Text="{Binding Address.PostalCode}" 
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <BoxView StyleClass="Divider" />
+
+            <Label
+                Text="Description: " 
+                Margin="0,10,0,10"
+                FontSize="16" />
+
+            <Label 
+                Text="{Binding Description}"
+                FontSize="16" />
 
         </StackLayout>
         

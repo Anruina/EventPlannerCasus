@@ -99,8 +99,8 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
             EventType? createdEventType = await _dataAccessService.SaveEventType(newEventType);
@@ -138,11 +138,11 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedEventType.Id))?.Organizer != organizer || await _dataAccessService.SaveEventType(updatedEventType) == null)
+            if ((await _dataAccessService.GetEvent(updatedEventType.Id))?.OrganizerId != currentUser.Id || await _dataAccessService.SaveEventType(updatedEventType) == null)
                 return BadRequest();
 
             return NoContent();

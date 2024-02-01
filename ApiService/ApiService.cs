@@ -122,11 +122,13 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> UpdateObject<T>(string apiFunction, T Object)
+        public async Task<T?> UpdateObject<T>(string apiFunction, int id, T Object)
         {
 
             try
             {
+
+                apiFunction += id.ToString();
 
                 var content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage Response = await _httpClient.PutAsync(apiFunction, content);
