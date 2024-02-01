@@ -22,6 +22,21 @@ namespace Library.DataContext.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ActivityUser", b =>
+                {
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VisitedActivitiesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UsersId", "VisitedActivitiesId");
+
+                    b.HasIndex("VisitedActivitiesId");
+
+                    b.ToTable("ActivityUser");
+                });
+
             modelBuilder.Entity("EventUser", b =>
                 {
                     b.Property<int>("ParticipantsId")
@@ -48,7 +63,7 @@ namespace Library.DataContext.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly?>("EndDate")
+                    b.Property<TimeOnly?>("EndTime")
                         .HasColumnType("time");
 
                     b.Property<int>("EventId")
@@ -60,17 +75,12 @@ namespace Library.DataContext.Migrations
                     b.Property<string>("Room")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<TimeOnly?>("StartDate")
+                    b.Property<TimeOnly?>("StartTime")
                         .HasColumnType("time");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Activities");
                 });
@@ -196,6 +206,21 @@ namespace Library.DataContext.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("ActivityUser", b =>
+                {
+                    b.HasOne("Library.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Library.Models.Activity", null)
+                        .WithMany()
+                        .HasForeignKey("VisitedActivitiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EventUser", b =>
                 {
                     b.HasOne("Library.Models.User", null)
@@ -218,10 +243,6 @@ namespace Library.DataContext.Migrations
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Library.Models.User", null)
-                        .WithMany("VisitedActivities")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("Event");
                 });
@@ -267,11 +288,6 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.EventType", b =>
                 {
                     b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("Library.Models.User", b =>
-                {
-                    b.Navigation("VisitedActivities");
                 });
 #pragma warning restore 612, 618
         }

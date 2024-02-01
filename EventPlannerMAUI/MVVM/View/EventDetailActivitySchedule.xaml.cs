@@ -3,6 +3,8 @@ using Library.ApiService;
 
 namespace EventPlannerMAUI.MVVM.View;
 
+using Library.Models;
+
 public partial class EventDetailActivitySchedule : ContentPage
 {
 
@@ -15,9 +17,29 @@ public partial class EventDetailActivitySchedule : ContentPage
 		InitializeComponent();
 		_apiService = ServiceLocator.apiService;
 
+        UpdateListView();
+
 	}
 
-	private async void OnAddActivityClick(object sender, EventArgs e)
+	protected override void OnAppearing()
+	{
+
+		base.OnAppearing();
+        UpdateListView();
+
+	}
+
+    private async void UpdateListView()
+    {
+
+        Event? selectedEvent = await _apiService.GetSpecific<Event>("Api/Events/", EventId);
+
+        if (selectedEvent != null)
+            ActivityListView.ItemsSource = selectedEvent.Activities;
+
+    }
+
+    private async void OnAddActivityClick(object sender, EventArgs e)
 	{
 
 		await Navigation.PushAsync(new SaveActivityPage(EventId));

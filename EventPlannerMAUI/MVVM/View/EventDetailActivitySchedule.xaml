@@ -7,6 +7,47 @@
 
     <VerticalStackLayout>
 
+        <ListView
+            x:Name="ActivityListView" >
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <ViewCell>
+
+                        <StackLayout>
+
+                            <Label 
+                                Text="{Binding Name}" 
+                                FontAttributes="Bold" 
+                                FontSize="20" />
+
+                            <StackLayout
+                                Orientation="Horizontal" 
+                                Margin="0,0,10,0" >
+
+                                <Label 
+                                    Text="{Binding StartTime}" />
+
+                                <Label
+                                    Text=" - " />
+
+                                <Label 
+                                    Text="{Binding EndTime}" />
+                                
+                            </StackLayout>
+
+                        </StackLayout>
+                        
+                    </ViewCell>
+                    
+                </DataTemplate>
+                
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        
         <Button 
             Text="Add Activity" 
             Clicked="OnAddActivityClick" />
