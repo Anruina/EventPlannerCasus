@@ -20,13 +20,7 @@ namespace EventPlannerMAUI.MVVM.View;
     private async void OnResetClicked(object sender, EventArgs e)
     {
 
-        if (string.IsNullOrEmpty(EmailEntry.Text) || !EmailEntry.Text.Contains('@'))
-        {
-
-            await DisplayAlert("Invalid Email", "The email entered was invalid please check the email again.", "Ok");
-
-        }
-        else
+        if (EmailTextField.IsValid)
         {
 
             await DisplayAlert("Success", "Reset link sent to your email.", "Ok");
