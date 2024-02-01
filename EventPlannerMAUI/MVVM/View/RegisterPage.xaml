@@ -53,7 +53,7 @@
                     </input:FormView>
                     <!--User information-->
                     <material:TextField
-                    x:Name="EmailaddressUser"
+                    x:Name="UsernameEntry"
                     Title="E-mail" 
                     AccentColor="Black" >
                         <validation:RequiredValidation />
@@ -61,7 +61,7 @@
                     </material:TextField>
 
                     <material:TextField
-                    x:Name="PasswordUser"
+                    x:Name="PasswordEntry"
                     Title="Password"
                     IsPassword="True"
                     AccentColor="Black" >
@@ -73,7 +73,7 @@
                     </material:TextField>
 
                     <material:TextField
-                    x:Name="ConfirmPasswordUser"
+                    x:Name="ConfirmPasswordEntry"
                     Title="Confirm Password"
                     IsPassword="True"
                     AccentColor="Black" >
@@ -86,7 +86,7 @@
 
                     <Label
                     x:Name="PasswordMatchLabel"
-                        Text="Passwords do not match!"
+                        Text="Passwords do not match or do not contain a special character and number!"
                         HorizontalTextAlignment="Center"
                         TextColor="Red"
                         IsVisible="False" />
