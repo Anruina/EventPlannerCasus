@@ -10,11 +10,14 @@
 
         public string? Room { get; set; }
 
-        public TimeOnly? StartDate { get; set; }
-        public TimeOnly? EndDate { get; set; }
+        public TimeOnly? StartTime { get; set; }
+        public TimeOnly? EndTime { get; set; }
 
         public int EventId { get; set; }
         public Event? Event { get; set; }
+
+        public List<User>? Users { get; set; }
+
 
     }
 

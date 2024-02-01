@@ -49,8 +49,8 @@ public partial class SaveActivityPage : ContentPage
             Name = ActivityNameTextField.Text,
             Description = ActivityDescriptionTextField.Text,
             Room = ActivtyLocationTextField.Text,
-            StartDate = TimeOnly.FromTimeSpan((TimeSpan)StartActivityTimeTimePicker.Time),
-            EndDate = TimeOnly.FromTimeSpan((TimeSpan)EndActivityTimeTimePicker.Time)
+            StartTime = TimeOnly.FromTimeSpan((TimeSpan)StartActivityTimeTimePicker.Time),
+            EndTime = TimeOnly.FromTimeSpan((TimeSpan)EndActivityTimeTimePicker.Time)
 
         };
 

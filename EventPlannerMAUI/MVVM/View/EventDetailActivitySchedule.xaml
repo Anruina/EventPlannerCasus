@@ -3,16 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:m="clr-namespace:UraniumUI.Icons.MaterialIcons;assembly=UraniumUI.Icons.MaterialIcons"
              x:Class="EventPlannerMAUI.MVVM.View.EventDetailActivitySchedule"
-             Title="ActivitySchedulePage">
-  
+             Title="Activities" >
+
     <VerticalStackLayout>
+
+        <ListView
+            x:Name="ActivityListView" >
+
+            <ListView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <ViewCell>
+
+                        <StackLayout>
+
+                            <Label 
+                                Text="{Binding Name}" 
+                                FontAttributes="Bold" 
+                                FontSize="20" />
+
+                            <StackLayout
+                                Orientation="Horizontal" 
+                                Margin="0,0,10,0" >
+
+                                <Label 
+                                    Text="{Binding StartTime}" />
+
+                                <Label
+                                    Text=" - " />
+
+                                <Label 
+                                    Text="{Binding EndTime}" />
+                                
+                            </StackLayout>
+
+                        </StackLayout>
+                        
+                    </ViewCell>
+                    
+                </DataTemplate>
+                
+            </ListView.ItemTemplate>
+            
+        </ListView>
         
-        <Button
-            Text="+ Create Activity"
-            Clicked="CreateNewActivity_Clicked" />
-        
+        <Button 
+            Text="Add Activity" 
+            Clicked="OnAddActivityClick" />
+
     </VerticalStackLayout>
-    
-    
-    
+
 </ContentPage>
