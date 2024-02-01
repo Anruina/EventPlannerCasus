@@ -20,8 +20,13 @@ namespace EventPlannerMAUI.MVVM.View;
     private async void OnResetClicked(object sender, EventArgs e)
     {
 
-        await DisplayAlert("Success", "Reset link sent to your email.", "OK");
-        await Navigation.PushAsync(new PasswordResetInstructionsPage());
+        if (EmailTextField.IsValid)
+        {
+
+            await DisplayAlert("Success", "Reset link sent to your email.", "Ok");
+            await Navigation.PushAsync(new PasswordResetInstructionsPage());
+
+        }
 
     }
 
