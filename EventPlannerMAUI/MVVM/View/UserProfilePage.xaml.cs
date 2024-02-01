@@ -69,7 +69,7 @@ public partial class UserProfilePage : ContentPage
 		else
 		{
 
-			Organizer? organizer = await _apiService.CreateObject<Organizer>("Api/Organizers/");
+			Participant? organizer = await _apiService.CreateObject<Participant>("Api/Organizers/", participant);
 
 			if (organizer != null)
 				await DisplayAlert("Account Upgrade", "Account has been upgraded to organizer.", "Ok");

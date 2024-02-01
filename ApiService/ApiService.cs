@@ -98,13 +98,13 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> CreateObject<T>(string apiFunction, T? Object = default(T))
+        public async Task<T?> CreateObject<T>(string apiFunction, T? Object)
         {
 
             try
             {
 
-                var content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage Response = await _httpClient.PostAsync(apiFunction, content);
 
                 if (Response.IsSuccessStatusCode)
