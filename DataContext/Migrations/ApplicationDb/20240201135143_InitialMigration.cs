@@ -43,23 +43,23 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Participants",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthenticationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<int>(type: "int", nullable: false),
                     MailAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddressId = table.Column<int>(type: "int", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false)
+                    AddressId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Participants", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Participants_Addresses_AddressId",
+                        name: "FK_Users_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
                         principalColumn: "Id");
@@ -78,9 +78,7 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     TypeId = table.Column<int>(type: "int", nullable: true),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    MaxParticipants = table.Column<int>(type: "int", nullable: false),
-                    ParticipantId = table.Column<int>(type: "int", nullable: true)
+                    MaxParticipants = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,17 +93,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         name: "FK_Events_EventTypes_TypeId",
                         column: x => x.TypeId,
                         principalTable: "EventTypes",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Events_Participants_OrganizerId",
-                        column: x => x.OrganizerId,
-                        principalTable: "Participants",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Events_Participants_ParticipantId",
-                        column: x => x.ParticipantId,
-                        principalTable: "Participants",
                         principalColumn: "Id");
                 });
 
@@ -128,6 +115,30 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         name: "FK_Activities_Events_EventId",
                         column: x => x.EventId,
                         principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EventUser",
+                columns: table => new
+                {
+                    ParticipantsId = table.Column<int>(type: "int", nullable: false),
+                    VisitedEventsId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EventUser", x => new { x.ParticipantsId, x.VisitedEventsId });
+                    table.ForeignKey(
+                        name: "FK_EventUser_Events_VisitedEventsId",
+                        column: x => x.VisitedEventsId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EventUser_Users_ParticipantsId",
+                        column: x => x.ParticipantsId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -158,7 +169,7 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "ParticipantPlannedActivity",
+                name: "PlannedActivityUser",
                 columns: table => new
                 {
                     ParticipantsId = table.Column<int>(type: "int", nullable: false),
@@ -166,17 +177,17 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ParticipantPlannedActivity", x => new { x.ParticipantsId, x.VisitedActivitiesId });
+                    table.PrimaryKey("PK_PlannedActivityUser", x => new { x.ParticipantsId, x.VisitedActivitiesId });
                     table.ForeignKey(
-                        name: "FK_ParticipantPlannedActivity_Participants_ParticipantsId",
-                        column: x => x.ParticipantsId,
-                        principalTable: "Participants",
+                        name: "FK_PlannedActivityUser_PlannedActivities_VisitedActivitiesId",
+                        column: x => x.VisitedActivitiesId,
+                        principalTable: "PlannedActivities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParticipantPlannedActivity_PlannedActivities_VisitedActivitiesId",
-                        column: x => x.VisitedActivitiesId,
-                        principalTable: "PlannedActivities",
+                        name: "FK_PlannedActivityUser_Users_ParticipantsId",
+                        column: x => x.ParticipantsId,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -192,29 +203,14 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Events_OrganizerId",
-                table: "Events",
-                column: "OrganizerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Events_ParticipantId",
-                table: "Events",
-                column: "ParticipantId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Events_TypeId",
                 table: "Events",
                 column: "TypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ParticipantPlannedActivity_VisitedActivitiesId",
-                table: "ParticipantPlannedActivity",
-                column: "VisitedActivitiesId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Participants_AddressId",
-                table: "Participants",
-                column: "AddressId");
+                name: "IX_EventUser_VisitedEventsId",
+                table: "EventUser",
+                column: "VisitedEventsId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlannedActivities_ActivityId",
@@ -225,16 +221,32 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 name: "IX_PlannedActivities_EventId",
                 table: "PlannedActivities",
                 column: "EventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlannedActivityUser_VisitedActivitiesId",
+                table: "PlannedActivityUser",
+                column: "VisitedActivitiesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_AddressId",
+                table: "Users",
+                column: "AddressId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ParticipantPlannedActivity");
+                name: "EventUser");
+
+            migrationBuilder.DropTable(
+                name: "PlannedActivityUser");
 
             migrationBuilder.DropTable(
                 name: "PlannedActivities");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Activities");
@@ -243,13 +255,10 @@ namespace Library.DataContext.Migrations.ApplicationDb
                 name: "Events");
 
             migrationBuilder.DropTable(
-                name: "EventTypes");
-
-            migrationBuilder.DropTable(
-                name: "Participants");
-
-            migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "EventTypes");
         }
     }
 }

@@ -22,6 +22,21 @@ namespace Library.DataContext.Migrations.ApplicationDb
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("EventUser", b =>
+                {
+                    b.Property<int>("ParticipantsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VisitedEventsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ParticipantsId", "VisitedEventsId");
+
+                    b.HasIndex("VisitedEventsId");
+
+                    b.ToTable("EventUser");
+                });
+
             modelBuilder.Entity("Library.Models.Activity", b =>
                 {
                     b.Property<int>("Id")
@@ -109,12 +124,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.Property<int>("OrganizerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ParticipantId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10, 2)");
-
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -124,10 +133,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId");
-
-                    b.HasIndex("OrganizerId");
-
-                    b.HasIndex("ParticipantId");
 
                     b.HasIndex("TypeId");
 
@@ -148,45 +153,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.HasKey("Id");
 
                     b.ToTable("EventTypes");
-                });
-
-            modelBuilder.Entity("Library.Models.Participant", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AuthenticationId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("MailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("Participants");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Participant");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Library.Models.PlannedActivity", b =>
@@ -215,7 +181,40 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.ToTable("PlannedActivities");
                 });
 
-            modelBuilder.Entity("ParticipantPlannedActivity", b =>
+            modelBuilder.Entity("Library.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AuthenticationId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PlannedActivityUser", b =>
                 {
                     b.Property<int>("ParticipantsId")
                         .HasColumnType("int");
@@ -227,14 +226,22 @@ namespace Library.DataContext.Migrations.ApplicationDb
 
                     b.HasIndex("VisitedActivitiesId");
 
-                    b.ToTable("ParticipantPlannedActivity");
+                    b.ToTable("PlannedActivityUser");
                 });
 
-            modelBuilder.Entity("Library.Models.Organizer", b =>
+            modelBuilder.Entity("EventUser", b =>
                 {
-                    b.HasBaseType("Library.Models.Participant");
+                    b.HasOne("Library.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("ParticipantsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasDiscriminator().HasValue("Organizer");
+                    b.HasOne("Library.Models.Event", null)
+                        .WithMany()
+                        .HasForeignKey("VisitedEventsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Library.Models.Activity", b =>
@@ -256,34 +263,13 @@ namespace Library.DataContext.Migrations.ApplicationDb
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Library.Models.Organizer", "Organizer")
-                        .WithMany("OrganizedEvents")
-                        .HasForeignKey("OrganizerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Library.Models.Participant", null)
-                        .WithMany("VisitedEvents")
-                        .HasForeignKey("ParticipantId");
-
                     b.HasOne("Library.Models.EventType", "Type")
                         .WithMany("Events")
                         .HasForeignKey("TypeId");
 
                     b.Navigation("Address");
 
-                    b.Navigation("Organizer");
-
                     b.Navigation("Type");
-                });
-
-            modelBuilder.Entity("Library.Models.Participant", b =>
-                {
-                    b.HasOne("Library.Models.Address", "Address")
-                        .WithMany("Participants")
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("Library.Models.PlannedActivity", b =>
@@ -299,9 +285,18 @@ namespace Library.DataContext.Migrations.ApplicationDb
                     b.Navigation("Activity");
                 });
 
-            modelBuilder.Entity("ParticipantPlannedActivity", b =>
+            modelBuilder.Entity("Library.Models.User", b =>
                 {
-                    b.HasOne("Library.Models.Participant", null)
+                    b.HasOne("Library.Models.Address", "Address")
+                        .WithMany("Participants")
+                        .HasForeignKey("AddressId");
+
+                    b.Navigation("Address");
+                });
+
+            modelBuilder.Entity("PlannedActivityUser", b =>
+                {
+                    b.HasOne("Library.Models.User", null)
                         .WithMany()
                         .HasForeignKey("ParticipantsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,16 +331,6 @@ namespace Library.DataContext.Migrations.ApplicationDb
             modelBuilder.Entity("Library.Models.EventType", b =>
                 {
                     b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("Library.Models.Participant", b =>
-                {
-                    b.Navigation("VisitedEvents");
-                });
-
-            modelBuilder.Entity("Library.Models.Organizer", b =>
-                {
-                    b.Navigation("OrganizedEvents");
                 });
 #pragma warning restore 612, 618
         }

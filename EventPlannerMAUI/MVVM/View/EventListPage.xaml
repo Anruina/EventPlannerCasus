@@ -35,7 +35,11 @@
                     <ViewCell>
                         
                         <StackLayout>
-                            
+
+                            <Label
+                                Text="{Binding Id}" 
+                                IsVisible="False" />
+
                             <Label 
                                 Text="{Binding Name}" 
                                 FontAttributes="Bold" 
@@ -93,13 +97,13 @@
                                         Text=" " />
 
                                     <Label 
-                                        Text="{Binding StartDate.Hour }" />
+                                        Text="{Binding EndDate.Hour }" />
 
                                     <Label 
                                         Text=":" />
 
                                     <Label 
-                                        Text="{Binding StartDate.Minute }" />
+                                        Text="{Binding EndDate.Minute }" />
 
                                 </StackLayout>
 

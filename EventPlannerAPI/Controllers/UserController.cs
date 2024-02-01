@@ -73,17 +73,18 @@ namespace EventPlannerAPI.Controllers
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            Participant newParticipant = new Participant
+            User user = new User
             {
 
                 Name = newAccountModel.Username,
                 VisitedActivities = new List<PlannedActivity>(),
                 VisitedEvents = new List<Event>(),
-                AuthenticationId = newUser.Id
+                AuthenticationId = newUser.Id,
+                Type = UserType.Participant
 
             };
 
-            await _dataAccessService.SaveParticipant(newParticipant);
+            await _dataAccessService.SaveUser(user);
 
             return new AccountModel { Username = "", Password = "" };
 
@@ -159,20 +160,74 @@ namespace EventPlannerAPI.Controllers
             if (!result.Succeeded)
                 return BadRequest("\"Failed to delete account. Details: " + result.Errors.ToString());
 
-            Participant? participant = await _dataAccessService.GetParticipant(userId);
-            if (participant == null)
-            {
-
-                if (await _dataAccessService.GetOrganizer(userId) == null)
-                    return BadRequest();
-
-                await _dataAccessService.DeleteOrganizer(userId);
-
-            }
+            User? deletedUser = await _dataAccessService.GetUser(userId);
+            if (deletedUser == null)
+                return BadRequest();
             else
-                await _dataAccessService.DeleteParticipant(userId);
+                await _dataAccessService.DeleteUser(userId);
 
             return Ok("Deleted account.");
+
+        }
+
+        #endregion
+
+        #region GET
+
+        /// <summary>
+        /// Returns specific user with private data.
+        /// </summary>
+        /// <returns>Specific user</returns>
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<User>> GetUser()
+        {
+
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+
+            if (currentUser == null)
+                return NotFound();
+
+            return currentUser;
+
+        }
+
+        #endregion
+
+        #region PUT
+
+        /// <summary>
+        /// Updates current logged in user.
+        /// </summary>
+        /// <param name="id">Id of current logged in user</param>
+        /// <param name="updatedUser">Updated user</param>
+        /// <returns>No content</returns>
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateLoggedInUser(int id, User updatedUser)
+        {
+
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            if (updatedUser.Id != id || updatedUser.AuthenticationId != user.Id)
+                return BadRequest();
+
+            await _dataAccessService.SaveUser(updatedUser);
+
+            return NoContent();
 
         }
 

@@ -5,62 +5,75 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              x:Class="EventPlannerMAUI.MVVM.View.SaveActivityPage"
-             Title="SaveActivityPage">
+             Title="SaveActivityPage" >
 
     <ContentPage.Content>
 
         <ScrollView>
 
 
-            <VerticalStackLayout Padding="20" >
+            <VerticalStackLayout 
+                Padding="20" >
 
                 <Grid>
 
                     <AbsoluteLayout
-                    AbsoluteLayout.LayoutBounds="0,0,1,1"
-                    AbsoluteLayout.LayoutFlags="All" >
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All" >
 
                         <Image
-                    Source="wallpapereventsplanner.png" 
-                    Aspect="AspectFill" />
+                            Source="wallpapereventsplanner.png" 
+                            Aspect="AspectFill" />
 
                     </AbsoluteLayout>
-                    <!--Title Header-->
+
                     <input:FormView Spacing="15">
+                        
                         <Label
-                        Text="Save Activity" 
-                        FontSize="Title"
-                        HorizontalOptions="Center"
-                        FontAttributes="Bold"
-                        TextColor="Red" />
+                            Text="Save Activity" 
+                            FontSize="Title"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"
+                            TextColor="Red" />
+                        
                         <Label
-                        Text="You can create custom activities here, please fill in the form below."
-                        HorizontalOptions="Center"
-                        FontAttributes="Italic"
-                        />
-                        <!--indication to which event the activity is being added-->
+                            Text="You can create custom activities here, please fill in the form below."
+                            HorizontalOptions="Center"
+                            FontAttributes="Italic" />
+
                         <BoxView StyleClass="Divider" />
-                        <input:FormView Spacing="0">
+                        
+                        <input:FormView 
+                            Spacing="0" >
+                            
                             <Label
                                 Text="You are currently saving activites for:"
                                 TextColor="Red"
-                                FontSize="Small"
-                                />
+                                FontSize="Small" />
+                            
                             <material:TextField 
                                 x:Name="ActivityEvent"
                                 Title="Event"
                                 AccentColor="Black" 
-                                IsEnabled="False" >
+                                IsEnabled="False"
+                                BindingContext="{Binding Name}" >
+                                
                             </material:TextField>
+                            
                         </input:FormView>
+                        
                         <BoxView StyleClass="Divider" />
-                        <!--Basic information-->
+                        
                         <material:TextField
                             x:Name="ActivityName"
                             Title="Name" 
                             AccentColor="Black" >
+                            
                                 <validation:RequiredValidation/>
-                                <validation:MinLengthValidation MinLength="5"/>
+                            
+                                <validation:MinLengthValidation 
+                                    MinLength="5" />
+                            
                         </material:TextField>
 
                         <material:EditorField
@@ -68,24 +81,35 @@
                             Title="Description"
                             VerticalOptions="FillAndExpand"
                             AccentColor="Black" >
+                            
                         </material:EditorField>
-                        <!--Location-->
+
                         <material:TextField
                             x:Name="ActivtyLocation"
                             Title="Room" 
                             AccentColor="Black" >
+                            
                             <validation:RequiredValidation/>
-                            <validation:MinLengthValidation MinLength="5"/>
+                            
+                            <validation:MinLengthValidation 
+                                MinLength="5"/>
+                            
                         </material:TextField>
-                        <!--Time-->
+
                         <material:TimePickerField 
                             x:Name="StartActivityTime"
                             Title="Start Time"
                             AllowClear="True"
                             AccentColor="Black" >
+                            
                                 <validation:RequiredValidation/>
-                                <validation:MinValueValidation MinValue="07:00"/>
-                                <validation:MaxValueValidation MaxValue="22:00"/>
+                            
+                                <validation:MinValueValidation 
+                                    MinValue="07:00"/>
+                            
+                                <validation:MaxValueValidation 
+                                    MaxValue="22:00"/>
+                            
                         </material:TimePickerField>
 
                         <material:TimePickerField 
@@ -93,15 +117,23 @@
                             Title="End Time"
                             AllowClear="True"
                             AccentColor="Black" >
+                            
                                 <validation:RequiredValidation/>
+                            
                                 <validation:MinValueValidation MinValue="07:00"/>
+                            
                                 <validation:MaxValueValidation MaxValue="22:00"/>
+                            
                         </material:TimePickerField>
 
 
-                        <BoxView Margin="10,0" StyleClass="Divider" />
+                        <BoxView 
+                            Margin="10,0" 
+                            StyleClass="Divider" />
 
-                        <FlexLayout JustifyContent="SpaceEvenly" Wrap="Wrap">
+                        <FlexLayout 
+                            JustifyContent="SpaceEvenly" 
+                            Wrap="Wrap" >
 
                             <Button 
                                 StyleClass="FilledButton"

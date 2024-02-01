@@ -33,129 +33,61 @@ namespace Library.DataAccessService
 
         #region Methods
 
-        #region Participant
+        #region User
 
         #region Get
-        /// <summary>
-        /// Gets participant by authenticationId of the participant.
-        /// </summary>
-        /// <param name="authenticationId"></param>
-        /// <returns>Participant with sensitive data</returns>
-        public async Task<Participant?> GetParticipant(string authenticationId)
+
+        public async Task<User?> GetUser(string authenticationId)
         {
 
-           if (_applicationContext?.Participants == null)
+            if(_applicationContext?.Users == null)
                 return null;
 
-           Participant? participant = await _applicationContext.Participants.Include(p => p.VisitedActivities).Include(p => p.VisitedEvents).FirstOrDefaultAsync(p => p.AuthenticationId == authenticationId);
-
-           return participant;
-
-        }
-
-        #endregion
-
-        #region Save
-        /// <summary>
-        /// Create & Update Participant
-        /// </summary>
-        /// <param name="participant"></param>
-        /// <returns></returns>
-        public async Task<Participant?> SaveParticipant(Participant participant)
-        {
-
-            if(_applicationContext?.Participants == null)
-                return null;
-
-            _applicationContext.Participants.Update(participant);
-            await _applicationContext.SaveChangesAsync();
-
-            return participant;
-
-        }
-
-        #endregion
-
-        #region Delete
-        /// <summary>
-        /// Deletes a participant based on the authenticationId.
-        /// check if participant exists, then gets the participant info, if info is not found returns a false otherwise deletes the participant.
-        /// </summary>
-        /// <param name="authenticationId"></param>
-        /// <returns>true/false</returns>
-        public async Task<bool> DeleteParticipant(string authenticationId)
-        {
-
-            if (_applicationContext?.Participants == null)
-                return false;
-
-            Participant? participant = await _applicationContext.Participants.FirstOrDefaultAsync(p => p.AuthenticationId == authenticationId);
-
-            if (participant == null)
-                return false;
-
-            _applicationContext.Participants.Remove(participant);
-            await _applicationContext.SaveChangesAsync();
-
-            return true;
-
-        }
-
-        #endregion
-
-        #endregion
-
-        #region Organizer
-
-        #region Get
-        public async Task<Organizer?> GetOrganizer(string authenticationId)
-        {
-
-            if(_applicationContext?.Organizers == null)
-                return null;
-
-            Organizer? organizer = await _applicationContext.Organizers.Include(o => o.OrganizedEvents).FirstOrDefaultAsync(o => o.AuthenticationId == authenticationId);
+            User? user = await _applicationContext.Users.Include(u => u.VisitedEvents).Include(u => u.Address).Include(u => u.VisitedActivities).FirstOrDefaultAsync(o => o.AuthenticationId == authenticationId);
             
-            return organizer;
+            return user;
 
         }
+
         #endregion
 
         #region Save
-        public async Task<Organizer?> SaveOrganizer(Organizer organizer)
+
+        public async Task<User?> SaveUser(User user)
         {
 
-            if (_applicationContext?.Organizers == null)
+            if (_applicationContext?.Users == null)
                 return null;
 
-            _applicationContext.Organizers.Update(organizer);
+            _applicationContext.Users.Update(user);
             await _applicationContext.SaveChangesAsync();
 
-            return organizer;
+            return user;
 
         }
 
         #endregion
 
         #region Delete
-        public async Task<bool> DeleteOrganizer(string authenticationId)
+        public async Task<bool> DeleteUser(string authenticationId)
         {
 
-            if (_applicationContext?.Organizers == null)
+            if (_applicationContext?.Users == null)
                 return false;
 
-            Organizer? organizer = await _applicationContext.Organizers.FirstOrDefaultAsync(p => p.AuthenticationId == authenticationId);
+            User? user = await _applicationContext.Users.FirstOrDefaultAsync(p => p.AuthenticationId == authenticationId);
 
-            if (organizer == null)
+            if (user == null)
                 return false;
 
-            _applicationContext.Organizers.Remove(organizer);
+            _applicationContext.Users.Remove(user);
             await _applicationContext.SaveChangesAsync();
 
             return true;
 
         }
         #endregion
+
         #endregion
 
         #region Activity

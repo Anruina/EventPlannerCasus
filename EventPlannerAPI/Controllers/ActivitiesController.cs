@@ -98,8 +98,8 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null || (await _dataAccessService.GetEvent(newActivity.EventId))?.Organizer?.Id != organizer.Id)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer || (await _dataAccessService.GetEvent(newActivity.EventId))?.OrganizerId != currentUser.Id)
                 return BadRequest();
 
             Activity? createdActivity = await _dataAccessService.SaveActivity(newActivity);
@@ -137,11 +137,11 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedActivity.EventId))?.Organizer?.Id != organizer.Id || await _dataAccessService.SaveActivity(updatedActivity) == null)
+            if ((await _dataAccessService.GetEvent(updatedActivity.EventId))?.OrganizerId != currentUser.Id || await _dataAccessService.SaveActivity(updatedActivity) == null)
                 return BadRequest();
 
             return NoContent();
@@ -170,8 +170,8 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
             Activity? deleteActivity = await _dataAccessService.GetActivity(id);
@@ -181,7 +181,7 @@ namespace EventPlannerAPI.Controllers
 
             Event? activityEvent = await _dataAccessService.GetEvent(deleteActivity.EventId);
 
-            if (activityEvent == null || activityEvent.Organizer?.Id != organizer.Id || await _dataAccessService.DeleteActivity(id) == false)
+            if (activityEvent == null || activityEvent.OrganizerId != currentUser.Id || await _dataAccessService.DeleteActivity(id) == false)
                 return BadRequest();
 
             return NoContent();

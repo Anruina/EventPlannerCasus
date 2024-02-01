@@ -14,7 +14,7 @@ public partial class EventListPage : ContentPage
     {
 
         InitializeComponent();
-        _apiService = ServiceLocator.apiService;
+        _apiService = ServiceLocator.apiService;        
 
         OnCreate();
 
@@ -25,8 +25,8 @@ public partial class EventListPage : ContentPage
 
         EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
         
-        Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
-        if (organizer != null)
+        User? user = await _apiService.GetSpecific<User>("Api/User");
+        if (user != null && user.Type == UserType.Organizer)
             AddEventButton.IsVisible = true;
 
     }
@@ -52,7 +52,8 @@ public partial class EventListPage : ContentPage
         if (EventListView.SelectedItem != null)
         {
 
-            await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage()));
+            int id = ((Event)EventListView.SelectedItem).Id;
+            await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
             EventListView.SelectedItem = null;
 
         }

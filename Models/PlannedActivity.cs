@@ -9,7 +9,7 @@ namespace Library.Models
         public Activity? Activity { get; set; }
 
         [JsonIgnore]
-        public List<Participant>? Participants { get; set; }
+        public List<User>? Participants { get; set; }
 
         public DateTime TimeSlot { get; set; }
 

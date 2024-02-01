@@ -98,8 +98,8 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null || newPlannedActivity.Activity == null || (await _dataAccessService.GetEvent(newPlannedActivity.Activity.EventId))?.Organizer?.Id != organizer.Id)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer || newPlannedActivity.Activity == null || (await _dataAccessService.GetEvent(newPlannedActivity.Activity.EventId))?.OrganizerId != currentUser.Id)
                 return BadRequest();
 
             PlannedActivity? createdPlannedActivity = await _dataAccessService.SavePlannedActivity(newPlannedActivity);
@@ -137,11 +137,11 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
-            if (updatedPlannedActivity.Activity == null || (await _dataAccessService.GetEvent(updatedPlannedActivity.Activity.EventId))?.Organizer?.Id != organizer.Id || await _dataAccessService.SavePlannedActivity(updatedPlannedActivity) == null)
+            if (updatedPlannedActivity.Activity == null || (await _dataAccessService.GetEvent(updatedPlannedActivity.Activity.EventId))?.OrganizerId != currentUser.Id || await _dataAccessService.SavePlannedActivity(updatedPlannedActivity) == null)
                 return BadRequest();
 
             return NoContent();
@@ -170,8 +170,8 @@ namespace EventPlannerAPI.Controllers
             if (user == null)
                 return NotFound("No user was found.");
 
-            Organizer? organizer = await _dataAccessService.GetOrganizer(user.Id);
-            if (organizer == null)
+            User? currentUser = await _dataAccessService.GetUser(user.Id);
+            if (currentUser == null || currentUser.Type != UserType.Organizer)
                 return BadRequest();
 
             PlannedActivity? deletePlannedActivity = await _dataAccessService.GetPlannedActivity(id);
@@ -181,7 +181,7 @@ namespace EventPlannerAPI.Controllers
 
             Event? plannedActivityEvent = await _dataAccessService.GetEvent(deletePlannedActivity.Activity.EventId);
 
-            if (plannedActivityEvent == null || plannedActivityEvent.Id != organizer.Id || await _dataAccessService.DeletePlannedActivity(id) == false)
+            if (plannedActivityEvent == null || plannedActivityEvent.OrganizerId != currentUser.Id || await _dataAccessService.DeletePlannedActivity(id) == false)
                 return BadRequest();
 
             return NoContent();
