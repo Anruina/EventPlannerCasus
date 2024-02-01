@@ -12,7 +12,7 @@
         IconImageSource="eventdetailtabbedpageicons/infoicon.svg" />
 
     <local:EventDetailActivitySchedule 
-        Title="Schedule" 
+        Title="Activities" 
         IconImageSource="eventdetailtabbedpageicons/scheduleicon.svg" />
 
     <local:EventDetailMapPage 

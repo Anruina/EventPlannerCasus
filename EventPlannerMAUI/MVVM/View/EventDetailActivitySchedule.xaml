@@ -7,7 +7,7 @@
   
     <VerticalStackLayout>
         <Button
-            Text="+ Create Activity1"
+            Text="+ Create Activity"
             Clicked="CreateNewActivity_Clicked"
             />
     </VerticalStackLayout>

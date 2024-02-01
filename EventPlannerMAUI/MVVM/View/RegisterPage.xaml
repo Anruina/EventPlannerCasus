@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.RegisterPage"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              Title="Registration"
              NavigationPage.HasBackButton="True" >
 
@@ -19,64 +21,77 @@
                 Padding="0,10,0,0" >
 
                 <Image
-                    Source="wallpapereventplanner.png" 
+                    Source="wallpaper1.png" 
                     Aspect="AspectFill" />
 
             </AbsoluteLayout>
+            
+            <VerticalStackLayout
+                Spacing="20"
+                Padding="20,20" >
 
-            <Label 
-                Text="Event Planner"
-                FontSize="32"
-                Padding="0,100,0,0"
-                HorizontalTextAlignment="Center" />
+                            <Image
+                Source="zuydeventslogo.png"
+                HeightRequest="300"
+                WidthRequest="300"
+                HorizontalOptions="Center"/>
 
+            </VerticalStackLayout>
             <StackLayout 
                 Spacing="20"
                 Padding="20, 100, 20, 20"
                 VerticalOptions="Center" >
+            <!--Label-->
+                <input:FormView Spacing="20"
+                                Margin="0,23,0,0">
+                    
+                    <input:FormView Spacing="0">
+                        <BoxView StyleClass="Divider" />
+                        <Label Text="Register as participant to start joinin' Zuyd events."
+                           HorizontalOptions="Center" />
+                        
+                    </input:FormView>
+                    <!--User information-->
+                    <material:TextField
+                x:Name="EmailaddressUser"
+                Title="E-mail" 
+                AccentColor="Black" >
+                        <validation:RequiredValidation/>
+                        <validation:MinLengthValidation MinLength="5"/>
+                    </material:TextField>
 
-                <Label
-                    Text="Register"
-                    FontSize="24" 
-                    HorizontalTextAlignment="Center" />
+                    <material:TextField
+                    x:Name="PasswordUser"
+                    Title="Password"
+                    IsPassword="True"
+                    AccentColor="Black" >
+                        <material:TextField.Attachments>
+                            <material:TextFieldPasswordShowHideAttachment />
+                        </material:TextField.Attachments>
+                        <validation:RequiredValidation/>
+                        <validation:MinLengthValidation MinLength="8"/>
+                    </material:TextField>
 
-                <StackLayout
-                    Spacing="-5">
-
-                    <Label 
-                        Text="Username"
-                        FontSize="20" />
-
-                    <Entry 
-                        x:Name="UsernameEntry"
-                        Placeholder="Username" />
+                    <material:TextField
+                    x:Name="ConfirmPasswordUser"
+                    Title="Confirm Password"
+                    IsPassword="True"
+                    AccentColor="Black" >
+                        <material:TextField.Attachments>
+                            <material:TextFieldPasswordShowHideAttachment />
+                        </material:TextField.Attachments>
+                        <validation:RequiredValidation/>
+                        <validation:MinLengthValidation MinLength="8"/>
+                    </material:TextField>
 
                     <Label
-                        Text="Password"
-                        FontSize="20" />
-
-                    <Entry 
-                        x:Name="PasswordEntry"
-                        Placeholder="Password"
-                        IsPassword="True" />
-
-                    <Label
-                        Text="Confirm Password"
-                        FontSize="20" />
-
-                    <Entry 
-                        x:Name="ConfirmPasswordEntry"
-                        Placeholder="Reenter Password"
-                        IsPassword="True" />
-
-                    <Label
-                        x:Name="PasswordMatchLabel"
+                    x:Name="PasswordMatchLabel"
                         Text="Passwords do not match!"
                         HorizontalTextAlignment="Center"
                         TextColor="Red"
                         IsVisible="False" />
 
-                </StackLayout>
+                </input:FormView>
 
                 <Button
                     x:Name="RegisterButton"
@@ -87,6 +102,8 @@
                     WidthRequest="150" />
 
             </StackLayout>
+
+            
 
         </Grid>
 

@@ -20,12 +20,12 @@ public partial class RegisterPage : ContentPage
     private async void OnRegisterClick(object sender, EventArgs e)
     {
 
-        if (PasswordEntry.Text != ConfirmPasswordEntry.Text)
+        if (PasswordUser.Text != ConfirmPasswordUser.Text)
             PasswordMatchLabel.IsVisible = true;
         else
         {
 
-            AccountModel? account = await _apiService.CreateObject<AccountModel>("Api/User/Register", new AccountModel { Username = UsernameEntry.Text, Password = PasswordEntry.Text });
+            AccountModel? account = await _apiService.CreateObject<AccountModel>("Api/User/Register", new AccountModel { Username = EmailaddressUser.Text, Password = PasswordUser.Text });
 
             if (account != null)
                 await Navigation.PopAsync();
