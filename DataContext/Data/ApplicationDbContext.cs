@@ -11,7 +11,6 @@ namespace Library.DataContext.Data
         public DbSet<Address>? Addresses { get; set; }
         public DbSet<Event>? Events { get; set; }
         public DbSet<User>? Users { get; set; }
-        public DbSet<PlannedActivity>? PlannedActivities { get; set; }
         public DbSet<EventType>? EventTypes { get; set; }
 
         public ApplicationDbContext() { }

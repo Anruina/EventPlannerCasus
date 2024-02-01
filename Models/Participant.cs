@@ -17,7 +17,7 @@
 
         public List<Event>? VisitedEvents { get; set; }
 
-        public List<PlannedActivity>? VisitedActivities { get; set; }
+        public List<Activity>? VisitedActivities { get; set; }
 
         public Address? Address { get; set; }
 

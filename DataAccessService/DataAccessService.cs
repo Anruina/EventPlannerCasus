@@ -99,7 +99,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Activities == null)
                 return null;
 
-            Activity? activity = await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).FirstOrDefaultAsync(a => a.Id == id);
+            Activity? activity = await _applicationContext.Activities.Include(a => a.Event).FirstOrDefaultAsync(a => a.Id == id);
 
             if (activity == null)
                 return null;
@@ -114,7 +114,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Activities == null)
                 return null;
 
-            return await _applicationContext.Activities.Include(a => a.Event).Include(a => a.PlannedActivities).ToListAsync();
+            return await _applicationContext.Activities.Include(a => a.Event).ToListAsync();
 
         }
 
@@ -165,7 +165,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return null;
 
-            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Address).Include(e => e.Type).ToListAsync();
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.Address).Include(e => e.Type).ToListAsync();
 
         }
 
@@ -175,7 +175,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return null;
 
-            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Address).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
+            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.Address).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
 
             if (evenement == null)
                 return null;
@@ -341,71 +341,6 @@ namespace Library.DataAccessService
                 return false;
 
             _applicationContext.Addresses.Remove(address);
-            await _applicationContext.SaveChangesAsync();
-
-            return true;
-
-        }
-        #endregion
-
-        #endregion
-
-        #region PlannedActivity
-
-        #region Get & Get All
-        public async Task<PlannedActivity?> GetPlannedActivity(int id)
-        {
-
-            if (_applicationContext?.PlannedActivities == null)
-                return null;
-
-            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.Include(pa => pa.Participants).Include(pa => pa.Activity).FirstOrDefaultAsync(pa => pa.Id == id);
-
-            if (plannedActivity == null)
-                return null;
-
-            return plannedActivity;
-
-        }
-
-        public async Task<List<PlannedActivity>?> GetPlannedActivity()
-        {
-
-            if (_applicationContext?.PlannedActivities == null)
-                return null;
-
-            return await _applicationContext.PlannedActivities.Include(pa => pa.Participants).Include(pa => pa.Activity).ToListAsync();
-
-        }
-
-        #endregion
-
-        #region Save
-        public async Task<PlannedActivity?> SavePlannedActivity(PlannedActivity plannedActivity)
-        {
-            if (_applicationContext?.PlannedActivities == null)
-                return null;
-
-            _applicationContext.PlannedActivities.Update(plannedActivity);
-            await _applicationContext.SaveChangesAsync();
-
-            return plannedActivity;
-        }
-        #endregion
-
-        #region Delete
-        public async Task<bool?> DeletePlannedActivity(int plannedActivityId)
-        {
-
-            if (_applicationContext?.PlannedActivities == null)
-                return false;
-
-            PlannedActivity? plannedActivity = await _applicationContext.PlannedActivities.FirstOrDefaultAsync(a => a.Id == plannedActivityId);
-
-            if (plannedActivity == null)
-                return false;
-
-            _applicationContext.PlannedActivities.Remove(plannedActivity);
             await _applicationContext.SaveChangesAsync();
 
             return true;

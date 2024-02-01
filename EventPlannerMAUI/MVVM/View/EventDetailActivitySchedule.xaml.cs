@@ -1,18 +1,27 @@
+using EventPlannerMAUI.MobileApp;
+using Library.ApiService;
+
 namespace EventPlannerMAUI.MVVM.View;
 
 public partial class EventDetailActivitySchedule : ContentPage
 {
 
+	private readonly ApiService _apiService;
+	public int EventId { get; set; }
+
 	public EventDetailActivitySchedule()
 	{
 	
 		InitializeComponent();
+		_apiService = ServiceLocator.apiService;
 
 	}
 
-	private void CreateNewActivity_Clicked(object sender, EventArgs e)
+	private async void OnAddActivityClick(object sender, EventArgs e)
 	{
-		Navigation.PushAsync(new SaveActivityPage());
+
+		await Navigation.PushAsync(new SaveActivityPage(EventId));
+
 	}
 
 }

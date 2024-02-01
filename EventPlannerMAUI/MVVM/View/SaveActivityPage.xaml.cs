@@ -18,7 +18,19 @@ public partial class SaveActivityPage : ContentPage
         _apiService = ServiceLocator.apiService;
         _eventId = eventId;
 
+        OnCreate();
+
 	}
+
+    private async void OnCreate()
+    {
+
+        Event? selectedEvent = await _apiService.GetSpecific<Event>("Api/Events/", _eventId);
+
+        if (selectedEvent != null)
+            ActivityEventTextField.Text = selectedEvent.Name;
+
+    }
 
     private async void CancelButton_Clicked(object sender, EventArgs e)
     {
@@ -27,17 +39,29 @@ public partial class SaveActivityPage : ContentPage
 
     }
 
-    private void SaveButton_Clicked(object sender, EventArgs e)
+    private async void SaveButton_Clicked(object sender, EventArgs e)
     {
 
         Activity newActivity = new Activity()
         {
 
-
+            EventId = _eventId,
+            Name = ActivityNameTextField.Text,
+            Description = ActivityDescriptionTextField.Text,
+            Room = ActivtyLocationTextField.Text,
+            StartDate = TimeOnly.FromTimeSpan((TimeSpan)StartActivityTimeTimePicker.Time),
+            EndDate = TimeOnly.FromTimeSpan((TimeSpan)EndActivityTimeTimePicker.Time)
 
         };
 
-        Navigation.PushAsync(new EventDetailActivitySchedule());
+        Activity? activity = await _apiService.CreateObject<Activity>("Api/Activities", newActivity);
+
+        if (activity != null)
+            await DisplayAlert("Activity Created", "Activity has been created.", "Ok");
+        else
+            await DisplayAlert("Activity Failure", "Activity could not be created.", "Ok");
+
+        await Navigation.PopAsync();
 
     }
 
