@@ -9,39 +9,148 @@
         <Grid>
 
             <Button 
+                x:Name="AddEventButton"
                 Text="+ Add Event"
                 Clicked="OnAddEventClicked"
                 HorizontalOptions="End" 
-                Margin="5" />
+                Margin="5" 
+                IsVisible="False"/>
 
         </Grid>
         
     </NavigationPage.TitleView>
     
     <StackLayout>
-        <!-- Knop voor het toevoegen van een evenement -->
-        <Button Text="Show Map" Clicked="ShowMap" />
 
-        <!-- Lijst met evenementen -->
-        <ListView x:Name="eventListView" HasUnevenRows="True">
+        <ListView 
+            x:Name="EventListView" 
+            HasUnevenRows="True"
+            ItemSelected="OnSelectedEvent"
+            SelectionMode="Single" >
+            
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
-                    <!-- Elk evenement wordt weergegeven als een "blokje" -->
+                    
                     <ViewCell>
+                        
                         <StackLayout>
-                            <Label Text="{Binding Title}" FontAttributes="Bold" />
-                            <Label Text="{Binding Date}" />
-                            <Label Text="{Binding Location}" />
-                            <Label Text="{Binding Time}" />
-                            <Label Text="{Binding Description}" />
                             
+                            <Label 
+                                Text="{Binding Name}" 
+                                FontAttributes="Bold" 
+                                FontSize="20" />
+
+                            <StackLayout
+                                Orientation="Horizontal" >
+
+                                <StackLayout
+                                    Orientation="Horizontal" 
+                                    Margin="0,0,10,0" >
+                                    
+                                    <Label
+                                        Text="Start Date: " />
+
+                                    <Label 
+                                        Text="{Binding StartDate.Day }" />
+
+                                    <Label 
+                                        Text="/" />
+                                
+                                    <Label 
+                                        Text="{Binding StartDate.Month }" />
+
+                                    <Label
+                                        Text=" " />
+
+                                    <Label 
+                                        Text="{Binding StartDate.Hour }" />
+
+                                    <Label 
+                                        Text=":" />
+
+                                    <Label 
+                                        Text="{Binding StartDate.Minute }" />
+
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Horizontal" >
+                                
+                                    <Label 
+                                        Text=" End date: " />
+
+                                    <Label 
+                                        Text="{Binding EndDate.Day }" />
+
+                                    <Label 
+                                        Text="/" />
+
+                                    <Label 
+                                        Text="{Binding EndDate.Month }" />
+
+                                    <Label
+                                        Text=" " />
+
+                                    <Label 
+                                        Text="{Binding StartDate.Hour }" />
+
+                                    <Label 
+                                        Text=":" />
+
+                                    <Label 
+                                        Text="{Binding StartDate.Minute }" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <StackLayout
+                                Orientation="Horizontal"
+                                Margin="0,0,0,10" >
+
+                                <Label 
+                                    Text="Address: " 
+                                    TextColor="#2C3E50"
+                                    FontSize="16"
+                                    VerticalOptions="Center"/>
+
+                                <Label
+                                    Text="{Binding Address.Street}"
+                                    TextColor="#2C3E50"
+                                    FontSize="16"
+                                    VerticalOptions="Center" />
+
+                                <Label 
+                                    Text=" " />
+
+                                <Label 
+                                    Text="{Binding Address.StreetNumber}" 
+                                    TextColor="#2C3E50"
+                                    FontSize="16"
+                                    VerticalOptions="Center"/>
+
+                                <Label
+                                    Text=" " />
+
+                                <Label
+                                    Text="{Binding Address.City}"
+                                    TextColor="#2C3E50"
+                                    FontSize="16"
+                                    VerticalOptions="Center" />
+
+                            </StackLayout>
 
                         </StackLayout>
                         
                     </ViewCell>
+                    
                 </DataTemplate>
+                
             </ListView.ItemTemplate>
+            
         </ListView>
+        
     </StackLayout>
 
 </ContentPage>

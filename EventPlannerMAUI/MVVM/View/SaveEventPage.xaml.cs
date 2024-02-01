@@ -48,7 +48,11 @@ public partial class SaveEventPage : ContentPage
 
         };
 
-        await _apiService.CreateObject<Event>("Api/Events", newEvent);
+        Event? createdEvent = await _apiService.CreateObject<Event>("Api/Events", newEvent);
+
+        if (createdEvent != null)
+            await DisplayAlert("Event Created", "Event has been created.", "Ok");
+
         await Navigation.PopAsync();
 
     }
