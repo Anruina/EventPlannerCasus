@@ -3,10 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.EventListPage"
              Title="EventListPage">
+
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ListView x:Name="eventListView" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" />
+                            <Label Text="{Binding Date}" />
+                            <Label Text="{Binding Location}" />
+                            <Label Text="{Binding Time}" />
+                            <Label Text="{Binding Description}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>

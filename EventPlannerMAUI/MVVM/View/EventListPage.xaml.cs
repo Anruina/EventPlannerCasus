@@ -1,9 +1,24 @@
-namespace EventPlannerMAUI.MVVM.View;
+using System.Collections.ObjectModel;
+using Microsoft.Maui.Controls;
 
-public partial class EventListPage : ContentPage
+namespace EventPlannerMAUI.MVVM.View
 {
-	public EventListPage()
-	{
-		InitializeComponent();
-	}
+    public partial class EventListPage : ContentPage
+    {
+
+        public EventListPage()
+        {
+
+            InitializeComponent();
+
+        }
+
+        public EventListPage(ObservableCollection<Event> events)
+        {
+            InitializeComponent();
+
+            // Toon de evenementen in de EventListPage
+            eventListView.ItemsSource = events;
+        }
+    }
 }
