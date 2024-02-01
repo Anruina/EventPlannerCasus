@@ -9,6 +9,8 @@ namespace Library.Models
         public string? Name { get; set; }
 
         public int OrganizerId { get; set; }
+
+        public string? Description { get; set; }
         public Organizer? Organizer { get; set; }
 
         public int AddressId { get; set; }
@@ -25,7 +27,7 @@ namespace Library.Models
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Price { get; set; }
 
-        public int MaxParticapents { get; set; }
+        public int MaxParticipants { get; set; }
 
     }
 

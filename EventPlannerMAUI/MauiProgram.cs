@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Camera.MAUI;
+using InputKit.Handlers;
+using Microsoft.Extensions.Logging;
+using UraniumUI;
 
 namespace EventPlannerMAUI
 {
@@ -7,17 +10,31 @@ namespace EventPlannerMAUI
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-            builder
-                .UseMauiApp<App>()
+
+            builder.UseMauiApp<App>()
+                .UseUraniumUI() // for user interface
+                .UseUraniumUIMaterial() // for icons
+                .UseMauiCameraView() // for barcode generator
+                .ConfigureMauiHandlers(handlers => 
+                {
+                    handlers.AddInputKitHandlers();
+                })
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
 
-#if DEBUG
-    		builder.Logging.AddDebug();
-#endif
+                fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcon");
+                fonts.AddMaterialIconFonts();
+
+                });
+            
+
+            #if DEBUG
+
+    		    builder.Logging.AddDebug();
+
+            #endif
 
             return builder.Build();
         }

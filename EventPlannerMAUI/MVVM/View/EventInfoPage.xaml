@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPlannerMAUI.MVVM.View.EventInfoPage" >
+
+    <StackLayout>
+
+        <StackLayout
+            x:Name="EventData"
+            BindingContext="{Binding Event}"
+            HorizontalOptions="CenterAndExpand" >
+
+            <Label 
+                Text="{Binding Name}"
+                HorizontalOptions="CenterAndExpand" />
+
+            <HorizontalStackLayout
+                HorizontalOptions="CenterAndExpand" >
+
+                <Label 
+                    Text="Max participants: " />
+
+                <Label 
+                    Text="{Binding MaxParticipants}" />
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                HorizontalOptions="CenterAndExpand" >
+
+                <Label
+                    Text="Start Date: " />
+
+                <Label
+                    Text="{Binding StartDate}" />
+
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                HorizontalOptions="CenterAndExpand" >
+
+                <Label
+                    Text="End Date: " />
+
+                <Label 
+                    Text="{Binding EndDate}" />
+
+            </HorizontalStackLayout>
+
+            <StackLayout
+                Orientation="Horizontal" >
+
+                <Label
+                    Text="Description: " />
+
+                <Label 
+                    Text="{Binding Description}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+        
+    </StackLayout>
+    
+</ContentPage>

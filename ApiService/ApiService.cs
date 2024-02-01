@@ -22,7 +22,7 @@ namespace Library.ApiService
                 ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
 
             });
-            _httpClient.BaseAddress = new Uri("https://10.0.2.2:7119");
+            _httpClient.BaseAddress = new Uri("https://10.0.2.2:7119");//"https://192.168.178.20:7119");
 
             _jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -35,11 +35,14 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> GetSpecific<T>(string apiFunction)
+        public async Task<T?> GetSpecific<T>(string apiFunction, int? id = null)
         {
 
             try
             {
+
+                if (id != null)
+                    apiFunction += id.ToString();
 
                 HttpResponseMessage Response = await _httpClient.GetAsync(apiFunction);
 
@@ -95,13 +98,13 @@ namespace Library.ApiService
 
         }
 
-        public async Task<T?> CreateObject<T>(string apiFunction, T Object)
+        public async Task<T?> CreateObject<T>(string apiFunction, T? Object)
         {
 
             try
             {
 
-                var content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage Response = await _httpClient.PostAsync(apiFunction, content);
 
                 if (Response.IsSuccessStatusCode)
@@ -143,13 +146,16 @@ namespace Library.ApiService
 
         }
 
-        public async Task<bool> DeleteObject(string apiFunction, int id)
+        public async Task<bool> DeleteObject(string apiFunction, int? id = null)
         {
 
             try
             {
 
-                HttpResponseMessage Response = await _httpClient.DeleteAsync(apiFunction + id.ToString());
+                if (id != null)
+                    apiFunction += id.ToString();
+
+                HttpResponseMessage Response = await _httpClient.DeleteAsync(apiFunction);
                 return Response.IsSuccessStatusCode;
 
             }

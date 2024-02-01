@@ -1,49 +1,120 @@
-using System;
-using System.Collections.ObjectModel;
-using Microsoft.Maui.Controls;
+using EventPlannerMAUI.MobileApp;
+using EventPlannerMAUI.MVVM.Models;
+using Library.ApiModels;
+using Library.ApiService;
 
 namespace EventPlannerMAUI.MVVM.View
 {
-    public partial class HomeNavigationPage : ContentPage
+    public partial class HomeNavigationPage : FlyoutPage
     {
-        // Verzameling voor het bijhouden van evenementen
-        private ObservableCollection<Event> events;
+
+        private readonly ApiService _apiService;
 
         public HomeNavigationPage()
         {
+
             InitializeComponent();
+            _apiService = ServiceLocator.apiService;
 
-            // Instantieer de verzameling
-            events = new ObservableCollection<Event>();
+            MainFlyoutPage.NavigationOptionsCollectionView.SelectionChanged += OnSelectionChanged;
+            MainFlyoutPage.LogoutButton.Clicked += OnLogoutClick;
 
-            // Voeg wat dummy-evenementen toe voor testdoeleinden
-            events.Add(new Event { Title = "Evenement 1 (Afbeeldingsdetectie)", Date = "1 januari 2024", Time = "10:00-11:00", Location = "B.3.206", Description = "In dit project wordt gedomstreerd hoe je iemand kan herkennen in een afbeelding" });
-            events.Add(new Event { Title = "Evenement 2 (Nummerherkenning)", Date = "1 januari 2024", Time = "11:00-12:00", Location = "B.3.217", Description = "Dit is evenement 2." });
-            events.Add(new Event { Title = "Pauze", Date = "1 januari 2024", Time = "12:00-13:00", Location = "Kantine", Description = "Algemene pauze voor bezoekers en sprekers" });
-            events.Add(new Event { Title = "Evenement 3 (Covid-19 en Data science )", Date = "1 januari 2024", Time = "13:00-14:00", Location = "B.3.217", Description = "Dit is evenement 3." });
-            events.Add(new Event { Title = "Evenement 4 (Flesdetectie)", Date = "1 januari 2024", Time = "14:00-15:00", Location = "B.3.306", Description = "Dit is evenement 4." });
+            mainPage.LoginButton.Clicked += OnLoginClick;
 
-            // Koppel de verzameling aan de ListView
-            eventListView.ItemsSource = events;
+            OnCreate();
+
         }
 
-        // Event handler voor het toevoegen van een evenement
-        private async void OnAddEventClicked(object sender, EventArgs e)
+        private async void OnCreate()
         {
-            // Hier kun je de logica voor het toevoegen van een nieuw evenement implementeren
-            // bijvoorbeeld door een nieuw venster te openen of een nieuw scherm weer te geven.
-            // Je zou dan de gegevens van het nieuwe evenement aan de 'events' verzameling toevoegen.
+
+            if (await SecureStorage.GetAsync("Username") is string Username && await SecureStorage.GetAsync("Password") is string Password)
+            {
+
+                AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = Username, Password = Password });
+
+                if (account != null)
+                    Detail = new NavigationPage(new EventListPage());
+                else
+                {
+
+                    mainPage.LoadingStackLayout.IsVisible = false;
+                    mainPage.LoginVerticalStackLayout.IsVisible = true;
+
+                }
+
+            }
+            else
+            {
+
+                mainPage.LoadingStackLayout.IsVisible = false;
+                mainPage.LoginVerticalStackLayout.IsVisible = true;
+
+            }
+
         }
+
+        private async void OnLoginClick(object? sender, EventArgs e)
+        {
+
+            AccountModel? account = await _apiService.CreateObject("Api/User/Login", new AccountModel { Username = mainPage.EmailEntry.Text, Password = mainPage.PasswordEntry.Text });
+
+            if (account != null)
+            {
+
+                await SecureStorage.SetAsync("Username", mainPage.EmailEntry.Text);
+                await SecureStorage.SetAsync("Password", mainPage.PasswordEntry.Text);
+
+                mainPage.LogginFailedLabel.IsVisible = false;
+                Detail = new NavigationPage(new EventListPage());
+
+            }
+            else
+                mainPage.LogginFailedLabel.IsVisible = true;
+
+        }
+
+        private void OnSelectionChanged(object? sender, SelectionChangedEventArgs e) 
+        {
+
+            FlyoutPageItem? item = e.CurrentSelection.FirstOrDefault() as FlyoutPageItem;
+            if (item != null) 
+            {
+
+                Detail = new NavigationPage((Page?)Activator.CreateInstance(item.TargetType));
+
+                if (!((IFlyoutPageController)this).ShouldShowSplitMode)
+                    IsPresented = false;
+
+            }
+
+        }
+
+        private async void OnLogoutClick(object? sender, EventArgs e)
+        {
+
+            bool answer = await DisplayAlert("Logout", "Are you sure you want to logout of this account?", "Yes", "No");
+
+            if (answer)
+            {
+
+                await _apiService.CreateObject<AccountModel>("Api/Logout", null);
+
+                SecureStorage.Remove("Username");
+                SecureStorage.Remove("Password");
+
+                IsPresented = false;
+                await Detail.Navigation.PushAsync(new MainPage());
+
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoadingStackLayout.IsVisible = false;
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginVerticalStackLayout.IsVisible = true;
+
+            }
+
+        }
+
     }
 
-    // Een eenvoudige klasse om evenementgegevens bij te houden
-    public class Event
-    {
-        public string? Title { get; set; }
-        public string? Date { get; set; }
-        public string? Time { get; set; }
-        public string? Location { get; set; }
-        public string? Description { get; set; }
-    }
 }
+
 

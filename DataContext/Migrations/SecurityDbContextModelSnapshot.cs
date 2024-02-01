@@ -4,19 +4,16 @@ using Library.DataContext.SecurityContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Library.DataContext.Migrations.SecurityDb
+namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(SecurityDbContext))]
-    [Migration("20240120124430_SecurityMigration")]
-    partial class SecurityMigration
+    partial class SecurityDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -2,128 +2,129 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.MainPage"
-             NavigationPage.HasNavigationBar="False"
-             Shell.NavBarIsVisible="False"
-             BackgroundColor="#D6CCC9" >
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             NavigationPage.HasNavigationBar="False" >
 
-    <ScrollView>
 
-        <StackLayout>
+    <Grid>
 
-            <StackLayout
-                x:Name="LoadingStackLayout"
-                IsVisible="True"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" >
+        <StackLayout
+            x:Name="LoadingStackLayout"
+            x:FieldModifier="Public"
+            IsVisible="True"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="CenterAndExpand">
 
-                <ActivityIndicator 
-                    IsRunning="True" 
-                    Color="#3F51B5"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-                <Label 
-                    Text="Trying to login..." 
-                    FontFamily="Montserrat-Bold"
-                    TextColor="#3F51B5" />
+            <ActivityIndicator 
+                IsRunning="True" 
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            
+            <Label 
+                Text="Trying to login..." 
+                FontFamily="Montserrat-Bold" />
+    
+        </StackLayout>
 
-            </StackLayout>
+        <VerticalStackLayout
+            x:Name="LoginVerticalStackLayout"
+            x:FieldModifier="Public"
+            Spacing="25"
+            VerticalOptions="CenterAndExpand"
+            IsVisible="False" >
 
-            <VerticalStackLayout
-                x:Name="LoginVerticalStackLayout"
-                Spacing="25"
-                VerticalOptions="CenterAndExpand"
-                IsVisible="False" >
+            <Grid>
 
-                <Grid>
+                <AbsoluteLayout
+                    AbsoluteLayout.LayoutBounds="0,0,1,1"
+                    AbsoluteLayout.LayoutFlags="All" >
 
-                    <AbsoluteLayout
-                        AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        AbsoluteLayout.LayoutFlags="All" >
+                    <Image
+                        Source="wallpaper1.png" 
+                        Aspect="AspectFit" />
 
-                        <Image
-                            Source="wallpapereventplanner.png" 
-                            Aspect="AspectFill" />
+                </AbsoluteLayout>
+            
+                <VerticalStackLayout
+                    Spacing="20"
+                    Padding="20,20" >
+                
+                    <Image
+                    Source="zuydeventslogo.png"
+                    HeightRequest="300"
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
 
-                    </AbsoluteLayout>
+                </VerticalStackLayout>
 
-                    <Label 
-                        Text="Event Planner"
-                        FontSize="32"
-                        Padding="0,100,0,0"
-                        HorizontalTextAlignment="Center" />
+                <StackLayout 
+                    Spacing="20"
+                    Padding="20, 100, 20, 20"
+                    VerticalOptions="Center" >
 
-                    <StackLayout 
-                        Spacing="20"
-                        Padding="20, 100, 20, 20"
-                        VerticalOptions="Center" >
+
+                    <StackLayout
+                        Spacing="10">
+
+                        <material:TextField
+                            x:Name="EmailEntry"
+                            x:FieldModifier="Public"
+                            Title="E-mail"
+                            AccentColor="Black"
+                            AllowClear="True"/>
+
+                        <material:TextField 
+                            x:Name="PasswordEntry"
+                            x:FieldModifier="Public"
+                            Title="Password"
+                            IsPassword="True"
+                            AccentColor="Black"
+                            >
+                            <material:TextField.Attachments>
+                                <material:TextFieldPasswordShowHideAttachment />
+                            </material:TextField.Attachments>
+                        </material:TextField>
 
                         <Label
-                            Text="Login"
-                            FontSize="24" 
-                            HorizontalTextAlignment="Center" />
-
-                        <StackLayout
-                            Spacing="-5">
-
-                            <Label 
-                                Text="Username"
-                                FontSize="20" />
-
-                            <Entry 
-                                x:Name="UsernameEntry"
-                                Placeholder="Username"
-                                PlaceholderColor="DimGrey" />
-
-                            <Label
-                                Text="Password"
-                                FontSize="20" />
-
-                            <Entry 
-                                x:Name="PasswordEntry"
-                                Placeholder="Password"
-                                IsPassword="True"
-                                PlaceholderColor="DimGrey" />
-
-                            <Label
-                                x:Name="LogginFailedLabel"
-                                Text="Wrong password or username entered!"
-                                HorizontalTextAlignment="Center" 
-                                TextColor="Red"
-                                IsVisible="False" />
-
-                        </StackLayout>
-
-                        <Button 
-                            x:Name="LoginButton"
-                            Text="Login"
-                            FontSize="24"
-                            Clicked="OnLoginClick"
-                            Padding="10"
-                            HeightRequest="55" 
-                            WidthRequest="150" />
-
-                        <Button
-                            x:Name="RegisterButton"
-                            Text="Register"
-                            FontSize="16"
-                            Clicked="OnRegisterClick"
-                            HeightRequest="45" 
-                            WidthRequest="100" />
-
-                        <Button
-                            Text="Forgot Password" 
-                            HorizontalOptions="Center"
-                            TextColor="#1F5ABC" 
-                            BackgroundColor="Transparent" />
+                            x:Name="LogginFailedLabel"
+                            x:FieldModifier="Public"
+                            Text="Wrong password or username entered!"
+                            HorizontalTextAlignment="Center" 
+                            TextColor="Red"
+                            IsVisible="False" />
 
                     </StackLayout>
 
-                </Grid>
+                    <Button 
+                        x:Name="LoginButton"
+                        x:FieldModifier="Public"
+                        Text="Login"
+                        FontSize="24"
+                        Padding="10"
+                        HeightRequest="55" 
+                        WidthRequest="150" />
 
-            </VerticalStackLayout>
+                    <Button
+                        x:Name="RegisterButton"
+                        Text="Register"
+                        FontSize="16"
+                        Clicked="OnRegisterClick"
+                        HeightRequest="45" 
+                        WidthRequest="100" />
 
-        </StackLayout>
+                     <Button
+                        Text="Forgot Password" 
+                        HorizontalOptions="Center"
+                        Clicked="OnForgotPasswordClick"
+                        TextColor="#1F5ABC" 
+                        BackgroundColor="Transparent" />
 
-    </ScrollView>
+                </StackLayout>
 
+            </Grid>
+
+        </VerticalStackLayout>
+
+    </Grid>
+    
 </ContentPage>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:qr="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             x:Class="EventPlannerMAUI.MVVM.View.QRTicketPage"
+             Title="QRTicketPage">
+    
+    <VerticalStackLayout>
+        <Label
+            Text="Ticket not loading? Click Refresh!"
+            />
+
+        <Button
+            Text="Generate QR"
+            Clicked="QR_REFRESH_CLICKED"
+            />
+
+        <qr:BarcodeImage
+            x:Name="QRcode"
+            BarcodeMargin="5"
+            WidthRequest="400"
+            HeightRequest="400"
+            BarcodeHeight="400"
+            BarcodeWidth="400"
+            BackgroundColor="White"
+            BarcodeFormat="QR_CODE"
+            Barcode="The {name} has acces to {event name} on {date}"
+            />
+        
+    </VerticalStackLayout>
+</ContentPage>
