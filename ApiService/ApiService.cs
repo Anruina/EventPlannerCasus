@@ -104,7 +104,7 @@ namespace Library.ApiService
             try
             {
 
-                var content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
+                StringContent content = new StringContent(JsonConvert.SerializeObject(Object), System.Text.Encoding.UTF8, "application/json");
                 HttpResponseMessage Response = await _httpClient.PostAsync(apiFunction, content);
 
                 if (Response.IsSuccessStatusCode)

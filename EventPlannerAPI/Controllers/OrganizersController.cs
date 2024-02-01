@@ -74,11 +74,11 @@ namespace EventPlannerAPI.Controllers
         /// <summary>
         /// Participant gets removed and converted to organizer.
         /// </summary>
-        /// <param name="id">Id of participant that has to become organizer</param>
+        /// <param name="oldParticipant">Participant to be upgraded</param>
         /// <returns>Created organizer</returns>
-        [HttpPost("{id}")]
+        [HttpPost]
         [Authorize]
-        public async Task<ActionResult<Organizer>> PostOrganizer(int id)
+        public async Task<ActionResult<Organizer>> PostOrganizer(Participant oldParticipant)
         {
 
             if (_userManager == null)
@@ -90,7 +90,7 @@ namespace EventPlannerAPI.Controllers
                 return NotFound("No user was found.");
 
             Participant? participant = await _dataAccessService.GetParticipant(user.Id);
-            if (participant == null || participant.Id != id || participant.AuthenticationId != user.Id)
+            if (participant == null || participant.Id != oldParticipant.Id || participant.AuthenticationId != user.Id)
                 return BadRequest();
 
             Organizer newOrganizer = new Organizer() { Name = participant.Name, MailAddress = participant.MailAddress, PhoneNumber = participant.PhoneNumber, Address = participant.Address, AuthenticationId = participant.AuthenticationId, VisitedEvents = participant.VisitedEvents, VisitedActivities = participant.VisitedActivities };
