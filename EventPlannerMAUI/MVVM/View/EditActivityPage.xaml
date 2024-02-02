@@ -5,7 +5,7 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              x:Class="EventPlannerMAUI.MVVM.View.EditActivityPage"
-             Title="EditctivityPage" >
+             Title="Edit Activity" >
 
     <ContentPage.Content>
 
@@ -29,7 +29,7 @@
                     <input:FormView Spacing="15">
 
                         <Label
-                            Text="Save Activity" 
+                            Text="Edit Activity" 
                             FontSize="Title"
                             HorizontalOptions="Center"
                             FontAttributes="Bold"

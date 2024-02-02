@@ -43,6 +43,11 @@ public partial class EventInfoPage : ContentPage
 
         }
 
+        User? user = await _apiService.GetSpecific<User>("Api/User");
+        if (user != null && user.Type == UserType.Organizer)
+            DeleteButton.IsVisible = true;
+            EditButton.IsVisible = true;
+
     }
 
     private async void OnSignOutClick(object? sender, EventArgs e)
@@ -73,6 +78,19 @@ public partial class EventInfoPage : ContentPage
 
         await DisplayAlert("Sign Up", "You successfully signed up for this event.", "Ok");
 
+    }
+
+    private async void OnDeleteClick(object sender, EventArgs e)
+    {
+
+        await _apiService.DeleteObject("Api/Events/", EventId);
+
+
+    }
+
+    private async void OnEditClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditEventPage(EventId));
     }
 
 }

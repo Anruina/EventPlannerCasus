@@ -1,12 +1,302 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              x:Class="EventPlannerMAUI.MVVM.View.EditEventPage"
-             Title="EditEventPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Edit Event" >
+
+    <ContentPage.Content>
+
+        <ScrollView>
+
+
+            <VerticalStackLayout 
+                Padding="20" >
+
+                <Grid>
+
+                    <AbsoluteLayout
+                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                        AbsoluteLayout.LayoutFlags="All" >
+
+                        <Image
+                            Source="wallpapereventsplanner.png" 
+                            Aspect="AspectFill" />
+
+                    </AbsoluteLayout>
+
+                    <input:FormView 
+                        Spacing="15" >
+
+                        <Label
+                            Text="Edit Event" 
+                            FontSize="Title"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"
+                            TextColor="Red" />
+
+                        <Label
+                            Text="You can create custom events here, please fill in the form below."
+                            HorizontalOptions="Center"
+                            FontAttributes="Italic" />
+
+                        <input:FormView 
+                            Spacing="0">
+
+                            <BoxView 
+                                StyleClass="Divider" />
+
+                            <Label 
+                                Text="Information"
+                                HorizontalOptions="Center" />
+
+                        </input:FormView>
+
+                        <material:TextField
+                            x:Name="EventNameTextField"
+                            Title="Name" 
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation 
+                                MinLength="5"/>
+
+                        </material:TextField>
+
+                        <material:EditorField
+                            x:Name="EventDescriptionTextField"
+                            Title="Description"
+                            VerticalOptions="FillAndExpand"
+                            AccentColor="Black">
+
+                        </material:EditorField>
+
+                        <material:TextField 
+                            x:Name="TypeEventTextField"
+                            Title="Type"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation 
+                                MinLength="1" />
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="20" />
+
+                        </material:TextField>
+
+                        <material:TextField
+                            x:Name="MaxPeopleTextField"
+                            Keyboard="Numeric"
+                            Title="Maximum Participants"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+                            <validation:NumericValidation/>
+
+                        </material:TextField>
+
+                        <input:FormView 
+                            Spacing="0">
+
+                            <BoxView 
+                                StyleClass="Divider" />
+
+                            <Label 
+                                Text="Location"
+                                HorizontalOptions="Center" />
+
+                        </input:FormView>
+
+                        <material:TextField 
+                            x:Name="EventStreetTextField"
+                            Title="Street"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+
+                            <validation:MinLengthValidation 
+                                MinLength="1"/>
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="50"/>
+
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventPostalCodeTextField"
+                            Title="PostalCode"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+                            <validation:MinLengthValidation 
+                                MinLength="6"/>
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="6"/>
+
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventStreetnumberTextField"
+                            Title="Streetnumber"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation />
+
+                            <validation:MinLengthValidation 
+                                MinLength="1" />
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="7" />
+
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventCityTextField"
+                            Title="City"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation />
+
+                            <validation:MinLengthValidation
+                                MinLength="1" />
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="50" />
+
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventProvinceTextField"
+                            Title="Province"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation />
+
+                            <validation:MinLengthValidation 
+                                MinLength="1"/>
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="50"/>
+
+                        </material:TextField>
+
+                        <material:TextField 
+                            x:Name="EventCountryTextField"
+                            Title="Country"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+
+                            <validation:MinLengthValidation 
+                                MinLength="1"/>
+
+                            <validation:MaxLengthValidation 
+                                MaxLength="50"/>
+
+                        </material:TextField>
+
+                        <input:FormView 
+                            Spacing="0">
+
+                            <BoxView 
+                                StyleClass="Divider"/>
+
+                            <Label 
+                                Text="Time &amp; Date"
+                                HorizontalOptions="Center" />
+
+                        </input:FormView>
+
+                        <material:TimePickerField 
+                            x:Name="StartEventTimeTimePicker"
+                            Title="Start Time"
+                            AllowClear="True"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation/>
+
+                            <validation:MinValueValidation 
+                                MinValue="07:00"/>
+
+                            <validation:MaxValueValidation 
+                                MaxValue="22:00"/>
+
+                        </material:TimePickerField>
+
+                        <material:TimePickerField 
+                            x:Name="EndEventTimeTimePicker"
+                            Title="End Time"
+                            AllowClear="True"
+                            AccentColor="Black" >
+
+                            <validation:RequiredValidation />
+
+                            <validation:MinValueValidation 
+                                MinValue="07:00" />
+
+                            <validation:MaxValueValidation
+                                MaxValue="22:00" />
+
+                        </material:TimePickerField>
+
+                        <material:DatePickerField 
+                            x:Name="StartDateDatePicker"
+                            Title="Pick a start date"
+                            AllowClear="True" >
+
+                            <validation:RequiredValidation/>
+
+                            <validation:MinValueValidation 
+                                MinValue="1/1/2024"  />
+
+                        </material:DatePickerField>
+
+                        <material:DatePickerField 
+                            x:Name="EndDateDatePicker"
+                            Title="Pick a end date"
+                            AllowClear="True" >
+
+                            <validation:RequiredValidation/>
+                            <validation:MinValueValidation 
+                                MinValue="1/1/2024"  />
+
+                        </material:DatePickerField>
+
+                        <BoxView 
+                            Margin="10,0" 
+                            StyleClass="Divider" />
+
+                        <FlexLayout 
+                            JustifyContent="SpaceEvenly" 
+                            Wrap="Wrap" >
+
+                            <Button 
+                                StyleClass="FilledButton"
+                                Clicked="CancelButton_Clicked"
+                                Text="Cancel" 
+                                input:FormView.IsSubmitButton="False"/>
+
+                            <Button
+                                x:Name="UpdateButton"
+                                StyleClass="FilledButton"
+                                Clicked="UpdateButton_Clicked"
+                                Text="Edit"
+                                input:FormView.IsSubmitButton="True"/>
+
+                        </FlexLayout>
+
+                    </input:FormView>
+
+                </Grid>
+
+            </VerticalStackLayout>
+
+        </ScrollView>
+
+    </ContentPage.Content>
+
 </ContentPage>
