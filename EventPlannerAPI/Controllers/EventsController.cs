@@ -120,19 +120,28 @@ namespace EventPlannerAPI.Controllers
         /// Signs up user to event.
         /// </summary>
         /// <param name="id">Id of event to sign up to</param>
-        /// <param name="signUpUser">User that wants to signup</param>
+        /// <param name="currentUser">Current user logged in</param>
         /// <returns>No Content</returns>
         [HttpPut("SignUp/{id}")]
         [Authorize]
-        public async Task<IActionResult> SignUp(int id, User signUpUser)
+        public async Task<IActionResult> SignUp(int id, User currentUser)
         {
 
-            Event? currentEvent = await _dataAccessService.GetEvent(id);
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
 
-            if (currentEvent == null)
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            Event? currentEvent = await _dataAccessService.GetEvent(id);
+            User? loggedInUser = await _dataAccessService.GetUser(user.Id);
+
+            if (currentEvent == null || loggedInUser == null || loggedInUser.Id != currentUser.Id)
                 return NotFound();
 
-            currentEvent.Users?.Add(signUpUser);
+            currentEvent.Users?.Add(loggedInUser);
             await _dataAccessService.SaveEvent(currentEvent);
 
             return NoContent();
@@ -142,20 +151,29 @@ namespace EventPlannerAPI.Controllers
         /// <summary>
         /// Signs out user to event.
         /// </summary>
-        /// <param name="eventId">Id of event to sign out to</param>
-        /// <param name="signOutUser">User that wants to signout</param>
+        /// <param name="id">Id of event to sign out to</param>
+        /// <param name="currentUser">Current user logged in</param>
         /// <returns>No Content</returns>
         [HttpPut("SignOut/{id}")]
         [Authorize]
-        public async Task<IActionResult> SignOut(int eventId, User signOutUser)
+        public async Task<IActionResult> SignOut(int id, User currentUser)
         {
 
-            Event? currentEvent = await _dataAccessService.GetEvent(eventId);
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
 
-            if (currentEvent == null)
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            Event? currentEvent = await _dataAccessService.GetEvent(id);
+            User? loggedInUser = await _dataAccessService.GetUser(user.Id);
+
+            if (currentEvent == null || loggedInUser == null || loggedInUser.Id != currentUser.Id)
                 return NotFound();
 
-            currentEvent.Users?.RemoveAll(u => u.Id == signOutUser.Id);
+            currentEvent.Users?.RemoveAll(u => u.Id == loggedInUser.Id);
             await _dataAccessService.SaveEvent(currentEvent);
 
             return NoContent();

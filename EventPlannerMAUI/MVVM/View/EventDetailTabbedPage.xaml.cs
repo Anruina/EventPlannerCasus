@@ -31,7 +31,7 @@ public partial class EventDetailTabbedPage : TabbedPage
         EventDetailActivitySchedule? activitySchedule = Children.OfType<EventDetailActivitySchedule>().FirstOrDefault();
 
         if (eventInfoPage != null)
-            eventInfoPage.BindingContext = currentEvent;
+            eventInfoPage.OnSetEventId(_eventId);
 
         if (activitySchedule != null)
             activitySchedule.EventId = _eventId;
