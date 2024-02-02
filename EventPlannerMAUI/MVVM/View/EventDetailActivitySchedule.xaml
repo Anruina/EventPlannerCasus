@@ -6,10 +6,11 @@
              Title="ActivitySchedulePage">
   
     <VerticalStackLayout>
+        
         <Button
-            Text="+ Create Activity1"
-            Clicked="CreateNewActivity_Clicked"
-            />
+            Text="+ Create Activity"
+            Clicked="CreateNewActivity_Clicked" />
+        
     </VerticalStackLayout>
     
     
