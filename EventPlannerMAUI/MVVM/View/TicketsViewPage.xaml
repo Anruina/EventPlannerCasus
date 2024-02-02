@@ -20,7 +20,6 @@
                         <Border
                             WidthRequest="300"
                             HeightRequest="300"
-                            Stroke="DimGrey"
                             StrokeThickness="2"
                             BackgroundColor="White"
                             StrokeShape="RoundRectangle 10">
