@@ -36,8 +36,10 @@ namespace EventPlannerMAUI.MVVM.View
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            
             _allEvents = new ObservableCollection<Event>(await _apiService.GetList<Event>("Api/Events"));
             EventListView.ItemsSource = _allEvents;
+
         }
 
         private async void OnAddEventClicked(object sender, EventArgs e)

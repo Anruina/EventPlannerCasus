@@ -31,7 +31,8 @@
             x:Name="EventListView" 
             HasUnevenRows="True"
             ItemSelected="OnSelectedEvent"
-            SelectionMode="Single" >
+            SelectionMode="Single"
+            Margin="0,10,0,0" >
             
             <ListView.ItemTemplate>
                 

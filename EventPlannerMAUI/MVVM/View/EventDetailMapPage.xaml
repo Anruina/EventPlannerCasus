@@ -50,19 +50,21 @@
 
             <AbsoluteLayout
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
-                AbsoluteLayout.LayoutFlags="PositionProportional" 
-                HorizontalOptions="FillAndExpand"
+                AbsoluteLayout.LayoutFlags="All" 
+                Margin="0,120,0,0"
+                HorizontalOptions="StartAndExpand"
                 VerticalOptions="EndAndExpand"
                 Grid.Row="1"
                 BackgroundColor="#F2F2F2" >
 
                 <StackLayout
                     HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand" >
+                    VerticalOptions="FillAndExpand"
+                    Margin="5,0" >
 
                     <BoxView 
                         HeightRequest="1"
-                        WidthRequest="360"
+                        WidthRequest="380"
                         Color="Gray" />
 
                     <StackLayout
