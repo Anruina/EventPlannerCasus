@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240201165614_InitialMigration")]
+    [Migration("20240202094753_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -42,13 +42,13 @@ namespace Library.DataContext.Migrations
 
             modelBuilder.Entity("EventUser", b =>
                 {
-                    b.Property<int>("ParticipantsId")
+                    b.Property<int>("UsersId")
                         .HasColumnType("int");
 
                     b.Property<int>("VisitedEventsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ParticipantsId", "VisitedEventsId");
+                    b.HasKey("UsersId", "VisitedEventsId");
 
                     b.HasIndex("VisitedEventsId");
 
@@ -228,7 +228,7 @@ namespace Library.DataContext.Migrations
                 {
                     b.HasOne("Library.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("ParticipantsId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -175,10 +175,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return null;
 
-            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.Address).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
-
-            if (evenement == null)
-                return null;
+            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.Address).Include(e => e.Type).Include(e => e.Users).FirstOrDefaultAsync(e => e.Id == id);
 
             return evenement;
 

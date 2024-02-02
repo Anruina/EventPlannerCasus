@@ -1,4 +1,6 @@
-﻿namespace Library.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library.Models
 {
    
     public class Address : TableData
@@ -12,6 +14,7 @@
         public string? Province { get; set; }
 
         public List<Event>? Events { get; set; }
+
         public List<User>? Participants { get; set; }
 
     }

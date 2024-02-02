@@ -117,6 +117,52 @@ namespace EventPlannerAPI.Controllers
         #region PUT
 
         /// <summary>
+        /// Signs up user to event.
+        /// </summary>
+        /// <param name="id">Id of event to sign up to</param>
+        /// <param name="signUpUser">User that wants to signup</param>
+        /// <returns>No Content</returns>
+        [HttpPut("SignUp/{id}")]
+        [Authorize]
+        public async Task<IActionResult> SignUp(int id, User signUpUser)
+        {
+
+            Event? currentEvent = await _dataAccessService.GetEvent(id);
+
+            if (currentEvent == null)
+                return NotFound();
+
+            currentEvent.Users?.Add(signUpUser);
+            await _dataAccessService.SaveEvent(currentEvent);
+
+            return NoContent();
+
+        }
+
+        /// <summary>
+        /// Signs out user to event.
+        /// </summary>
+        /// <param name="eventId">Id of event to sign out to</param>
+        /// <param name="signOutUser">User that wants to signout</param>
+        /// <returns>No Content</returns>
+        [HttpPut("SignOut/{id}")]
+        [Authorize]
+        public async Task<IActionResult> SignOut(int eventId, User signOutUser)
+        {
+
+            Event? currentEvent = await _dataAccessService.GetEvent(eventId);
+
+            if (currentEvent == null)
+                return NotFound();
+
+            currentEvent.Users?.RemoveAll(u => u.Id == signOutUser.Id);
+            await _dataAccessService.SaveEvent(currentEvent);
+
+            return NoContent();
+
+        }
+
+        /// <summary>
         /// Updates event in database.
         /// </summary>
         /// <param name="id">Id of event to be updated</param>
