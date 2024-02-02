@@ -3,12 +3,12 @@ using EventPlannerMAUI.MobileApp;
 using Library.ApiService;
 using Library.Models;
 
-namespace EventPlannerMAUI.MVVM.View;
-
-public partial class EventListPage : ContentPage
+namespace EventPlannerMAUI.MVVM.View
 {
-
-    private readonly ApiService _apiService;
+    public partial class EventListPage : ContentPage
+    {
+        private readonly ApiService _apiService;
+        private ObservableCollection<Event> _allEvents;
 
     public EventListPage()
     {
@@ -20,8 +20,10 @@ public partial class EventListPage : ContentPage
 
     }
 
-    private async void OnCreate()
-    {
+        private async void OnCreate()
+        {
+            _allEvents = new ObservableCollection<Event>(await _apiService.GetList<Event>("Api/Events"));
+            EventListView.ItemsSource = _allEvents;
 
         EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
         
@@ -31,20 +33,17 @@ public partial class EventListPage : ContentPage
 
     }
 
-    protected override async void OnAppearing()
-    {
-        
-        base.OnAppearing();
-        EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            _allEvents = new ObservableCollection<Event>(await _apiService.GetList<Event>("Api/Events"));
+            EventListView.ItemsSource = _allEvents;
+        }
 
-    }
-
-    private async void OnAddEventClicked(object sender, EventArgs e)
-    {
-
-        await Navigation.PushAsync(new SaveEventPage());
-
-    }
+        private async void OnAddEventClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SaveEventPage());
+        }
 
     private async void OnSelectedEvent(object sender, EventArgs e)
     {
@@ -56,8 +55,11 @@ public partial class EventListPage : ContentPage
             await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
             EventListView.SelectedItem = null;
 
+        private void OnSearchButtonPressed(object sender, EventArgs e)
+        {
+            string searchTerm = searchBar.Text.ToLower();
+            var filteredEvents = _allEvents.Where(eventItem => eventItem.Name.ToLower().Contains(searchTerm)).ToList();
+            EventListView.ItemsSource = new ObservableCollection<Event>(filteredEvents);
         }
-
     }
-
 }
