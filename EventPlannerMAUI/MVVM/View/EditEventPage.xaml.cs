@@ -88,7 +88,7 @@ public partial class EditEventPage : ContentPage
 
         };
 
-        Event? updateEvent = await _apiService.UpdateObject<Event>("Api/Events", _eventId, newEvent);
+        Event? updateEvent = await _apiService.UpdateObject<Event>("Api/Events/", _eventId, newEvent);
 
         if (updateEvent != null)
             await DisplayAlert("Event Updated", "Event has been Updated.", "Ok");

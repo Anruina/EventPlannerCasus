@@ -10,6 +10,7 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	private readonly ApiService _apiService;
 	public int EventId { get; set; }
+    public int ActivityId { get; set; }
 
 	public EventDetailActivitySchedule()
 	{
@@ -59,6 +60,19 @@ public partial class EventDetailActivitySchedule : ContentPage
 		await Navigation.PushAsync(new SaveActivityPage(EventId));
 
 	}
+
+    private async void OnDeleteClick(object sender, EventArgs e)
+    {
+
+        await _apiService.DeleteObject("Api/Events/", ActivityId);
+
+
+    }
+
+    private async void OnEditClick(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new EditActivityPage(ActivityId));
+    }
 
 	private async void OnActivityTapped(object sender, EventArgs e)
 	{
