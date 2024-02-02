@@ -4,10 +4,51 @@
              x:Class="EventPlannerMAUI.MVVM.View.TicketsViewPage"
              IconImageSource="hamburgericon.png"
              NavigationPage.HasBackButton="False"
-             Title="TicketsViewPage">
+             Title="Tickets">
 
-    <VerticalStackLayout>
+    
+    <HorizontalStackLayout>
+        <ListView
+            x:Name="EventTicketListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.4*"/>
+                            <RowDefinition Height="0.6*"/>
+                        </Grid.RowDefinitions>
+                        <Border
+                            WidthRequest="300"
+                            HeightRequest="300"
+                            Stroke="DimGrey"
+                            StrokeThickness="2"
+                            BackgroundColor="White"
+                            StrokeShape="RoundRectangle 10">
+                            <Border.Shadow>
+                                <Shadow 
+                                    x:Name="BorderShadow"
+                                    Brush="Black"
+                                    Offset="1,0"
+                                    Opacity=".2" />
+                            </Border.Shadow>
+                            <Label
+                                Text="{Binding Name}"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                TextColor="Black"/>
+                        </Border>
 
-    </VerticalStackLayout>
+                        <Label Text="{Binding }"
+                               Grid.Row="1"
+                               FontSize="15"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+        
+        
+    </HorizontalStackLayout>
 
 </ContentPage>

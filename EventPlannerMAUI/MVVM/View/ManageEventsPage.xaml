@@ -5,7 +5,7 @@
              Title="ManageEventsPage">
     <VerticalStackLayout>
         <Label 
-            Text="Welcome to .NET MAUI!"
+            Text="Work in progress -> All created events by the logged in organizer is viewed here."
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>
