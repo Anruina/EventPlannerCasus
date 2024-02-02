@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.TicketsViewPage"
              IconImageSource="hamburgericon.png"
-             NavigationPage.HasBackButton="False"
              Title="Tickets">
 
     
@@ -11,14 +10,25 @@
         <ListView
             x:Name="EventTicketListView"
             HasUnevenRows="True"
-            SelectionMode="Single" >
+            SelectionMode="None"
+            SeparatorVisibility="None"
+            IsPullToRefreshEnabled="True"
+            Refreshing="OnRefresh" >
+            
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
-                    <ViewCell>
-                    <Grid>
+                
+                    <ViewCell
+                        Tapped="OnOpenTicketTapped">
+                    
+                        <Grid>
+                            
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="0.4*"/>
-                            <RowDefinition Height="0.6*"/>
+                            
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            
                         </Grid.RowDefinitions>
                         <Border
                             WidthRequest="300"
