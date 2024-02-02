@@ -21,6 +21,11 @@
     </NavigationPage.TitleView>
     
     <StackLayout>
+        <SearchBar 
+            x:Name="searchBar" 
+            Placeholder="Search events"
+            SearchButtonPressed="OnSearchButtonPressed"/>
+         
 
         <ListView 
             x:Name="EventListView" 
