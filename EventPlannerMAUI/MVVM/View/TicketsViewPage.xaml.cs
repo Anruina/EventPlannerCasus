@@ -25,7 +25,7 @@ public partial class TicketsViewPage : ContentPage
         User? user = await _apiService.GetSpecific<User>("Api/User");
 
 		if (user != null)
-			EventTicketListView.BindingContext = user.VisitedEvents;
+			EventTicketListView.ItemsSource = user.VisitedEvents;
 
     }
 

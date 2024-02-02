@@ -120,6 +120,12 @@
 	  <Compile Update="MVVM\View\EventDetailMapPage.xaml.cs">
 	    <DependentUpon>EventDetailMapPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="MVVM\View\EditEventPage.xaml.cs">
+	    <DependentUpon>EditEventPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="MVVM\View\EditActivityPage.xaml.cs">
+	    <DependentUpon>EditActivityPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="MVVM\View\TicketsViewPage.xaml.cs">
 	    <DependentUpon>TicketsViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -139,6 +145,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\ForgotPasswordPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\EditEventPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\View\EditActivityPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="MVVM\View\TicketsViewPage.xaml">
