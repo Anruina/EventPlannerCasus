@@ -22,10 +22,10 @@ public partial class TicketsViewPage : ContentPage
 	private async void OnCreate()
 	{
 
-        Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+        User? user = await _apiService.GetSpecific<User>("Api/User");
 
-		if (participant != null)
-			EventTicketListView.BindingContext = participant.VisitedEvents;
+		if (user != null)
+			EventTicketListView.BindingContext = user.VisitedEvents;
 
     }
 
