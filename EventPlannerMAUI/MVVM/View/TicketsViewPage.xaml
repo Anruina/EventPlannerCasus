@@ -6,7 +6,7 @@
              Title="Tickets">
 
     
-    <HorizontalStackLayout>
+    <StackLayout>
         <ListView
             x:Name="EventTicketListView"
             HasUnevenRows="True"
@@ -63,6 +63,6 @@
         </ListView>
         
         
-    </HorizontalStackLayout>
+    </StackLayout>
 
 </ContentPage>
