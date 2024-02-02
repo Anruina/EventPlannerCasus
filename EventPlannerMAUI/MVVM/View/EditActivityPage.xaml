@@ -142,8 +142,8 @@
 
                             <Button 
                                 StyleClass="FilledButton"
-                                Clicked="SaveButton_Clicked"
-                                Text="Save"
+                                Clicked="UpdateButton_Clicked"
+                                Text="Update"
                                 input:FormView.IsSubmitButton="True"/>
 
                         </FlexLayout>

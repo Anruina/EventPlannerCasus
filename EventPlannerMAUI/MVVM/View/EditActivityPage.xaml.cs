@@ -1,6 +1,7 @@
 using EventPlannerMAUI.MobileApp;
 using Library.ApiService;
 using Library.Models;
+using Microsoft.Extensions.Logging;
 
 namespace EventPlannerMAUI.MVVM.View;
 
@@ -8,14 +9,16 @@ public partial class EditActivityPage : ContentPage
 {
     private readonly ApiService _apiService;
     private readonly int _eventId;
+    private readonly int _activityId;
 
-    public EditActivityPage(int eventId)
+    public EditActivityPage(int eventId, int ActivityId)
     {
 
         InitializeComponent();
 
         _apiService = ServiceLocator.apiService;
         _eventId = eventId;
+        _activityId = ActivityId;
 
         OnCreate();
 
@@ -23,23 +26,31 @@ public partial class EditActivityPage : ContentPage
 
     private async void OnCreate()
     {
-
+        //User? user = await _apiService.GetSpecific<User>("Api/User");
         Event? selectedEvent = await _apiService.GetSpecific<Event>("Api/Events/", _eventId);
+        Activity? currentActivity = await _apiService.GetSpecific<Activity>("Api/Events/", _activityId);
 
         if (selectedEvent != null)
             ActivityEventTextField.Text = selectedEvent.Name;
 
+        if(currentActivity != null)
+        {
+
+            ActivityNameTextField.Text = currentActivity.Name;
+            ActivityDescriptionTextField.Text = currentActivity.Description;
+            ActivtyLocationTextField.Text = currentActivity.Room;
+            //StartActivityTimeTimePicker.Time = TimeOnly.FromTimeSpan(currentActivity.EndTime).ToTimeSpan();
+            //EndActivityTimeTimePicker.Time = TimeOnly.FromDateTime(currentActivity.EndTime).ToTimeSpan();
+        }
+
     }
 
-    private async void CancelButton_Clicked(object sender, EventArgs e)
+
+    private async void UpdateButton_Clicked(object sender, EventArgs e)
     {
-
-        await Navigation.PopAsync();
-
-    }
-
-    private async void SaveButton_Clicked(object sender, EventArgs e)
-    {
+        User? user = await _apiService.GetSpecific<User>("Api/User");
+        if(user == null || user.Type != UserType.Organizer)
+            await Navigation.PopAsync();
 
         Activity newActivity = new Activity()
         {
@@ -53,12 +64,19 @@ public partial class EditActivityPage : ContentPage
 
         };
 
-        Activity? activity = await _apiService.CreateObject<Activity>("Api/Activities", newActivity);
+        Activity? updateActivity = await _apiService.UpdateObject<Activity>("Api/Activities/", _activityId, newActivity);
 
-        if (activity != null)
-            await DisplayAlert("Activity Created", "Activity has been created.", "Ok");
+        if (updateActivity != null)
+            await DisplayAlert("Activity Updated!", "Activity has been updated.", "Ok");
         else
-            await DisplayAlert("Activity Failure", "Activity could not be created.", "Ok");
+            await DisplayAlert("Activity Failure", "Activity could not be updated.", "Ok");
+
+        await Navigation.PopAsync();
+
+    }
+
+    private async void CancelButton_Clicked(object sender, EventArgs e)
+    {
 
         await Navigation.PopAsync();
 
