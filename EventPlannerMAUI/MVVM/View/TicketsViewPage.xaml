@@ -3,50 +3,69 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.TicketsViewPage"
              IconImageSource="hamburgericon.png"
-             NavigationPage.HasBackButton="False"
-             Title="Tickets">
+             Title="Tickets" >
 
-    
-    <HorizontalStackLayout>
+    <StackLayout>
+        
         <ListView
-            x:Name="EventTicketListView">
+            x:Name="EventTicketListView"
+            HasUnevenRows="True"
+            SelectionMode="None"
+            SeparatorVisibility="None"
+            IsPullToRefreshEnabled="True" 
+            Refreshing="OnRefresh" >
+            
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.4*"/>
-                            <RowDefinition Height="0.6*"/>
-                        </Grid.RowDefinitions>
-                        <Border
-                            WidthRequest="300"
-                            HeightRequest="300"
-                            StrokeThickness="2"
-                            BackgroundColor="White"
-                            StrokeShape="RoundRectangle 10">
-                            <Border.Shadow>
-                                <Shadow 
-                                    x:Name="BorderShadow"
-                                    Brush="Black"
-                                    Offset="1,0"
-                                    Opacity=".2" />
-                            </Border.Shadow>
-                            <Label
-                                Text="{Binding Name}"
-                                FontSize="11"
-                                FontAttributes="Bold"
-                                TextColor="Black"/>
 
-                        </Border>
+                    <ViewCell>
 
+                        <Grid>
 
+                            <Grid.RowDefinitions>
+                                
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                
+                            </Grid.RowDefinitions>
 
-                    </Grid>
+                            <Border
+                                 WidthRequest="300"
+                                 HeightRequest="300"
+                                 StrokeThickness="2"
+                                 BackgroundColor="White"
+                                 StrokeShape="RoundRectangle 10" >
+
+                                <Border.Shadow>
+
+                                    <Shadow 
+                                         x:Name="BorderShadow"
+                                         Brush="Black"
+                                         Offset="1,0"
+                                         Opacity=".2" />
+
+                                </Border.Shadow>
+
+                                <Label
+                                    Text="{Binding Name}"
+                                    FontSize="11"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"/>
+
+                            </Border>
+
+                        </Grid>
+
+                    </ViewCell>
+                
                 </DataTemplate>
+            
             </ListView.ItemTemplate>
             
         </ListView>
         
         
-    </HorizontalStackLayout>
+    </StackLayout>
 
 </ContentPage>

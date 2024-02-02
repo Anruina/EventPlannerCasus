@@ -15,17 +15,24 @@ public partial class TicketsViewPage : ContentPage
 		InitializeComponent();
 		_apiService = ServiceLocator.apiService;
 
-		OnCreate();
+		ShowTickets();
 
 	}
 
-	private async void OnCreate()
+	private void OnRefresh(object sender, EventArgs e)
+	{
+
+		ShowTickets();
+
+    }
+
+	private async void ShowTickets()
 	{
 
         User? user = await _apiService.GetSpecific<User>("Api/User");
 
-		if (user != null)
-			EventTicketListView.BindingContext = user.VisitedEvents;
+        if (user != null)
+            EventTicketListView.ItemsSource = user.VisitedEvents;
 
     }
 
