@@ -1,6 +1,7 @@
 ﻿using Camera.MAUI;
 using InputKit.Handlers;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 using UraniumUI;
 
 namespace EventPlannerMAUI
@@ -15,6 +16,7 @@ namespace EventPlannerMAUI
                 .UseUraniumUI() // for user interface
                 .UseUraniumUIMaterial() // for icons
                 .UseMauiCameraView() // for barcode generator
+                .UseLocalNotification() //for local pushnotifications
                 .ConfigureMauiHandlers(handlers => 
                 {
                     handlers.AddInputKitHandlers();
