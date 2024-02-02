@@ -35,11 +35,10 @@
                                 FontSize="11"
                                 FontAttributes="Bold"
                                 TextColor="Black"/>
+
                         </Border>
 
-                        <Label Text="{Binding }"
-                               Grid.Row="1"
-                               FontSize="15"/>
+
 
                     </Grid>
                 </DataTemplate>

@@ -10,28 +10,28 @@ namespace EventPlannerMAUI.MVVM.View
         private readonly ApiService _apiService;
         private ObservableCollection<Event> _allEvents;
 
-    public EventListPage()
-    {
+        public EventListPage()
+        {
 
-        InitializeComponent();
-        _apiService = ServiceLocator.apiService;        
+            InitializeComponent();
+            _apiService = ServiceLocator.apiService;
 
-        OnCreate();
+            OnCreate();
 
-    }
+        }
 
         private async void OnCreate()
         {
             _allEvents = new ObservableCollection<Event>(await _apiService.GetList<Event>("Api/Events"));
             EventListView.ItemsSource = _allEvents;
 
-        EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
-        
-        User? user = await _apiService.GetSpecific<User>("Api/User");
-        if (user != null && user.Type == UserType.Organizer)
-            AddEventButton.IsVisible = true;
+            EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
 
-    }
+            User? user = await _apiService.GetSpecific<User>("Api/User");
+            if (user != null && user.Type == UserType.Organizer)
+                AddEventButton.IsVisible = true;
+
+        }
 
         protected override async void OnAppearing()
         {
@@ -45,16 +45,17 @@ namespace EventPlannerMAUI.MVVM.View
             await Navigation.PushAsync(new SaveEventPage());
         }
 
-    private async void OnSelectedEvent(object sender, EventArgs e)
-    {
-
-        if (EventListView.SelectedItem != null)
+        private async void OnSelectedEvent(object sender, EventArgs e)
         {
 
-            int id = ((Event)EventListView.SelectedItem).Id;
-            await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
-            EventListView.SelectedItem = null;
+            if (EventListView.SelectedItem != null)
+            {
 
+                int id = ((Event)EventListView.SelectedItem).Id;
+                await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
+                EventListView.SelectedItem = null;
+            }
+        }
         private void OnSearchButtonPressed(object sender, EventArgs e)
         {
             string searchTerm = searchBar.Text.ToLower();
