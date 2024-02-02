@@ -47,16 +47,13 @@ namespace EventPlannerMAUI.MVVM.View
             await Navigation.PushAsync(new SaveEventPage());
         }
 
-        private async void OnSelectedEvent(object sender, EventArgs e)
+        private async void OnTappedEvent(object sender, EventArgs e)
         {
 
-            if (EventListView.SelectedItem != null)
-            {
-
-                int id = ((Event)EventListView.SelectedItem).Id;
-                await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
-                EventListView.SelectedItem = null;
-            }
+            ViewCell cell = sender as ViewCell;
+            int id = ((Event)cell.BindingContext).Id;
+            await Navigation.PushAsync(new NavigationPage(new EventDetailTabbedPage(id)));
+            
         }
         private void OnSearchButtonPressed(object sender, EventArgs e)
         {

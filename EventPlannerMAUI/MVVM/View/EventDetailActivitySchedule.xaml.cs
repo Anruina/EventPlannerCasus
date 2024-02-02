@@ -46,4 +46,12 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
+	private async void OnActivityTapped(object sender, EventArgs e)
+	{
+
+		ViewCell cell = sender as ViewCell;
+		await Navigation.PushAsync(new ActivityDetailPage(((Activity)cell.BindingContext).Id));
+
+	}
+
 }
