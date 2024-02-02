@@ -51,7 +51,7 @@
             <AbsoluteLayout
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All" 
-                Margin="0,120,0,0"
+                Margin="0,128,0,0"
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="EndAndExpand"
                 Grid.Row="1"

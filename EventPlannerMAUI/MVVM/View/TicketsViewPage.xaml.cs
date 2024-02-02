@@ -26,13 +26,22 @@ public partial class TicketsViewPage : ContentPage
 
     }
 
-	private async void ShowTickets()
+    private async void ShowTickets()
 	{
 
         User? user = await _apiService.GetSpecific<User>("Api/User");
 
         if (user != null)
             EventTicketListView.ItemsSource = user.VisitedEvents;
+
+    }
+
+    private async void OnOpenTicketTapped(object sender, EventArgs e)
+    {
+
+        ViewCell cell = sender as ViewCell;
+        int id = ((Event)cell.BindingContext).Id;
+        await Navigation.PushAsync(new QRTicketPage(id));
 
     }
 

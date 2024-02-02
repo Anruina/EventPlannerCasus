@@ -34,7 +34,7 @@ public partial class EventDetailTabbedPage : TabbedPage
             eventInfoPage.OnSetEventId(_eventId);
 
         if (activitySchedule != null)
-            activitySchedule.EventId = _eventId;
+            activitySchedule.OnSetEventId(_eventId);
 
     }
 

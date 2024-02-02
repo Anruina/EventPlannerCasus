@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.ActivityDetailPage"
-             Title="ActivityDetailPage"
+             Title="Activity Details"
              BindingContext="{Binding Activity}">
     
     <VerticalStackLayout>
@@ -28,6 +28,34 @@
 
             <StackLayout
                 Margin="0,0,0,10" >
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Event: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding Event.Name}" 
+                        FontSize="16" />
+
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Room: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding Room}"
+                        FontSize="16" />
+
+                </StackLayout>
 
                 <StackLayout
                     Orientation="Horizontal"

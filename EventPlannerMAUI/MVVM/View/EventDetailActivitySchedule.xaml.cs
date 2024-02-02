@@ -21,6 +21,20 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
+	public async void OnSetEventId(int eventId)
+	{
+
+		EventId = eventId;
+
+		User? user = await _apiService.GetSpecific<User>("Api/User");
+		Event? currentEvent = await _apiService.GetSpecific<Event>("Api/Events/", EventId);
+
+        if (user != null && currentEvent != null)
+			AddActivityButton.IsVisible = (user.Type == UserType.Organizer) && (currentEvent.OrganizerId == user.Id);
+
+
+    }
+
 	protected override void OnAppearing()
 	{
 

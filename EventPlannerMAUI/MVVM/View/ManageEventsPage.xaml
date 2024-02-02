@@ -2,11 +2,148 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.ManageEventsPage"
-             Title="ManageEventsPage">
+             Title="Manage Events">
+    
     <VerticalStackLayout>
-        <Label 
-            Text="Work in progress -> All created events by the logged in organizer is viewed here."
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+
+        <StackLayout>
+
+            <ListView 
+                x:Name="EventListView" 
+                HasUnevenRows="True"
+                SelectionMode="None"
+                Margin="0,10,0,0" >
+
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell
+                            Tapped="OnTappedEvent">
+
+                            <StackLayout>
+
+                                <Label
+                                    Text="{Binding Id}" 
+                                    IsVisible="False" />
+
+                                <Label 
+                                    Text="{Binding Name}" 
+                                    FontAttributes="Bold" 
+                                    FontSize="20" />
+
+                                <StackLayout
+                                    Orientation="Horizontal" >
+
+                                    <StackLayout
+                                        Orientation="Horizontal" 
+                                        Margin="0,0,10,0" >
+
+                                        <Label
+                                            Text="Start Date: " />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Day }" />
+
+                                        <Label 
+                                            Text="/" />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Month }" />
+
+                                        <Label
+                                            Text=" " />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Hour }" />
+
+                                        <Label 
+                                            Text=":" />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Minute }" />
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Horizontal" >
+
+                                        <Label 
+                                            Text=" End date: " />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Day }" />
+
+                                        <Label 
+                                            Text="/" />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Month }" />
+
+                                        <Label
+                                            Text=" " />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Hour }" />
+
+                                        <Label 
+                                            Text=":" />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Minute }" />
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                                <StackLayout
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,10" >
+
+                                    <Label 
+                                        Text="Address: " 
+                                        TextColor="#2C3E50"
+                                        FontSize="16"
+                                        VerticalOptions="Center"/>
+
+                                    <Label
+                                        Text="{Binding Address.Street}"
+                                        TextColor="#2C3E50"
+                                        FontSize="16"
+                                        VerticalOptions="Center" />
+
+                                    <Label 
+                                        Text=" " />
+
+                                    <Label 
+                                        Text="{Binding Address.StreetNumber}" 
+                                        TextColor="#2C3E50"
+                                        FontSize="16"
+                                        VerticalOptions="Center"/>
+
+                                    <Label
+                                        Text=" " />
+
+                                    <Label
+                                        Text="{Binding Address.City}"
+                                        TextColor="#2C3E50"
+                                        FontSize="16"
+                                        VerticalOptions="Center" />
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </StackLayout>
+        
     </VerticalStackLayout>
+    
 </ContentPage>

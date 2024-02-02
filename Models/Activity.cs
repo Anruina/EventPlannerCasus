@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Library.Models
+﻿namespace Library.Models
 {
     
     public class Activity : TableData

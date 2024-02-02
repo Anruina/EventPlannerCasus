@@ -8,8 +8,10 @@
     <VerticalStackLayout>
 
         <Button 
+            x:Name="AddActivityButton"
             Text="Add Activity" 
-            Clicked="OnAddActivityClick" />
+            Clicked="OnAddActivityClick"
+            IsVisible="False" />
 
         <ListView
             x:Name="ActivityListView"

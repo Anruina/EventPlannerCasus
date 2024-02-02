@@ -104,11 +104,13 @@ namespace EventPlannerMAUI.MVVM.View
                 SecureStorage.Remove("Password");
 
                 IsPresented = false;
-                await Detail.Navigation.PushAsync(new MainPage());
 
-                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoadingStackLayout.IsVisible = false;
-                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginVerticalStackLayout.IsVisible = true;
-                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginButton.Clicked += OnLoginClick;
+                Detail = new MainPage();
+                mainPage = (MainPage)Detail;
+
+                mainPage.LoadingStackLayout.IsVisible = false;
+                mainPage.LoginVerticalStackLayout.IsVisible = true;
+                mainPage.LoginButton.Clicked += OnLoginClick;
 
             }
 

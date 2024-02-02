@@ -59,6 +59,31 @@ namespace EventPlannerAPI.Controllers
         }
 
         /// <summary>
+        /// Gets specific user events that the user organizes
+        /// </summary>
+        /// <returns>List of events</returns>
+        [HttpGet("User")]
+        public async Task<ActionResult<List<Event>?>> GetUserEvents()
+        {
+
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            List<Event>? events = await _dataAccessService.GetEvents(user.Id);
+
+            if (events == null)
+                return NotFound();
+
+            return events;
+
+        }
+
+        /// <summary>
         /// Gets specific event from database.
         /// </summary>
         /// <param name="id">Specific event from database</param>

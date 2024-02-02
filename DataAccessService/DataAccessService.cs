@@ -169,6 +169,21 @@ namespace Library.DataAccessService
 
         }
 
+        public async Task<List<Event>?> GetEvents(string authenticationId)
+        {
+
+            if (_applicationContext?.Events == null || _applicationContext?.Users == null)
+                return null;
+
+            User? currentUser = await _applicationContext.Users.FirstOrDefaultAsync(u => u.AuthenticationId == authenticationId);
+
+            if (currentUser == null)
+                return null;
+
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.Address).Include(e => e.Type).Where(e => e.OrganizerId == currentUser.Id).ToListAsync();
+
+        }
+
         public async Task<Event?> GetEvent(int id)
         {
 
