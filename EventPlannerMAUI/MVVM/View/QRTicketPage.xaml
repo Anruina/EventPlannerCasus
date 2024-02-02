@@ -3,18 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:qr="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="EventPlannerMAUI.MVVM.View.QRTicketPage"
-             Title="QRTicketPage">
+             Title="QR Ticket">
     
-    <VerticalStackLayout>
+    <VerticalStackLayout
+        Spacing="10">
+        
         <Label
             Text="Ticket not loading? Click Refresh!"
+            HorizontalOptions="Center"
             />
 
         <Button
             Text="Generate QR"
             Clicked="QR_REFRESH_CLICKED"
+            WidthRequest="200"
+            HeightRequest="50"
+            CornerRadius="2"
             />
-
+        <Label
+            Text="Entry Ticket"
+            FontSize="Title"
+            HorizontalOptions="Center"
+            FontAttributes="Bold"
+            TextColor="Red" />
+        
         <qr:BarcodeImage
             x:Name="QRcode"
             BarcodeMargin="5"
@@ -22,7 +34,7 @@
             HeightRequest="400"
             BarcodeHeight="400"
             BarcodeWidth="400"
-            BackgroundColor="White"
+            BackgroundColor="Transparent"
             BarcodeFormat="QR_CODE"
             Barcode="The {name} has acces to {event name} on {date}"
             />
