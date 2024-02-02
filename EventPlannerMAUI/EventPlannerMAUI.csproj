@@ -42,7 +42,7 @@
 		<!-- App Icon -->
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Images\zuydlogo.png" Color="#FAFAFA" BaseSize="256,256" />
+		<MauiSplashScreen Include="Resources\Images\zuydeventslogo.png" Color="#FAFAFA" BaseSize="256,256" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
