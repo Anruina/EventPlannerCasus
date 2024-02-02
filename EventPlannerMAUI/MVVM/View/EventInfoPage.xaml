@@ -192,6 +192,14 @@
                 FontSize="16" />
 
         </StackLayout>
+
+
+        <Button 
+            x:Name="SignUpButton"
+            Text="Sign Up" 
+            VerticalOptions="EndAndExpand" 
+            HorizontalOptions="FillAndExpand"
+            Margin="20,20,20,20"/>
         
     </StackLayout>
     

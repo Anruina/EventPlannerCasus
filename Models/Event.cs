@@ -20,7 +20,7 @@
         public DateTime EndDate { get; set; }
         public DateTime StartDate { get; set; }
 
-        public List<User>? Participants { get; set; }
+        public List<User>? Users { get; set; }
 
         public int MaxParticipants { get; set; }
 

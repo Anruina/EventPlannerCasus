@@ -124,12 +124,12 @@ namespace Library.DataContext.Migrations
                 name: "EventUser",
                 columns: table => new
                 {
-                    ParticipantsId = table.Column<int>(type: "int", nullable: false),
+                    UsersId = table.Column<int>(type: "int", nullable: false),
                     VisitedEventsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EventUser", x => new { x.ParticipantsId, x.VisitedEventsId });
+                    table.PrimaryKey("PK_EventUser", x => new { x.UsersId, x.VisitedEventsId });
                     table.ForeignKey(
                         name: "FK_EventUser_Events_VisitedEventsId",
                         column: x => x.VisitedEventsId,
@@ -137,8 +137,8 @@ namespace Library.DataContext.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EventUser_Users_ParticipantsId",
-                        column: x => x.ParticipantsId,
+                        name: "FK_EventUser_Users_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);

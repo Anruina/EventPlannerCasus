@@ -1,4 +1,6 @@
-﻿namespace Library.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library.Models
 {
     
     public class Activity : TableData
@@ -14,6 +16,7 @@
         public TimeOnly? EndTime { get; set; }
 
         public int EventId { get; set; }
+
         public Event? Event { get; set; }
 
         public List<User>? Users { get; set; }
