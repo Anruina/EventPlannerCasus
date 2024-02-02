@@ -9,10 +9,12 @@
         <Grid>
 
             <Button 
+                x:Name="AddEventButton"
                 Text="+ Add Event"
                 Clicked="OnAddEventClicked"
                 HorizontalOptions="End" 
-                Margin="5" />
+                Margin="5" 
+                IsVisible="False"/>
 
         </Grid>
         
@@ -113,6 +115,15 @@
                                     FontSize="16"
                                     VerticalOptions="Center"/>
 
+                                <Label
+                                    Text="{Binding Address.Street}"
+                                    TextColor="#2C3E50"
+                                    FontSize="16"
+                                    VerticalOptions="Center" />
+
+                                <Label 
+                                    Text=" " />
+
                                 <Label 
                                     Text="{Binding Address.StreetNumber}" 
                                     TextColor="#2C3E50"
@@ -123,7 +134,7 @@
                                     Text=" " />
 
                                 <Label
-                                    Text="{Binding Address.Street}"
+                                    Text="{Binding Address.City}"
                                     TextColor="#2C3E50"
                                     FontSize="16"
                                     VerticalOptions="Center" />

@@ -46,12 +46,37 @@ public partial class UserProfilePage : ContentPage
 
 	}
 
-    protected override void OnAppearing()
-    {
-        
+	protected override void OnAppearing()
+	{
+
 		base.OnAppearing();
 
 		OnCreate();
+
+	}
+
+	private async void OnBecomeOrganizerClick(object sender, EventArgs e)
+	{
+
+		Participant? participant = await _apiService.GetSpecific<Participant>("Api/Participants");
+
+		if (participant == null)
+		{
+
+			await DisplayAlert("Account Failure", "Account already is an organizer.", "Ok");
+
+		}
+		else
+		{
+
+			Participant? organizer = await _apiService.CreateObject<Participant>("Api/Organizers/", participant);
+
+			if (organizer != null)
+				await DisplayAlert("Account Upgrade", "Account has been upgraded to organizer.", "Ok");
+			else
+                await DisplayAlert("Account Failure", "Could not upgrade account to an organizer.", "Ok");
+
+        }
 
     }
 

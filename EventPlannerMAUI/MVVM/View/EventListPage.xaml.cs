@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using EventPlannerMAUI.MobileApp;
+using Library.ApiService;
 using Library.Models;
 
 namespace EventPlannerMAUI.MVVM.View;
@@ -6,15 +8,34 @@ namespace EventPlannerMAUI.MVVM.View;
 public partial class EventListPage : ContentPage
 {
 
+    private readonly ApiService _apiService;
+
     public EventListPage()
     {
 
         InitializeComponent();
+        _apiService = ServiceLocator.apiService;
 
-        List<Event> events = new List<Event>();
-        events.Add(new Event { Id = 0, Name = "Evenement 1", StartDate = new DateTime(2024, 2, 24, 15, 20, 0), EndDate = new DateTime(2024, 2, 24, 16, 20, 0), Address = new Address() { Id = 0, Country = "The Netherlands", City = "Heerlen", PostalCode = "7993 MN", Street = "EventStreet", Province = "Limburg", StreetNumber = 20 } });
+        OnCreate();
 
-        EventListView.ItemsSource = events;
+    }
+
+    private async void OnCreate()
+    {
+
+        EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
+        
+        Organizer? organizer = await _apiService.GetSpecific<Organizer>("Api/Organizers");
+        if (organizer != null)
+            AddEventButton.IsVisible = true;
+
+    }
+
+    protected override async void OnAppearing()
+    {
+        
+        base.OnAppearing();
+        EventListView.ItemsSource = await _apiService.GetList<Event>("Api/Events");
 
     }
 

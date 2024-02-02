@@ -35,6 +35,13 @@ namespace EventPlannerMAUI.MVVM.View
 
                 if (account != null)
                     Detail = new NavigationPage(new EventListPage());
+                else
+                {
+
+                    mainPage.LoadingStackLayout.IsVisible = false;
+                    mainPage.LoginVerticalStackLayout.IsVisible = true;
+
+                }
 
             }
             else
@@ -101,6 +108,7 @@ namespace EventPlannerMAUI.MVVM.View
 
                 ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoadingStackLayout.IsVisible = false;
                 ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginVerticalStackLayout.IsVisible = true;
+                ((MainPage)Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1]).LoginButton.Clicked += OnLoginClick;
 
             }
 

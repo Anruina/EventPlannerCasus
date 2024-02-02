@@ -233,7 +233,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return null;
 
-            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).ToListAsync();
+            return await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Address).Include(e => e.Type).ToListAsync();
 
         }
 
@@ -243,7 +243,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Events == null)
                 return null;
 
-            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
+            Event? evenement = await _applicationContext.Events.Include(e => e.Activities).Include(e => e.PlannedActivities).Include(e => e.Address).Include(e => e.Type).FirstOrDefaultAsync(e => e.Id == id);
 
             if (evenement == null)
                 return null;
