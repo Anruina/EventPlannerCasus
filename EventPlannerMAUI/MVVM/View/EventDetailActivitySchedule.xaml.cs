@@ -71,7 +71,7 @@ public partial class EventDetailActivitySchedule : ContentPage
 
     private async void OnEditClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditActivityPage(ActivityId));
+        await Navigation.PushAsync(new EditActivityPage(EventId, ActivityId));
     }
 
 	private async void OnActivityTapped(object sender, EventArgs e)
