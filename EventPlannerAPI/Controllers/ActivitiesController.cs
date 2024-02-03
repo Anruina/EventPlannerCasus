@@ -138,10 +138,22 @@ namespace EventPlannerAPI.Controllers
                 return NotFound("No user was found.");
 
             User? currentUser = await _dataAccessService.GetUser(user.Id);
-            if (currentUser == null || currentUser.Type != UserType.Organizer)
+            Event? currentEvent = await _dataAccessService.GetEvent(updatedActivity.EventId);
+
+            if (currentUser == null || currentUser.Type != UserType.Organizer || currentEvent?.OrganizerId != currentUser.Id)
                 return BadRequest();
 
-            if ((await _dataAccessService.GetEvent(updatedActivity.EventId))?.OrganizerId != currentUser.Id || await _dataAccessService.SaveActivity(updatedActivity) == null)
+            Activity? activity = currentEvent.Activities?.FirstOrDefault(a => a.Id == id);
+            if (activity == null)
+                return BadRequest();
+
+            activity.Name = updatedActivity.Name;
+            activity.StartTime = updatedActivity.StartTime;
+            activity.EndTime = updatedActivity.EndTime;
+            activity.Description = updatedActivity.Description;
+            activity.Room = updatedActivity.Room;
+
+            if (await _dataAccessService.SaveActivity(activity) == null)
                 return BadRequest();
 
             return NoContent();

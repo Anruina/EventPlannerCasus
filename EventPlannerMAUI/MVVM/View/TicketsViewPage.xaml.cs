@@ -29,10 +29,10 @@ public partial class TicketsViewPage : ContentPage
     private async void ShowTickets()
 	{
 
-        User? user = await _apiService.GetSpecific<User>("Api/User");
+        List<Event>? visitedEvents = await _apiService.GetSpecific<List<Event>>("Api/Events/VisitedEvents");
 
-        if (user != null)
-            EventTicketListView.ItemsSource = user.VisitedEvents;
+        if (visitedEvents != null)
+            EventTicketListView.ItemsSource = visitedEvents;
 
     }
 

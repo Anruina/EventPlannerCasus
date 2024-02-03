@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Library.DataContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240202094753_InitialMigration")]
+    [Migration("20240203172057_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -270,7 +270,7 @@ namespace Library.DataContext.Migrations
             modelBuilder.Entity("Library.Models.User", b =>
                 {
                     b.HasOne("Library.Models.Address", "Address")
-                        .WithMany("Participants")
+                        .WithMany("Users")
                         .HasForeignKey("AddressId");
 
                     b.Navigation("Address");
@@ -280,7 +280,7 @@ namespace Library.DataContext.Migrations
                 {
                     b.Navigation("Events");
 
-                    b.Navigation("Participants");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Library.Models.Event", b =>

@@ -61,24 +61,11 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
-    private async void OnDeleteClick(object sender, EventArgs e)
-    {
-
-        await _apiService.DeleteObject("Api/Events/", ActivityId);
-
-
-    }
-
-    private async void OnEditClick(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new EditActivityPage(EventId, ActivityId));
-    }
-
 	private async void OnActivityTapped(object sender, EventArgs e)
 	{
 
 		ViewCell cell = sender as ViewCell;
-		await Navigation.PushAsync(new ActivityDetailPage(((Activity)cell.BindingContext).Id));
+		await Navigation.PushAsync(new ActivityDetailPage(EventId, ((Activity)cell.BindingContext).Id));
 
 	}
 

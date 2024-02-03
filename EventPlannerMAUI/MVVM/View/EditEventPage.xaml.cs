@@ -63,13 +63,15 @@ public partial class EditEventPage : ContentPage
         if (user == null || user.Type != UserType.Organizer)
             await Navigation.PopAsync();
 
-        Event newEvent = new Event()
-        {
+        Event? currentEvent = await _apiService.GetSpecific<Event>("Api/Events/", _eventId);
 
-            Id = _eventId,
-            Name = EventNameTextField.Text,
-            Description = EventDescriptionTextField.Text,
-            Address = new Address()
+        if (currentEvent != null)
+        {
+            
+            currentEvent.Name = EventNameTextField.Text;
+            currentEvent.Description = EventDescriptionTextField.Text;
+
+            currentEvent.Address = new Address()
             {
 
                 City = EventCityTextField.Text,
@@ -79,19 +81,19 @@ public partial class EditEventPage : ContentPage
                 Street = EventStreetTextField.Text,
                 StreetNumber = EventStreetnumberTextField.Text,
 
-            },
-            StartDate = new DateTime(DateOnly.FromDateTime((DateTime)StartDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)StartEventTimeTimePicker.Time)),
-            EndDate = new DateTime(DateOnly.FromDateTime((DateTime)EndDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)EndEventTimeTimePicker.Time)),
-            OrganizerId = user.Id,
-            MaxParticipants = int.Parse(MaxPeopleTextField.Text),
-            Type = new EventType() { Name = TypeEventTextField.Text }
+            };
 
-        };
+            currentEvent.StartDate = new DateTime(DateOnly.FromDateTime((DateTime)StartDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)StartEventTimeTimePicker.Time));
+            currentEvent.EndDate = new DateTime(DateOnly.FromDateTime((DateTime)EndDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)EndEventTimeTimePicker.Time));
+            currentEvent.OrganizerId = user.Id;
+            currentEvent.MaxParticipants = int.Parse(MaxPeopleTextField.Text);
+            currentEvent.Type = new EventType() { Name = TypeEventTextField.Text };
 
-        Event? updateEvent = await _apiService.UpdateObject<Event>("Api/Events/", _eventId, newEvent);
 
-        if (updateEvent != null)
+            await _apiService.UpdateObject<Event>("Api/Events/", _eventId, currentEvent);
             await DisplayAlert("Event Updated", "Event has been Updated.", "Ok");
+
+        }
 
         await Navigation.PopAsync();
 

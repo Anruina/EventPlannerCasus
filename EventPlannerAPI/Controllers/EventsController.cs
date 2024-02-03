@@ -83,6 +83,27 @@ namespace EventPlannerAPI.Controllers
 
         }
 
+        [HttpGet("VisitedEvents")]
+        public async Task<ActionResult<List<Event>?>> GetVisitedEvents()
+        {
+
+            if (_userManager == null)
+                return StatusCode(StatusCodes.Status500InternalServerError, "Internal server error: UserManager is null.");
+
+            IdentityUser? user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+                return NotFound("No user was found.");
+
+            User? loggedInUser = await _dataAccessService.GetUser(user.Id);
+
+            if (loggedInUser?.VisitedEvents == null)
+                return NotFound();
+
+            return loggedInUser.VisitedEvents;
+
+        }
+
         /// <summary>
         /// Gets specific event from database.
         /// </summary>
@@ -166,8 +187,8 @@ namespace EventPlannerAPI.Controllers
             if (currentEvent == null || loggedInUser == null || loggedInUser.Id != currentUser.Id)
                 return NotFound();
 
-            currentEvent.Users?.Add(loggedInUser);
-            await _dataAccessService.SaveEvent(currentEvent);
+            loggedInUser.VisitedEvents?.Add(currentEvent);
+            await _dataAccessService.SaveUser(loggedInUser);
 
             return NoContent();
 
@@ -198,8 +219,8 @@ namespace EventPlannerAPI.Controllers
             if (currentEvent == null || loggedInUser == null || loggedInUser.Id != currentUser.Id)
                 return NotFound();
 
-            currentEvent.Users?.RemoveAll(u => u.Id == loggedInUser.Id);
-            await _dataAccessService.SaveEvent(currentEvent);
+            loggedInUser.VisitedEvents?.RemoveAll(e => e.Id == currentEvent.Id);
+            await _dataAccessService.SaveUser(loggedInUser);
 
             return NoContent();
 
@@ -228,10 +249,20 @@ namespace EventPlannerAPI.Controllers
                 return NotFound("No user was found.");
 
             User? currentUser = await _dataAccessService.GetUser(user.Id);
-            if (currentUser == null || currentUser.Type != UserType.Organizer)
-                return BadRequest();
+            Event? currentEvent = await _dataAccessService.GetEvent(updatedEvent.Id);
 
-            if ((await _dataAccessService.GetEvent(updatedEvent.Id))?.OrganizerId != currentUser.Id || await _dataAccessService.SaveEvent(updatedEvent) == null)
+            if (currentUser == null || currentUser.Type != UserType.Organizer || currentEvent == null || currentEvent.OrganizerId != currentUser.Id)
+               return BadRequest();
+
+            currentEvent.Name = updatedEvent.Name;
+            currentEvent.Description = updatedEvent.Description;
+            currentEvent.Address = updatedEvent.Address;
+            currentEvent.StartDate = updatedEvent.StartDate;
+            currentEvent.EndDate = updatedEvent.EndDate;
+            currentEvent.MaxParticipants = updatedEvent.MaxParticipants;
+            currentEvent.Type = updatedEvent.Type;
+
+            if (await _dataAccessService.SaveEvent(currentEvent) == null)
                 return BadRequest();
 
             return NoContent();
