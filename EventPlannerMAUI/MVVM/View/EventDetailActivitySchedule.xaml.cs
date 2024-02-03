@@ -57,7 +57,7 @@ public partial class EventDetailActivitySchedule : ContentPage
 
     private async void OnEditClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditActivityPage(ActivityId));
+        await Navigation.PushAsync(new EditActivityPage(EventId, ActivityId));
     }
 
 }
