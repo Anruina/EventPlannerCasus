@@ -19,7 +19,15 @@ public partial class EventInfoPage : ContentPage
 
 	}
 
-	public async void OnSetEventId(int eventId)
+    protected override void OnAppearing()
+    {
+        
+        base.OnAppearing();
+        OnSetEventId(EventId);
+
+    }
+
+    public async void OnSetEventId(int eventId)
 	{
 
         EventId = eventId;
@@ -31,7 +39,7 @@ public partial class EventInfoPage : ContentPage
             BindingContext = currentEvent;
             _user = await _apiService.GetSpecific<User>("Api/User");
 
-            if (_user?.VisitedEvents?.FirstOrDefault(e => e.Id == EventId) != null)
+            if (currentEvent?.Users?.FirstOrDefault(u => u.Id == _user.Id) != null)
             {
 
                 SignUpButton.Clicked += OnSignOutClick;
@@ -83,7 +91,15 @@ public partial class EventInfoPage : ContentPage
     private async void OnDeleteClick(object sender, EventArgs e)
     {
 
-        await _apiService.DeleteObject("Api/Events/", EventId);
+        bool answer = await DisplayAlert("Delete Event", "Are you sure you want to delete this event.", "Yes", "No");
+
+        if (answer == true)
+        {
+
+            await _apiService.DeleteObject("Api/Events/", EventId);
+            await Navigation.PopAsync();
+
+        }
 
 
     }

@@ -22,6 +22,20 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
+	public async void OnSetEventId(int eventId)
+	{
+
+		EventId = eventId;
+
+		User? user = await _apiService.GetSpecific<User>("Api/User");
+		Event? currentEvent = await _apiService.GetSpecific<Event>("Api/Events/", EventId);
+
+        if (user != null && currentEvent != null)
+			AddActivityButton.IsVisible = (user.Type == UserType.Organizer) && (currentEvent.OrganizerId == user.Id);
+
+
+    }
+
 	protected override void OnAppearing()
 	{
 
@@ -47,17 +61,12 @@ public partial class EventDetailActivitySchedule : ContentPage
 
 	}
 
-    private async void OnDeleteClick(object sender, EventArgs e)
-    {
+	private async void OnActivityTapped(object sender, EventArgs e)
+	{
 
-        await _apiService.DeleteObject("Api/Events/", ActivityId);
+		ViewCell cell = sender as ViewCell;
+		await Navigation.PushAsync(new ActivityDetailPage(EventId, ((Activity)cell.BindingContext).Id));
 
-
-    }
-
-    private async void OnEditClick(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new EditActivityPage(EventId, ActivityId));
-    }
+	}
 
 }

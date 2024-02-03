@@ -17,25 +17,10 @@
                     <ViewCell>
 
                         <StackLayout>
-                            
+
                             <FlexLayout
                                 JustifyContent="SpaceEvenly"
                                 Wrap="Wrap">
-                                
-                                <Button 
-                                x:Name="DeleteButton"
-                                StyleClass="FilledButton"
-                                Clicked="OnDeleteClick"
-                                IsVisible="false"
-                                Text="Delete" />
-
-
-                                <Button
-                                x:Name="EditButton"
-                                StyleClass="FilledButton"
-                                Clicked="OnEditClick"
-                                IsVisible="false"
-                                Text="Modify"/>
 
                                 <Label 
                                 Text="{Binding Name}" 

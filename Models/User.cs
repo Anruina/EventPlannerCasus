@@ -1,4 +1,6 @@
-﻿namespace Library.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Library.Models
 {
     
     public enum UserType { Participant, Organizer };
@@ -15,6 +17,7 @@
 
         public string? PhoneNumber { get; set; }
 
+        [JsonIgnore]
         public List<Event>? VisitedEvents { get; set; }
 
         public List<Activity>? VisitedActivities { get; set; }

@@ -17,6 +17,7 @@ namespace Library.Models
 
         public int EventId { get; set; }
 
+        [JsonIgnore]
         public Event? Event { get; set; }
 
         public List<User>? Users { get; set; }

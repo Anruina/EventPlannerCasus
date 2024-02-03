@@ -186,6 +186,7 @@ namespace Library.DataAccessService
         #region Save
         public async Task<Event?> SaveEvent(Event evenement)
         {
+
             if (_applicationContext?.Events == null)
                 return null;
 
@@ -291,7 +292,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Addresses == null)
                 return null;
 
-            Address? address = await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Participants).FirstOrDefaultAsync(a => a.Id == id);
+            Address? address = await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Users).FirstOrDefaultAsync(a => a.Id == id);
 
             if (address == null)
                 return null;
@@ -306,7 +307,7 @@ namespace Library.DataAccessService
             if (_applicationContext?.Addresses == null)
                 return null;
 
-            return await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Participants).ToListAsync();
+            return await _applicationContext.Addresses.Include(a => a.Events).Include(a => a.Users).ToListAsync();
 
         }
         #endregion

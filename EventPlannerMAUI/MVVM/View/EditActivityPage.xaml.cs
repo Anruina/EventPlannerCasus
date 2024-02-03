@@ -28,7 +28,7 @@ public partial class EditActivityPage : ContentPage
     {
         //User? user = await _apiService.GetSpecific<User>("Api/User");
         Event? selectedEvent = await _apiService.GetSpecific<Event>("Api/Events/", _eventId);
-        Activity? currentActivity = await _apiService.GetSpecific<Activity>("Api/Events/", _activityId);
+        Activity? currentActivity = await _apiService.GetSpecific<Activity>("Api/Activities/", _activityId);
 
         if (selectedEvent != null)
             ActivityEventTextField.Text = selectedEvent.Name;
@@ -39,8 +39,9 @@ public partial class EditActivityPage : ContentPage
             ActivityNameTextField.Text = currentActivity.Name;
             ActivityDescriptionTextField.Text = currentActivity.Description;
             ActivtyLocationTextField.Text = currentActivity.Room;
-            //StartActivityTimeTimePicker.Time = TimeOnly.FromTimeSpan(currentActivity.EndTime).ToTimeSpan();
-            //EndActivityTimeTimePicker.Time = TimeOnly.FromDateTime(currentActivity.EndTime).ToTimeSpan();
+            StartActivityTimeTimePicker.Time = ((TimeOnly)currentActivity.StartTime).ToTimeSpan();
+            EndActivityTimeTimePicker.Time = ((TimeOnly)currentActivity.EndTime).ToTimeSpan();
+
         }
 
     }
@@ -55,6 +56,7 @@ public partial class EditActivityPage : ContentPage
         Activity newActivity = new Activity()
         {
 
+            Id = _activityId,
             EventId = _eventId,
             Name = ActivityNameTextField.Text,
             Description = ActivityDescriptionTextField.Text,
@@ -64,12 +66,8 @@ public partial class EditActivityPage : ContentPage
 
         };
 
-        Activity? updateActivity = await _apiService.UpdateObject<Activity>("Api/Activities/", _activityId, newActivity);
-
-        if (updateActivity != null)
-            await DisplayAlert("Activity Updated!", "Activity has been updated.", "Ok");
-        else
-            await DisplayAlert("Activity Failure", "Activity could not be updated.", "Ok");
+        await _apiService.UpdateObject<Activity>("Api/Activities/", _activityId, newActivity);
+        await DisplayAlert("Activity Updated!", "Activity has been updated.", "Ok");
 
         await Navigation.PopAsync();
 

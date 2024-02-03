@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EventPlannerMAUI.MVVM.View.ActivityDetailPage"
+             Title="Activity Details"
+             BindingContext="{Binding Activity}">
+    
+    <VerticalStackLayout>
+
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            Margin="10" >
+
+            <Label 
+                Text="{Binding Name}"
+                FontSize="Title"
+                HorizontalOptions="Center"
+                FontAttributes="Bold"
+                TextColor="Red"  />
+
+            <BoxView StyleClass="Divider" />
+
+        </StackLayout>
+
+        <StackLayout
+            HorizontalOptions="FillAndExpand" 
+            Margin="5,0,0,0" >
+
+            <StackLayout
+                Margin="0,0,0,10" >
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Event: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding Event.Name}" 
+                        FontSize="16" />
+
+                </StackLayout>
+                
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Room: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding Room}"
+                        FontSize="16" />
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,0,0,10" >
+
+                    <Label
+                        Text="Start Time: "
+                        FontSize="16" />
+
+                    <Label
+                        Text="{Binding StartTime}"
+                        Margin="0,0,10,0"
+                        FontSize="16" />
+
+                </StackLayout>
+
+                <StackLayout
+                    Orientation="Horizontal" >
+
+                    <Label
+                        Text="End Time: "
+                        FontSize="16" />
+
+                    <Label 
+                        Text="{Binding EndTime}"
+                        FontSize="16" />
+
+                </StackLayout>
+
+            </StackLayout>
+
+            <BoxView StyleClass="Divider" />
+
+            <Label
+                Text="Description: " 
+                Margin="0,10,0,10"
+                FontSize="16" />
+
+            <Label 
+                Text="{Binding Description}"
+                FontSize="16" />
+
+        </StackLayout>
+
+        <FlexLayout 
+            JustifyContent="SpaceEvenly" 
+            Wrap="Wrap" >
+
+            <Button 
+                x:Name="DeleteButton"
+                StyleClass="FilledButton"
+                Clicked="OnDeleteClick"
+                IsVisible="false"
+                Text="Delete" />
+
+            <Button
+                x:Name="EditButton"
+                StyleClass="FilledButton"
+                Clicked="OnEditClick"
+                IsVisible="false"
+                Text="Modify"/>
+
+
+        </FlexLayout>
+
+    </VerticalStackLayout>
+    
+</ContentPage>

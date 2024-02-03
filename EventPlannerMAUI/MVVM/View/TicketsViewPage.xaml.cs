@@ -18,29 +18,31 @@ public partial class TicketsViewPage : ContentPage
 		ShowTickets();
 
 	}
-	
+
 	private void OnRefresh(object sender, EventArgs e)
 	{
 
 		ShowTickets();
 
-	}
+    }
 
-	private async void ShowTickets()
+    private async void ShowTickets()
 	{
 
-		User? user = await _apiService.GetSpecific<User>("Api/User");
+        List<Event>? visitedEvents = await _apiService.GetSpecific<List<Event>>("Api/Events/VisitedEvents");
 
-		if (user != null)
-			EventTicketListView.ItemsSource = user.VisitedEvents;
+        if (visitedEvents != null)
+            EventTicketListView.ItemsSource = visitedEvents;
 
-	}
+    }
 
-	private async void OnOpenTicketTapped(object sender, EventArgs e)
-	{
-		ViewCell cell = sender as ViewCell;
-		int id = ((Event)cell.BindingContext).Id;
-		await Navigation.PushAsync(new QRTicketPage(id));
-	}
+    private async void OnOpenTicketTapped(object sender, EventArgs e)
+    {
+
+        ViewCell cell = sender as ViewCell;
+        int id = ((Event)cell.BindingContext).Id;
+        await Navigation.PushAsync(new QRTicketPage(id));
+
+    }
 
 }

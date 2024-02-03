@@ -15,7 +15,7 @@ namespace Library.Models
 
         public List<Event>? Events { get; set; }
 
-        public List<User>? Participants { get; set; }
+        public List<User>? Users { get; set; }
 
     }
     
