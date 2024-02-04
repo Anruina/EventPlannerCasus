@@ -54,7 +54,7 @@
                                     <Label
                                     Text="{Binding Date}"
                                     FontSize="Subtitle"
-                                    FontAttributes="Italic"/>
+                                    FontAttributes="Italic" />
                                     
                                 </StackLayout>
 
