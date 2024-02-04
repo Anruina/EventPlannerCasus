@@ -31,24 +31,31 @@
                             
                         </Grid.RowDefinitions>
                         <Border
-                            WidthRequest="300"
-                            HeightRequest="300"
+                            WidthRequest="50"
+                            HeightRequest="50"
                             StrokeThickness="2"
                             BackgroundColor="White"
                             StrokeShape="RoundRectangle 10">
-                            <Border.Shadow>
+                                <Border.Shadow>
                                 <Shadow 
                                     x:Name="BorderShadow"
                                     Brush="Black"
                                     Offset="1,0"
                                     Opacity=".2" />
-                            </Border.Shadow>
+                                 </Border.Shadow>
+                                <StackLayout>
+                                    
+                                    <Label
+                                    Text="{Binding Name}"
+                                    FontSize="Title"
+                                    FontAttributes="Bold"
+                                    TextColor="Black"/>
 
-                            <Label
-                                Text="{Binding Name}"
-                                FontSize="11"
-                                FontAttributes="Bold"
-                                TextColor="Black"/>
+                                    <Label
+                                        Text="{Binding Date}"
+                                        FontSize="Subtitle"
+                                        />
+                                </StackLayout>
 
                         </Border>
 
