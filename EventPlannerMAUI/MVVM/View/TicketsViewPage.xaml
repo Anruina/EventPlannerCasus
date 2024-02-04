@@ -52,9 +52,10 @@
                                     TextColor="Black"/>
 
                                     <Label
-                                        Text="{Binding Date}"
-                                        FontSize="Subtitle"
-                                        />
+                                    Text="{Binding Date}"
+                                    FontSize="Subtitle"
+                                    FontAttributes="Italic"/>
+                                    
                                 </StackLayout>
 
                         </Border>
