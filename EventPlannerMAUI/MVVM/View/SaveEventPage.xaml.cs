@@ -1,4 +1,5 @@
 using EventPlannerMAUI.MobileApp;
+using EventPlannerMAUI.MVVM.ViewModels;
 using Library.ApiService;
 using Library.Models;
 using Plugin.LocalNotification;
@@ -8,55 +9,27 @@ namespace EventPlannerMAUI.MVVM.View;
 public partial class SaveEventPage : ContentPage
 {
 
-    private readonly ApiService _apiService;
+    private SaveEventPageViewModel _viewModel;
 
 	public SaveEventPage()
 	{
 
 		InitializeComponent();
-        _apiService = ServiceLocator.apiService;        
+
+        _viewModel = new SaveEventPageViewModel();
+        BindingContext = _viewModel;
 
 	}
 
     private async void SaveButton_Clicked(object sender, EventArgs e)
     {
 
-        User? user = await _apiService.GetSpecific<User>("Api/User");
-        if (user == null || user.Type != UserType.Organizer)
-            await Navigation.PopAsync();
-
-        Event newEvent = new Event()
-        {
-
-            Name = EventNameTextField.Text,
-            Description = EventDescriptionTextField.Text,
-            Address = new Address()
-            {
-
-                City = EventCityTextField.Text,
-                Country = EventCountryTextField.Text,
-                PostalCode = EventPostalCodeTextField.Text,
-                Province = EventProvinceTextField.Text,
-                Street = EventStreetTextField.Text,
-                StreetNumber = EventStreetnumberTextField.Text,
-            
-            },
-            StartDate = new DateTime(DateOnly.FromDateTime((DateTime)StartDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)StartEventTimeTimePicker.Time)),
-            EndDate = new DateTime(DateOnly.FromDateTime((DateTime)EndDateDatePicker.Date), TimeOnly.FromTimeSpan((TimeSpan)EndEventTimeTimePicker.Time)),
-            OrganizerId = user.Id,
-            MaxParticipants = int.Parse(MaxPeopleTextField.Text),
-            Type = new EventType() { Name = TypeEventTextField.Text }
-
-        };
-
-        Event? createdEvent = await _apiService.CreateObject<Event>("Api/Events", newEvent);
-
-        if (createdEvent != null)
-            await DisplayAlert("Event Created", "Event has been created.", "Ok");
+        _viewModel.CreateEvent?.Execute(null);
 
         // notify organiser that event has been created!
         var request = new NotificationRequest
         {
+
             NotificationId = 1337,
             Title = "New Event available!",
             Subtitle = "Zuyd Events",
@@ -65,6 +38,7 @@ public partial class SaveEventPage : ContentPage
             BadgeNumber = 42,
             Schedule = new NotificationRequestSchedule
             {
+
                 NotifyTime = DateTime.Now.AddSeconds(5),
                 NotifyRepeatInterval = TimeSpan.FromSeconds(60),
 
@@ -72,7 +46,6 @@ public partial class SaveEventPage : ContentPage
         };
 
         await LocalNotificationCenter.Current.Show(request);
-
         await Navigation.PopAsync();
 
     }

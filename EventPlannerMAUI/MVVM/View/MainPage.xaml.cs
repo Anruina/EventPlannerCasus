@@ -9,13 +9,10 @@ namespace EventPlannerMAUI.MVVM.View
     public partial class MainPage : ContentPage
     {
 
-        private readonly ApiService _apiService;
-
         public MainPage()
         {
             
             InitializeComponent();
-            _apiService = ServiceLocator.apiService;
 
         }
 

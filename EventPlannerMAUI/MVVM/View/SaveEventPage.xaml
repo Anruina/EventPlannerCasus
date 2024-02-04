@@ -4,6 +4,7 @@
              xmlns:input="clr-namespace:InputKit.Shared.Controls;assembly=InputKit.Maui"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
+             xmlns:local="clr-namespace:EventPlannerMAUI.MVVM.ViewModels"
              x:Class="EventPlannerMAUI.MVVM.View.SaveEventPage"
              Title="Save Event" >
     
@@ -57,6 +58,7 @@
                         <material:TextField
                             x:Name="EventNameTextField"
                             Title="Name" 
+                            Text="{Binding EventName}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation/>
@@ -68,28 +70,31 @@
                         <material:EditorField
                             x:Name="EventDescriptionTextField"
                             Title="Description"
+                            Text="{Binding EventDescription}"
                             VerticalOptions="FillAndExpand"
                             AccentColor="Black">
-                            
+
                         </material:EditorField>
 
                         <material:TextField 
                             x:Name="TypeEventTextField"
                             Title="Type"
+                            Text="{Binding EventTypeName}"
                             AccentColor="Black" >
-                            
+
                             <validation:RequiredValidation/>
                             <validation:MinLengthValidation 
-                                MinLength="1" />
-                            
+                                    MinLength="1" />
+
                             <validation:MaxLengthValidation 
-                                MaxLength="20" />
-                            
+                                    MaxLength="20" />
+
                         </material:TextField>
 
                         <material:TextField
                             x:Name="MaxPeopleTextField"
                             Keyboard="Numeric"
+                            Text="{Binding MaxParticipants}"
                             Title="Maximum Participants"
                             AccentColor="Black" >
 
@@ -113,6 +118,7 @@
                         <material:TextField 
                             x:Name="EventStreetTextField"
                             Title="Street"
+                            Text="{Binding EventStreet}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation/>
@@ -128,6 +134,7 @@
                         <material:TextField 
                             x:Name="EventPostalCodeTextField"
                             Title="PostalCode"
+                            Text="{Binding EventPostalCode}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation/>
@@ -142,6 +149,7 @@
                         <material:TextField 
                             x:Name="EventStreetnumberTextField"
                             Title="Streetnumber"
+                            Text="{Binding EventStreetNumber}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation />
@@ -157,6 +165,7 @@
                         <material:TextField 
                             x:Name="EventCityTextField"
                             Title="City"
+                            Text="{Binding EventCity}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation />
@@ -172,6 +181,7 @@
                         <material:TextField 
                             x:Name="EventProvinceTextField"
                             Title="Province"
+                            Text="{Binding EventProvince}"
                             AccentColor="Black" >
                             
                             <validation:RequiredValidation />
@@ -187,6 +197,7 @@
                         <material:TextField 
                             x:Name="EventCountryTextField"
                             Title="Country"
+                            Text="{Binding EventCountry}"
                             AccentColor="Black" >
 
                             <validation:RequiredValidation/>
@@ -214,6 +225,7 @@
                         <material:TimePickerField 
                             x:Name="StartEventTimeTimePicker"
                             Title="Start Time"
+                            Time="{Binding StartTime}"
                             AllowClear="True"
                             AccentColor="Black" >
                             
@@ -230,6 +242,7 @@
                         <material:TimePickerField 
                             x:Name="EndEventTimeTimePicker"
                             Title="End Time"
+                            Time="{Binding EndTime}"
                             AllowClear="True"
                             AccentColor="Black" >
                             
@@ -246,6 +259,7 @@
                         <material:DatePickerField 
                             x:Name="StartDateDatePicker"
                             Title="Pick a start date"
+                            Date="{Binding StartDate}"
                             AllowClear="True" >
                             
                             <validation:RequiredValidation/>
@@ -258,6 +272,7 @@
                         <material:DatePickerField 
                             x:Name="EndDateDatePicker"
                             Title="Pick a end date"
+                            Date="{Binding EndDate}"
                             AllowClear="True" >
                             
                             <validation:RequiredValidation/>

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EventPlannerMAUI.MVVM.View.EventListPage"
+             xmlns:local="clr-namespace:EventPlannerMAUI.MVVM.ViewModels"
              Title="Events" >
 
     <NavigationPage.TitleView>
@@ -14,7 +15,7 @@
                 Clicked="OnAddEventClicked"
                 HorizontalOptions="End" 
                 Margin="5" 
-                IsVisible="False"/>
+                IsVisible="{Binding IsOrganizer}"/>
 
         </Grid>
         
@@ -25,12 +26,14 @@
         <SearchBar 
             x:Name="searchBar" 
             Placeholder="Search events"
-            SearchButtonPressed="OnSearchButtonPressed"/>
+            Text="{Binding SearchText}"
+            SearchCommand="{Binding SearchEvent}" />
          
 
         <ListView 
             x:Name="EventListView" 
             HasUnevenRows="True"
+            ItemsSource="{Binding Events}"
             SelectionMode="None"
             Margin="0,10,0,0" >
             
@@ -40,120 +43,188 @@
                     
                     <ViewCell
                         Tapped="OnTappedEvent">
-                        
-                        <StackLayout>
 
-                            <Label
-                                Text="{Binding Id}" 
-                                IsVisible="False" />
+                        <Grid
+                            ColumnSpacing="10">
 
-                            <Label 
-                                Text="{Binding Name}" 
-                                FontAttributes="Bold" 
-                                FontSize="20" />
+                            <Grid.RowDefinitions>
 
-                            <StackLayout
-                                Orientation="Horizontal" >
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
 
-                                <StackLayout
-                                    Orientation="Horizontal" 
-                                    Margin="0,0,10,0" >
-                                    
-                                    <Label
-                                        Text="Start Date: " />
+                            </Grid.RowDefinitions>
+                            <Border
+                                WidthRequest="320"
+                                HeightRequest="125"
+                                StrokeThickness="2"
+                                BackgroundColor="#ED1B34"
+                                StrokeShape="RoundRectangle 10">
 
-                                    <Label 
-                                        Text="{Binding StartDate.Day }" />
+                                <Border.Shadow>
+                                    <Shadow 
+                                        x:Name="BorderShadow"
+                                        Brush="Black"
+                                        Offset="1,0"
+                                        Opacity=".5" />
+                                </Border.Shadow>
 
-                                    <Label 
-                                        Text="/" />
-                                
-                                    <Label 
-                                        Text="{Binding StartDate.Month }" />
+                                <StackLayout>
 
                                     <Label
-                                        Text=" " />
+                                        Text="{Binding Name}"
+                                        FontSize="Title"
+                                        HorizontalOptions="Center"
+                                        FontAttributes="Bold"
+                                        TextColor="White"/>
 
-                                    <Label 
-                                        Text="{Binding StartDate.Hour }" />
+                                    <BoxView StyleClass="Divider"/>
+                                    <StackLayout
+                                        Orientation="Horizontal" 
+                                        Margin="0,0,10,0" 
+                                        HorizontalOptions="Center">
 
-                                    <Label 
-                                        Text=":" />
+                                        <Label
+                                            Text="Start Date: "
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
 
-                                    <Label 
-                                        Text="{Binding StartDate.Minute }" />
+                                        <Label 
+                                            Text="{Binding StartDate.Day }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="/"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Month }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label
+                                            Text=" " />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Hour }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text=":"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="{Binding StartDate.Minute }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Horizontal" 
+                                        Margin="0,0,10,0" 
+                                        HorizontalOptions="Center">
+
+                                        <Label
+                                            Text="End Date: "
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Day }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="/"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Month }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label
+                                            Text=" " />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Hour }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text=":"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                        <Label 
+                                            Text="{Binding EndDate.Minute }"
+                                            FontSize="Subtitle"
+                                            TextColor="White"
+                                            FontAttributes="Italic" />
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Orientation="Horizontal"
+                                        Margin="0,0,0,10"
+                                        HorizontalOptions="Center" >
+
+                                        <Label 
+                                            Text="Address: " 
+                                            FontSize="16"
+                                            TextColor="White"
+                                            VerticalOptions="Center"/>
+
+                                        <Label
+                                            Text="{Binding Address.Street}"
+                                            FontSize="16"
+                                            TextColor="White"
+                                            VerticalOptions="Center" />
+
+                                        <Label 
+                                            Text=" " />
+
+                                        <Label 
+                                            Text="{Binding Address.StreetNumber}" 
+                                            FontSize="16"
+                                            TextColor="White"
+                                            VerticalOptions="Center"/>
+
+                                        <Label
+                                            Text=" " />
+
+                                        <Label
+                                            Text="{Binding Address.City}"
+                                            FontSize="16"
+                                            TextColor="White"
+                                            VerticalOptions="Center" />
+
+                                    </StackLayout>
 
                                 </StackLayout>
 
-                                <StackLayout
-                                    Orientation="Horizontal" >
-                                
-                                    <Label 
-                                        Text=" End date: " />
+                            </Border>
 
-                                    <Label 
-                                        Text="{Binding EndDate.Day }" />
+                        </Grid>
 
-                                    <Label 
-                                        Text="/" />
-
-                                    <Label 
-                                        Text="{Binding EndDate.Month }" />
-
-                                    <Label
-                                        Text=" " />
-
-                                    <Label 
-                                        Text="{Binding EndDate.Hour }" />
-
-                                    <Label 
-                                        Text=":" />
-
-                                    <Label 
-                                        Text="{Binding EndDate.Minute }" />
-
-                                </StackLayout>
-
-                            </StackLayout>
-
-                            <StackLayout
-                                Orientation="Horizontal"
-                                Margin="0,0,0,10" >
-
-                                <Label 
-                                    Text="Address: " 
-                                    TextColor="#2C3E50"
-                                    FontSize="16"
-                                    VerticalOptions="Center"/>
-
-                                <Label
-                                    Text="{Binding Address.Street}"
-                                    TextColor="#2C3E50"
-                                    FontSize="16"
-                                    VerticalOptions="Center" />
-
-                                <Label 
-                                    Text=" " />
-
-                                <Label 
-                                    Text="{Binding Address.StreetNumber}" 
-                                    TextColor="#2C3E50"
-                                    FontSize="16"
-                                    VerticalOptions="Center"/>
-
-                                <Label
-                                    Text=" " />
-
-                                <Label
-                                    Text="{Binding Address.City}"
-                                    TextColor="#2C3E50"
-                                    FontSize="16"
-                                    VerticalOptions="Center" />
-
-                            </StackLayout>
-
-                        </StackLayout>
-                        
                     </ViewCell>
                     
                 </DataTemplate>

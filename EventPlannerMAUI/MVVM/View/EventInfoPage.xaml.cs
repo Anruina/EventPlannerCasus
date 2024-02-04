@@ -1,6 +1,7 @@
 using EventPlannerMAUI.MobileApp;
 using Library.ApiService;
 using Library.Models;
+using EventPlannerMAUI.MVVM.ViewModels;
 using Plugin.LocalNotification;
 
 
@@ -9,16 +10,13 @@ namespace EventPlannerMAUI.MVVM.View;
 public partial class EventInfoPage : ContentPage
 {
 
-	private readonly ApiService _apiService;
-
-    private User? _user;
-    public int EventId { get; set; }
+    private EventInfoPageViewModel _viewModel;
 
 	public EventInfoPage()
 	{
 
 		InitializeComponent();
-		_apiService = ServiceLocator.apiService;
+        _viewModel = new EventInfoPageViewModel();
 
     }
 
@@ -26,38 +24,36 @@ public partial class EventInfoPage : ContentPage
     {
         
         base.OnAppearing();
-        OnSetEventId(EventId);
+
+        if (_viewModel.CurrentEvent != null)
+            OnSetEventId(_viewModel.CurrentEvent.Id);
 
     }
 
     public async void OnSetEventId(int eventId)
 	{
 
-        EventId = eventId;
-        Event? currentEvent = await _apiService.GetSpecific<Event>("Api/Events/", EventId);
+        await _viewModel.OnRefresh(eventId);
+        BindingContext = _viewModel.CurrentEvent;
 
-        if (currentEvent != null)
+
+        if (_viewModel.SignedIn)
         {
 
-            BindingContext = currentEvent;
-            _user = await _apiService.GetSpecific<User>("Api/User");
-
-            if (currentEvent?.Users?.FirstOrDefault(u => u.Id == _user.Id) != null)
-            {
-
-                SignUpButton.Clicked += OnSignOutClick;
-                SignUpButton.Text = "Sign Out";
-
-            }
-            else
-                SignUpButton.Clicked += OnSignUpClick;
+            SignUpButton.Clicked += OnSignOutClick;
+            SignUpButton.Text = "Sign Out";
 
         }
+        else
+            SignUpButton.Clicked += OnSignUpClick;
 
-        User? user = await _apiService.GetSpecific<User>("Api/User");
-        if (user != null && user.Type == UserType.Organizer)
+        if (_viewModel.IsOwner)
+        {
+
             DeleteButton.IsVisible = true;
             EditButton.IsVisible = true;
+
+        }
 
     }
 
@@ -69,7 +65,7 @@ public partial class EventInfoPage : ContentPage
 		if (signOut)
 		{
 
-			await _apiService.UpdateObject<User>("Api/Events/SignOut/", EventId, new User { Id = _user.Id });
+            _viewModel?.SignOut?.Execute(null);
 			await DisplayAlert("Sign Out", "You successfully signed out for this event.", "Ok");
 
             SignUpButton.Clicked += OnSignUpClick;
@@ -82,7 +78,7 @@ public partial class EventInfoPage : ContentPage
     private async void OnSignUpClick(object? sender, EventArgs e)
     {
 
-        await _apiService.UpdateObject<User>("Api/Events/SignUp/", EventId, new User { Id = _user.Id });
+        _viewModel?.SignUp?.Execute(null);
 
         SignUpButton.Clicked += OnSignOutClick;
         SignUpButton.Text = "Sign Out";
@@ -115,17 +111,18 @@ public partial class EventInfoPage : ContentPage
         if (answer == true)
         {
 
-            await _apiService.DeleteObject("Api/Events/", EventId);
+            _viewModel?.Delete?.Execute(null);
             await Navigation.PopAsync();
 
         }
-
 
     }
 
     private async void OnEditClick(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new EditEventPage(EventId));
+
+        await Navigation.PushAsync(new EditEventPage(_viewModel.CurrentEvent.Id));
+
     }
 
 }
