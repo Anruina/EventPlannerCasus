@@ -31,8 +31,8 @@
 
                                 </Grid.RowDefinitions>
                                 <Border
-                                    WidthRequest="320"
-                                    HeightRequest="125"
+                                    WidthRequest="370"
+                                    HeightRequest="135"
                                     StrokeThickness="2"
                                     BackgroundColor="#ED1B34"
                                     StrokeShape="RoundRectangle 10">
