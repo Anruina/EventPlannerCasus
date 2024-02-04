@@ -5,13 +5,19 @@
              x:Class="EventPlannerMAUI.MVVM.View.EventDetailActivitySchedule"
              Title="Activities" >
 
-    <VerticalStackLayout>
+    <VerticalStackLayout
+        Spacing="10"
+        Margin="10,10,10,10">
 
         <Button 
             x:Name="AddActivityButton"
             Text="Add Activity" 
             Clicked="OnAddActivityClick"
-            IsVisible="False" />
+            IsVisible="False"
+            HeightRequest="40"
+            WidthRequest="170" />
+
+        <BoxView StyleClass="Divider"/>
 
         <ListView
             x:Name="ActivityListView"
