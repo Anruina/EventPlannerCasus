@@ -32,7 +32,10 @@
             HasUnevenRows="True"
             ItemSelected="OnSelectedEvent"
             SelectionMode="Single"
-            Margin="0,10,0,0" >
+            SeparatorVisibility="None"
+            Margin="0,10,0,0" 
+            IsPullToRefreshEnabled="True"
+            Refreshing="OnRefresh">
             
             <ListView.ItemTemplate>
                 

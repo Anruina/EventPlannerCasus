@@ -22,7 +22,8 @@
                     <ViewCell
                         Tapped="OnOpenTicketTapped">
                     
-                        <Grid>
+                        <Grid
+                            ColumnSpacing="10">
                             
                         <Grid.RowDefinitions>
                             
@@ -31,31 +32,132 @@
                             
                         </Grid.RowDefinitions>
                         <Border
-                            WidthRequest="50"
-                            HeightRequest="50"
+                            
+                            WidthRequest="320"
+                            HeightRequest="100"
                             StrokeThickness="2"
-                            BackgroundColor="White"
+                            BackgroundColor="#ED1B34"
                             StrokeShape="RoundRectangle 10">
+                            
                                 <Border.Shadow>
                                 <Shadow 
                                     x:Name="BorderShadow"
                                     Brush="Black"
                                     Offset="1,0"
-                                    Opacity=".2" />
+                                    Opacity=".5" />
                                  </Border.Shadow>
+                            
                                 <StackLayout>
                                     
                                     <Label
                                     Text="{Binding Name}"
                                     FontSize="Title"
+                                    HorizontalOptions="Center"
                                     FontAttributes="Bold"
-                                    TextColor="Black"/>
-
-                                    <Label
-                                    Text="{Binding Date}"
-                                    FontSize="Subtitle"
-                                    FontAttributes="Italic" />
+                                    TextColor="White"/>
                                     
+                                    <BoxView StyleClass="Divider"/>
+                                    <StackLayout
+                                    Orientation="Horizontal" 
+                                    Margin="0,0,10,0" 
+                                    HorizontalOptions="Center">
+                                        
+                                        <Label
+                                        Text="Start Date: "
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding StartDate.Day }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="/"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding StartDate.Month }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label
+                                        Text=" " />
+
+                                        <Label 
+                                        Text="{Binding StartDate.Hour }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text=":"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding StartDate.Minute }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+                                    </StackLayout>
+
+                                    <StackLayout
+                                    Orientation="Horizontal" 
+                                    Margin="0,0,10,0" 
+                                    HorizontalOptions="Center">
+
+                                        <Label
+                                        Text="End Date: "
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding EndDate.Day }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="/"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding EndDate.Month }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label
+                                        Text=" " />
+
+                                        <Label 
+                                        Text="{Binding EndDate.Hour }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text=":"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+
+                                        <Label 
+                                        Text="{Binding EndDate.Minute }"
+                                        FontSize="Subtitle"
+                                        TextColor="White"
+                                        FontAttributes="Italic" />
+                                    </StackLayout>
                                 </StackLayout>
 
                         </Border>
