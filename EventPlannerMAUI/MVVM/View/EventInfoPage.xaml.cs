@@ -1,6 +1,8 @@
 using EventPlannerMAUI.MobileApp;
 using Library.ApiService;
 using Library.Models;
+using Plugin.LocalNotification;
+
 
 namespace EventPlannerMAUI.MVVM.View;
 
@@ -8,8 +10,9 @@ public partial class EventInfoPage : ContentPage
 {
 
 	private readonly ApiService _apiService;
-	private User? _user;
-	public int EventId { get; set; }
+
+    private User? _user;
+    public int EventId { get; set; }
 
 	public EventInfoPage()
 	{
@@ -17,7 +20,7 @@ public partial class EventInfoPage : ContentPage
 		InitializeComponent();
 		_apiService = ServiceLocator.apiService;
 
-	}
+    }
 
     protected override void OnAppearing()
     {
@@ -77,14 +80,30 @@ public partial class EventInfoPage : ContentPage
     }
 
     private async void OnSignUpClick(object? sender, EventArgs e)
-	{
+    {
 
-		await _apiService.UpdateObject<User>("Api/Events/SignUp/", EventId, new User { Id = _user.Id });
+        await _apiService.UpdateObject<User>("Api/Events/SignUp/", EventId, new User { Id = _user.Id });
 
         SignUpButton.Clicked += OnSignOutClick;
         SignUpButton.Text = "Sign Out";
 
         await DisplayAlert("Sign Up", "You successfully signed up for this event.", "Ok");
+
+        //push notification that ticket is ready
+        var request = new NotificationRequest
+        {
+            NotificationId = 1337,
+            Title = $"You joined a event!",
+            Subtitle = "Zuyd Events",
+            Description = "You're QR ticket for entry has been created. You can find it under Tickets in the menu. Choose the event for which you want the ticket to show.",
+            BadgeNumber = 42,
+            Schedule = new NotificationRequestSchedule
+            {
+                NotifyTime = DateTime.Now.AddSeconds(5)
+            }
+        };
+
+        await LocalNotificationCenter.Current.Show(request);
 
     }
 

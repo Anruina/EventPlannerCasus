@@ -53,6 +53,7 @@
                     Source="zuydeventslogo.png"
                     HeightRequest="300"
                     WidthRequest="300"
+                    BackgroundColor="Transparent"
                     HorizontalOptions="Center"/>
 
                 </VerticalStackLayout>
