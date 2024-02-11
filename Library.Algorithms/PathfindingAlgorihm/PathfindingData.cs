@@ -65,10 +65,15 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B3.200B"] = new Node("B3.200B", 32.7f, 21.5f);
             ComplexPath["B3.200A"] = new Node("B3.200A", 32.7f, 23.8f);
             ComplexPath["C3.1 Hall"] = new Node("C3.1 Hall", 50.0f, 27.5f);
-            ComplexPath["C3.1 Stair"] = new Node("C3.1 Stair", 50.0f, 22.5f);
-            ComplexPath["B3.1 Stair"] = new Node("B3.1 Stair", 2.8f, 32.0f);
-            ComplexPath["B3.1 Exit"] = new Node("B3.1B Exit", 7.0f, 2.0f);
+            ComplexPath["C3.1 Stair"] = new Node("C3.1 Stair", 50.0f, 22.5f, false);
+            ComplexPath["B3.1 Stair"] = new Node("B3.1 Stair", 2.8f, 32.0f, false);
+            ComplexPath["B3.2 Exit"] = new Node("B3.1B Exit", 7.0f, 2.0f);
             ComplexPath["B3.104 Exit"] = new Node("B3.104 Exit", 40.3f, 1.5f);
+            ComplexPath["Start C3.1"] = new Node("Start C3.1", 66.0f, 27.0f);
+            ComplexPath["Middle C3.1"] = new Node("Middle C3.1", 71.0f, 33.0f);
+            ComplexPath["End C3.1"] = new Node("End C3.1", 70.0f, 48.0f);
+            ComplexPath["Stair End C3.1"] = new Node("Stair End C3.1", 74.0f, 48.0f, false);
+            ComplexPath["Elevator C3.1"] = new Node("Elevator C3.1", 73.5f, 51.0f, true, true);
 
             // Floor 2
             ComplexPath["B2.315"] = new Node("B2.315", 1.8f, 44.0f);
@@ -111,10 +116,15 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B2.202"] = new Node("B2.202", 29.7f, 63.5f);
             ComplexPath["B2.300"] = new Node("B2.300", 11.0f, 65.0f);
             ComplexPath["C2.1 Hall"] = new Node("C2.1 Hall", 50.0f, 68.5f);
-            ComplexPath["C2.1 Stair"] = new Node("C2.1 Stair", 50.0f, 63.5f);
-            ComplexPath["B2.1 Stair"] = new Node("B2.1 Stair", 2.7f, 72.5f);
+            ComplexPath["C2.1 Stair"] = new Node("C2.1 Stair", 50.0f, 63.5f, false);
+            ComplexPath["B2.1 Stair"] = new Node("B2.1 Stair", 2.7f, 72.5f, false);
             ComplexPath["B2.2 Exit"] = new Node("B2.2 Exit", 7.0f, 42.5f);
             ComplexPath["B2.104 Exit"] = new Node("B2.104 Exit", 40.3f, 42.5f);
+            ComplexPath["Start C2.1"] = new Node("Start C2.1", 66.0f, 67.0f);
+            ComplexPath["Middle C2.1"] = new Node("Middle C2.1", 71.0f, 73.0f);
+            ComplexPath["End C2.1"] = new Node("End C2.1", 70.0f, 88.0f);
+            ComplexPath["Stair End C2.1"] = new Node("Stair End C2.1", 74.0f, 88.0f, false);
+            ComplexPath["Elevator C2.1"] = new Node("Elevator C2.1", 73.5f, 91.5f, true, true);
 
             // Floor 1
             ComplexPath["B1.311A"] = new Node("B1.311A", 1.4f, 84.0f);
@@ -166,14 +176,67 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B1.06"] = new Node("B1.06", 38.5f, 107.0f);
             ComplexPath["B1.02"] = new Node("B1.02", 38.5f, 112.0f);
             ComplexPath["C1.1 Hall"] = new Node("C1.1 Hall", 50.0f, 108.5f);
-            ComplexPath["C1.1 Stair"] = new Node("C1.1 Stair", 50.0f, 104.5f);
-            ComplexPath["B1.1 Stair"] = new Node("B1.1 Stair", 2.3f, 113.5f);
+            ComplexPath["C1.1 Stair"] = new Node("C1.1 Stair", 50.0f, 104.5f, false);
+            ComplexPath["B1.1 Stair"] = new Node("B1.1 Stair", 2.3f, 113.5f, false);
             ComplexPath["B1.2 Exit"] = new Node("B1.2 Exit", 7.0f, 83.5f);
             ComplexPath["B1.104 Exit"] = new Node("B1.104 Exit", 40.3f, 83.5f);
+            ComplexPath["Start C1.1"] = new Node("Start C1.1", 66.0f, 108.0f);
+            ComplexPath["Middle C1.1"] = new Node("Middle C1.1", 71.0f, 115.0f);
+            ComplexPath["End C1.1"] = new Node("End C1.1", 70.0f, 129.0f);
+            ComplexPath["Stair End C1.1"] = new Node("Stair End C1.1", 74.0f, 129.0f, false);
+            ComplexPath["Elevator C1.1"] = new Node("Elevator C1.1", 73.5f, 132.5f, true, true);
+            ComplexPath["Stair Start C1.1"] = new Node("Stair Start C1.1", 56.5f, 113.5f, false);
+
+            // Floor0
+            ComplexPath["B0.309A"] = new Node("B0.309A", 2.6f, 124.0f);
+            ComplexPath["B0.309"] = new Node("B0.309", 5.6f, 130.0f);
+            ComplexPath["B0.307"] = new Node("B0.307", 2.6f, 138.2f);
+            ComplexPath["B0.305"] = new Node("B0.305", 2.6f, 141.2f);
+            ComplexPath["B0.2"] = new Node("B0.2", 6.0f, 140.0f);
+            ComplexPath["B0.1"] = new Node("B0.1", 6.0f, 149.4f);
+            ComplexPath["End B0.4"] = new Node("End B0.4", 18.0f, 149.4f);
+            ComplexPath["Start B0.4"] = new Node("Start B0.4", 36.0f, 149.4f);
+            ComplexPath["B0.5"] = new Node("B0.5", 41.0f, 149.4f);
+            ComplexPath["B0.6"] = new Node("B0.6", 41.0f, 141.4f);
+            ComplexPath["B0.3"] = new Node("B0.3", 5.5f, 156.0f);
+            ComplexPath["B0.229"] = new Node("B0.229", 6.0f, 160.0f);
+            ComplexPath["B0.231"] = new Node("B0.231", 1.5f, 160.8f);
+            ComplexPath["B0.233"] = new Node("B0.233", 1.5f, 158.0f);
+            ComplexPath["B0.227"] = new Node("B0.227", 9.0f, 160.0f);
+            ComplexPath["B0.225"] = new Node("B0.225", 8.0f, 155.0f);
+            ComplexPath["B0.223"] = new Node("B0.223", 11.0f, 155.0f);
+            ComplexPath["B0.204"] = new Node("B0.204", 12.5f, 140.5f);
+            ComplexPath["B0.204A"] = new Node("B0.204A", 17.5f, 140.0f);
+            ComplexPath["B0.202"] = new Node("B0.202", 17.5f, 146.0f);
+            ComplexPath["B0.200"] = new Node("B0.200", 22.6f, 140.5f);
+            ComplexPath["B0.107"] = new Node("B0.107", 31.0f, 140.5f);
+            ComplexPath["B0.107A"] = new Node("B0.107A", 27.5f, 143.5f);
+            ComplexPath["B0.219"] = new Node("B0.219", 16.8f, 154.8f);
+            ComplexPath["B0.215"] = new Node("B0.215", 23.5f, 154.8f);
+            ComplexPath["B0.211"] = new Node("B0.211", 28.8f, 154.8f);
+            ComplexPath["B0.209"] = new Node("B0.209", 33.5f, 154.8f);
+            ComplexPath["B0.205"] = new Node("B0.205", 38.8f, 154.8f);
+            ComplexPath["B0.201"] = new Node("B0.201", 44.5f, 154.8f);
+            ComplexPath["B0.104"] = new Node("B0.104", 42.0f, 132.5f);
+            ComplexPath["B0.104B"] = new Node("B0.104B", 44.0f, 124.5f);
+            ComplexPath["C0.1 Hall"] = new Node("C0.0 Hall", 50.0f, 148.5f);
+            ComplexPath["C0.1 Stair"] = new Node("C0.0 Stair", 50.0f, 144.5f, false);
+            ComplexPath["B0.1 Stair"] = new Node("B0.0 Stair", 2.3f, 153.5f, false);
+            ComplexPath["B0.2 Exit"] = new Node("B0.2 Exit", 7.0f, 124.5f);
+            ComplexPath["B0.104 Exit"] = new Node("B0.104 Exit", 40.3f, 123.5f);
+            ComplexPath["End C0.1"] = new Node("Stair End C0.1", 70.0f, 170.0f);
+            ComplexPath["Stair End C0.1"] = new Node("Stair End C0.1", 74.0f, 170.0f, false);
+            ComplexPath["Elevator C0.1"] = new Node("Elevator C0.1", 73.5f, 173.0f, true, true);
+            ComplexPath["Stair Start C0.1"] = new Node("Stair Start C0.1", 56.5f, 154.0f, false);
+            ComplexPath["Balie"] = new Node("Balie", 62.5f, 165.0f);
+            ComplexPath["Entrance"] = new Node("Entrance", 53.0f, 165.0f);
+            ComplexPath["Start C0.1"] = new Node("Start C0.1", 53.5f, 158.0f);
+            ComplexPath["Middle C0.1"] = new Node("Middle C0.1", 68.5f, 158.0f);
+            ComplexPath["C0.110"] = new Node("C0.110", 74.0f, 145.0f);
 
             // Floor 3
             ComplexPath["B3.309"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
-            ComplexPath["End B3.1B"].Neighbours = new List<Node> { ComplexPath["B3.309"], ComplexPath["Start B3.1B"], ComplexPath["B3.311"], ComplexPath["B3.310"], ComplexPath["B3.308"], ComplexPath["B3.306"], ComplexPath["B3.1 Exit"] };
+            ComplexPath["End B3.1B"].Neighbours = new List<Node> { ComplexPath["B3.309"], ComplexPath["Start B3.1B"], ComplexPath["B3.311"], ComplexPath["B3.310"], ComplexPath["B3.308"], ComplexPath["B3.306"], ComplexPath["B3.2 Exit"] };
             ComplexPath["Start B3.1B"].Neighbours = new List<Node> { ComplexPath["End B3.1B"], ComplexPath["B3.305"], ComplexPath["B3.1"], ComplexPath["B3.304"], ComplexPath["B3.302"], ComplexPath["B3.300"] };
             ComplexPath["B3.311"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
             ComplexPath["B3.305"].Neighbours = new List<Node> { ComplexPath["Start B3.1B"] };
@@ -216,11 +279,16 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B3.200"].Neighbours = new List<Node> { ComplexPath["B3.3"], ComplexPath["B3.200B"], ComplexPath["B3.200A"] };
             ComplexPath["B3.200B"].Neighbours = new List<Node> { ComplexPath["B3.200"] };
             ComplexPath["B3.200A"].Neighbours = new List<Node> { ComplexPath["B3.200"] };
-            ComplexPath["C3.1 Hall"].Neighbours = new List<Node> { ComplexPath["B3.3"], ComplexPath["C3.1 Stair"] };
+            ComplexPath["C3.1 Hall"].Neighbours = new List<Node> { ComplexPath["B3.3"], ComplexPath["C3.1 Stair"], ComplexPath["Start C3.1"] };
             ComplexPath["C3.1 Stair"].Neighbours = new List<Node> { ComplexPath["C3.1 Hall"], ComplexPath["C2.1 Stair"] };
             ComplexPath["B3.1 Stair"].Neighbours = new List<Node> { ComplexPath["B3.1"], ComplexPath["B2.1 Stair"] };
-            ComplexPath["B3.1 Exit"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
+            ComplexPath["B3.2 Exit"].Neighbours = new List<Node> { ComplexPath["End B3.1B"] };
             ComplexPath["B3.104 Exit"].Neighbours = new List<Node> { ComplexPath["B3.104"] };
+            ComplexPath["Start C3.1"].Neighbours = new List<Node> { ComplexPath["C3.1 Hall"], ComplexPath["Middle C3.1"] };
+            ComplexPath["Middle C3.1"].Neighbours = new List<Node> { ComplexPath["Start C3.1"], ComplexPath["End C3.1"] };
+            ComplexPath["End C3.1"].Neighbours = new List<Node> { ComplexPath["Middle C3.1"], ComplexPath["Stair End C3.1"], ComplexPath["Elevator C3.1"] };
+            ComplexPath["Stair End C3.1"].Neighbours = new List<Node> { ComplexPath["End C3.1"], ComplexPath["Stair End C2.1"] };
+            ComplexPath["Elevator C3.1"].Neighbours = new List<Node> { ComplexPath["End C3.1"], ComplexPath["Elevator C2.1"] };
 
             // Floor 2
             ComplexPath["B2.315"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
@@ -262,11 +330,16 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B2.200"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["Start B2.3"] };
             ComplexPath["B2.202"].Neighbours = new List<Node> { ComplexPath["Start B2.3"] };
             ComplexPath["B2.300"].Neighbours = new List<Node> { ComplexPath["B2.1"] };
-            ComplexPath["C2.1 Hall"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["C2.1 Stair"] };
+            ComplexPath["C2.1 Hall"].Neighbours = new List<Node> { ComplexPath["B2.4"], ComplexPath["C2.1 Stair"], ComplexPath["Start C2.1"] };
             ComplexPath["C2.1 Stair"].Neighbours = new List<Node> { ComplexPath["C2.1 Hall"], ComplexPath["C3.1 Stair"], ComplexPath["C1.1 Stair"] };
             ComplexPath["B2.1 Stair"].Neighbours = new List<Node> { ComplexPath["B2.1"], ComplexPath["B3.1 Stair"], ComplexPath["B1.1 Stair"] };
             ComplexPath["B2.2 Exit"].Neighbours = new List<Node> { ComplexPath["End B2.2"] };
             ComplexPath["B2.104 Exit"].Neighbours = new List<Node> { ComplexPath["B2.104"] };
+            ComplexPath["Start C2.1"].Neighbours = new List<Node> { ComplexPath["C2.1 Hall"], ComplexPath["Middle C2.1"] };
+            ComplexPath["Middle C2.1"].Neighbours = new List<Node> { ComplexPath["Start C2.1"], ComplexPath["End C2.1"] };
+            ComplexPath["End C2.1"].Neighbours = new List<Node> { ComplexPath["Middle C2.1"], ComplexPath["Stair End C2.1"], ComplexPath["Elevator C2.1"] };
+            ComplexPath["Stair End C2.1"].Neighbours = new List<Node> { ComplexPath["End C2.1"], ComplexPath["Stair End C3.1"], ComplexPath["Stair End C1.1"] };
+            ComplexPath["Elevator C2.1"].Neighbours = new List<Node> { ComplexPath["End C2.1"], ComplexPath["Elevator C3.1"], ComplexPath["Elevator C1.1"] };
 
             // Floor 1
             ComplexPath["B1.311A"].Neighbours = new List<Node> { ComplexPath["B1.311"] };
@@ -290,7 +363,7 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B1.005"].Neighbours = new List<Node> { ComplexPath["B1.1"], ComplexPath["B1.223"], ComplexPath["B1.221"] };
             ComplexPath["B1.221"].Neighbours = new List<Node> { ComplexPath["B1.005"] };
             ComplexPath["B1.223"].Neighbours = new List<Node> { ComplexPath["B1.005"] };
-            ComplexPath["B1.1 Stair"].Neighbours = new List<Node> { ComplexPath["B1.1"], ComplexPath["B2.1 Stair"] };
+            ComplexPath["B1.1 Stair"].Neighbours = new List<Node> { ComplexPath["B1.1"], ComplexPath["B2.1 Stair"], ComplexPath["B0.1 Stair"] };
             ComplexPath["End B1.3"].Neighbours = new List<Node> { ComplexPath["B1.1"], ComplexPath["Start B1.3"], ComplexPath["B1.206"], ComplexPath["B1.217"], ComplexPath["B1.204"], ComplexPath["B1.213"] };
             ComplexPath["B1.206"].Neighbours = new List<Node> { ComplexPath["End B1.3"] };
             ComplexPath["B1.217"].Neighbours = new List<Node> { ComplexPath["End B1.3"] };
@@ -310,8 +383,8 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B1.02"].Neighbours = new List<Node> { ComplexPath["B1.01"] };
             ComplexPath["B1.03"].Neighbours = new List<Node> { ComplexPath["B1.01"], ComplexPath["B1.04"] };
             ComplexPath["B1.04"].Neighbours = new List<Node> { ComplexPath["B1.03"] };
-            ComplexPath["C1.1 Hall"].Neighbours = new List<Node> { ComplexPath["B1.01"], ComplexPath["C1.1 Stair"] };
-            ComplexPath["C1.1 Stair"].Neighbours = new List<Node> { ComplexPath["C1.1 Hall"], ComplexPath["C2.1 Stair"] };
+            ComplexPath["C1.1 Hall"].Neighbours = new List<Node> { ComplexPath["B1.01"], ComplexPath["C1.1 Stair"], ComplexPath["Start C1.1"], ComplexPath["Stair Start C1.1"] };
+            ComplexPath["C1.1 Stair"].Neighbours = new List<Node> { ComplexPath["C1.1 Hall"], ComplexPath["C2.1 Stair"], ComplexPath["C0.1 Stair"] };
             ComplexPath["B1.09"].Neighbours = new List<Node> { ComplexPath["B1.01"], ComplexPath["B1.15"], ComplexPath["B1.14"], ComplexPath["B1.16"], ComplexPath["B1.17"], ComplexPath["B1.18"], ComplexPath["B1.19"], ComplexPath["B1.20"], ComplexPath["B1.22"], ComplexPath["B1.104 Exit"] };
             ComplexPath["B1.15"].Neighbours = new List<Node> { ComplexPath["B1.09"] };
             ComplexPath["B1.14"].Neighbours = new List<Node> { ComplexPath["B1.09"] };
@@ -322,6 +395,59 @@ namespace Library.Algorithms.PathfindingAlgorihm
             ComplexPath["B1.20"].Neighbours = new List<Node> { ComplexPath["B1.09"] };
             ComplexPath["B1.22"].Neighbours = new List<Node> { ComplexPath["B1.09"] };
             ComplexPath["B1.104 Exit"].Neighbours = new List<Node> { ComplexPath["B1.09"] };
+            ComplexPath["Start C1.1"].Neighbours = new List<Node> { ComplexPath["C1.1 Hall"], ComplexPath["Middle C1.1"], ComplexPath["Stair Start C1.1"] };
+            ComplexPath["Middle C1.1"].Neighbours = new List<Node> { ComplexPath["Start C1.1"], ComplexPath["End C1.1"] };
+            ComplexPath["End C1.1"].Neighbours = new List<Node> { ComplexPath["Middle C1.1"], ComplexPath["Stair End C1.1"], ComplexPath["Elevator C1.1"] };
+            ComplexPath["Stair End C1.1"].Neighbours = new List<Node> { ComplexPath["End C1.1"], ComplexPath["Stair End C2.1"], ComplexPath["Stair End C0.1"] };
+            ComplexPath["Elevator C1.1"].Neighbours = new List<Node> { ComplexPath["End C1.1"], ComplexPath["Elevator C2.1"], ComplexPath["Elevator C0.1"] };
+            ComplexPath["Stair Start C1.1"].Neighbours = new List<Node> { ComplexPath["C1.1 Hall"], ComplexPath["Start C1.1"], ComplexPath["Stair Start C0.1"] };
+
+            // Floor0
+            ComplexPath["B0.309A"].Neighbours = new List<Node> { ComplexPath["B0.309"] };
+            ComplexPath["B0.309"].Neighbours = new List<Node> { ComplexPath["B0.309A"], ComplexPath["B0.2 Exit"], ComplexPath["B0.2"] };
+            ComplexPath["B0.2 Exit"].Neighbours = new List<Node> { ComplexPath["B0.309"] };
+            ComplexPath["B0.2"].Neighbours = new List<Node> { ComplexPath["B0.309"], ComplexPath["B0.307"], ComplexPath["B0.305"], ComplexPath["B0.1"] };
+            ComplexPath["B0.307"].Neighbours = new List<Node> { ComplexPath["B0.2"] };
+            ComplexPath["B0.305"].Neighbours = new List<Node> { ComplexPath["B0.2"] };
+            ComplexPath["B0.1"].Neighbours = new List<Node> { ComplexPath["B0.2"], ComplexPath["B0.204"], ComplexPath["B0.3"], ComplexPath["B0.1 Stair"], ComplexPath["End B0.4"] };
+            ComplexPath["B0.3"].Neighbours = new List<Node> { ComplexPath["B0.1"], ComplexPath["B0.225"], ComplexPath["B0.227"], ComplexPath["B0.229"], ComplexPath["B0.231"], ComplexPath["B0.233"] };
+            ComplexPath["B0.225"].Neighbours = new List<Node> { ComplexPath["B0.3"] };
+            ComplexPath["B0.227"].Neighbours = new List<Node> { ComplexPath["B0.3"] };
+            ComplexPath["B0.229"].Neighbours = new List<Node> { ComplexPath["B0.3"] };
+            ComplexPath["B0.231"].Neighbours = new List<Node> { ComplexPath["B0.3"] };
+            ComplexPath["B0.233"].Neighbours = new List<Node> { ComplexPath["B0.3"] };
+            ComplexPath["B0.1 Stair"].Neighbours = new List<Node> { ComplexPath["B0.1"], ComplexPath["B1.1 Stair"] };
+            ComplexPath["B0.204"].Neighbours = new List<Node> { ComplexPath["B0.1"], ComplexPath["B0.204A"], ComplexPath["End B0.4"] };
+            ComplexPath["B0.204A"].Neighbours = new List<Node> { ComplexPath["B0.204"], ComplexPath["B0.202"], ComplexPath["B0.200"] };
+            ComplexPath["End B0.4"].Neighbours = new List<Node> { ComplexPath["B0.1"], ComplexPath["B0.204"], ComplexPath["B0.219"], ComplexPath["B0.215"], ComplexPath["B0.202"], ComplexPath["Start B0.4"], ComplexPath["B0.223"] };
+            ComplexPath["B0.219"].Neighbours = new List<Node> { ComplexPath["End B0.4"] };
+            ComplexPath["B0.215"].Neighbours = new List<Node> { ComplexPath["End B0.4"] };
+            ComplexPath["B0.202"].Neighbours = new List<Node> { ComplexPath["B0.204A"], ComplexPath["End B0.4"] };
+            ComplexPath["B0.200"].Neighbours = new List<Node> { ComplexPath["B0.204A"], ComplexPath["End B0.4"] };
+            ComplexPath["Start B0.4"].Neighbours = new List<Node> { ComplexPath["B0.211"], ComplexPath["B0.209"], ComplexPath["B0.205"], ComplexPath["B0.5"] };
+            ComplexPath["B0.211"].Neighbours = new List<Node> { ComplexPath["Start B0.4"] };
+            ComplexPath["B0.209"].Neighbours = new List<Node> { ComplexPath["Start B0.4"] };
+            ComplexPath["B0.205"].Neighbours = new List<Node> { ComplexPath["Start B0.4"], ComplexPath["B0.5"] };
+            ComplexPath["B0.201"].Neighbours = new List<Node> { ComplexPath["B0.5"] };
+            ComplexPath["B0.5"].Neighbours = new List<Node> { ComplexPath["Start B0.4"], ComplexPath["B0.205"], ComplexPath["B0.201"], ComplexPath["B0.6"], ComplexPath["C0.1 Hall"] };
+            ComplexPath["C0.1 Hall"].Neighbours = new List<Node> { ComplexPath["B0.5"], ComplexPath["C0.1 Stair"], ComplexPath["Start C0.1"] };
+            ComplexPath["C0.1 Stair"].Neighbours = new List<Node> { ComplexPath["C0.1 Hall"], ComplexPath["C1.1 Stair"] };
+            ComplexPath["B0.6"].Neighbours = new List<Node> { ComplexPath["B0.5"], ComplexPath["B0.107"], ComplexPath["B0.104"] };
+            ComplexPath["B0.107"].Neighbours = new List<Node> { ComplexPath["B0.6"], ComplexPath["B0.107A"] };
+            ComplexPath["B0.107A"].Neighbours = new List<Node> { ComplexPath["B0.107"] };
+            ComplexPath["B0.104"].Neighbours = new List<Node> { ComplexPath["B0.6"], ComplexPath["B0.104B"], ComplexPath["B0.104 Exit"] };
+            ComplexPath["B0.104B"].Neighbours = new List<Node> { ComplexPath["B0.104"] };
+            ComplexPath["B0.104 Exit"].Neighbours = new List<Node> { ComplexPath["B0.104"] };
+            ComplexPath["B0.223"].Neighbours = new List<Node> { ComplexPath["End B0.4"] };
+            ComplexPath["End C0.1"].Neighbours = new List<Node> { ComplexPath["Stair End C0.1"], ComplexPath["Elevator C0.1"], ComplexPath["Balie"], ComplexPath["Middle C0.1"] };
+            ComplexPath["Stair End C0.1"].Neighbours = new List<Node> { ComplexPath["End C0.1"], ComplexPath["Stair End C1.1"] };
+            ComplexPath["Elevator C0.1"].Neighbours = new List<Node> { ComplexPath["End C0.1"], ComplexPath["Elevator C1.1"] };
+            ComplexPath["Stair Start C0.1"].Neighbours = new List<Node> { ComplexPath["Start C0.1"], ComplexPath["Stair Start C1.1"] };
+            ComplexPath["Balie"].Neighbours = new List<Node> { ComplexPath["Entrance"], ComplexPath["End C0.1"], ComplexPath["Middle C0.1"], ComplexPath["Start C0.1"] };
+            ComplexPath["Entrance"].Neighbours = new List<Node> { ComplexPath["Balie"], ComplexPath["Start C0.1"] };
+            ComplexPath["Start C0.1"].Neighbours = new List<Node> { ComplexPath["Balie"], ComplexPath["Entrance"], ComplexPath["Stair Start C0.1"], ComplexPath["Middle C0.1"], ComplexPath["C0.1 Hall"] };
+            ComplexPath["Middle C0.1"].Neighbours = new List<Node> { ComplexPath["Start C0.1"], ComplexPath["C0.110"], ComplexPath["End C0.1"], ComplexPath["Balie"] };
+            ComplexPath["C0.110"].Neighbours = new List<Node> { ComplexPath["Middle C0.1"] };
 
         }
 

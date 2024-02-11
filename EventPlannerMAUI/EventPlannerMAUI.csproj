@@ -64,9 +64,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiImage Remove="Resources\Images\floor0.png" />
+	  <MauiImage Remove="Resources\Images\floor0c.png" />
 	  <MauiImage Remove="Resources\Images\floor1.png" />
+	  <MauiImage Remove="Resources\Images\floor1c.png" />
 	  <MauiImage Remove="Resources\Images\floor2.png" />
+	  <MauiImage Remove="Resources\Images\floor2c.png" />
 	  <MauiImage Remove="Resources\Images\floor3.png" />
+	  <MauiImage Remove="Resources\Images\floor3C.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -76,8 +81,13 @@
 	  <None Remove="Resources\Images\eventdetailtabbedpageicons\infoicon.svg" />
 	  <None Remove="Resources\Images\eventdetailtabbedpageicons\mapicon.svg" />
 	  <None Remove="Resources\Images\eventdetailtabbedpageicons\scheduleicon.svg" />
+	  <None Remove="Resources\Images\floor0.png" />
+	  <None Remove="Resources\Images\floor0c.png" />
 	  <None Remove="Resources\Images\floor1.png" />
+	  <None Remove="Resources\Images\floor1c.png" />
 	  <None Remove="Resources\Images\floor2.png" />
+	  <None Remove="Resources\Images\floor2c.png" />
+	  <None Remove="Resources\Images\floor3C.png" />
 	  <None Remove="Resources\Images\wallpaper1.png" />
 	  <None Remove="Resources\Images\wallpapereventplanner.png" />
 	  <None Remove="Resources\Images\zuydeventicon.png" />
@@ -86,14 +96,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Images\floor0.png" />
+	  <EmbeddedResource Include="Resources\Images\floor0c.png" />
 	  <EmbeddedResource Include="Resources\Images\floor1.png" />
+	  <EmbeddedResource Include="Resources\Images\floor1c.png" />
 	  <EmbeddedResource Include="Resources\Images\floor2.png" />
+	  <EmbeddedResource Include="Resources\Images\floor2c.png" />
 	  <EmbeddedResource Include="Resources\Images\floor3.png" />
+	  <EmbeddedResource Include="Resources\Images\floor3c.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Camera.MAUI" Version="1.4.4" />
 		<PackageReference Include="InputKit.Maui" Version="4.4.1" />
+		<PackageReference Include="JetBrains.dotMemoryUnit" Version="3.2.20220510" />
+		<PackageReference Include="JetBrains.Profiler.Api" Version="1.4.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.6" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />

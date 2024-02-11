@@ -19,25 +19,17 @@
 
         <Grid>
 
-            <Grid.RowDefinitions>
-                
-                <RowDefinition Height="420" />
-                <RowDefinition Height="*" />
-
-            </Grid.RowDefinitions>
-        
             <GraphicsView 
                 x:Name="MapView"
                 HorizontalOptions="StartAndExpand"
-                WidthRequest="440"
-                HeightRequest="983"
+                WidthRequest="840"
+                HeightRequest="1383"
                 Drawable="{StaticResource MyDrawable}" 
                 Scale="0.85"
                 TranslationX="0"
                 TranslationY="120"
                 AnchorX="0"
-                AnchorY="0"
-                Grid.Row="0">
+                AnchorY="0" >
 
                 <GraphicsView.GestureRecognizers>
 
@@ -52,9 +44,8 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All" 
                 Margin="0,128,0,0"
-                HorizontalOptions="StartAndExpand"
-                VerticalOptions="EndAndExpand"
-                Grid.Row="1"
+                HeightRequest="550"
+                HorizontalOptions="FillAndExpand"
                 BackgroundColor="#F2F2F2" >
 
                 <StackLayout
@@ -68,27 +59,41 @@
                         Color="Gray" />
 
                     <StackLayout
-                        VerticalOptions="CenterAndExpand"
                         Orientation="Horizontal">
 
-                        <Entry
-                            x:Name="StartPos"
-                            Placeholder="Start..." 
-                            VerticalOptions="End" 
-                            HorizontalOptions="FillAndExpand" />
+                        <Button 
+                            Text="Previouse"
+                            Clicked="OnPreviouseClick"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5" />
 
-                        <Entry 
-                            x:Name="EndPos"
-                            Placeholder="End..."
-                            VerticalOptions="End"
+                        <Button 
+                            Text="Next"
+                            Clicked="OnNextClick"
                             HorizontalOptions="FillAndExpand" />
 
                     </StackLayout>
 
-                    <Button 
-                        Text="Calculate path..." 
-                        Clicked="OnRefresh" />
+                    <Picker 
+                        x:Name="TransportPicker"
+                        VerticalOptions="CenterAndExpand" 
+                        Title="Means of transport"
+                        SelectedIndexChanged="OnSelectedTransportChanged" />
 
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HorizontalOptions="CenterAndExpand" >
+
+                        <CheckBox 
+                            x:Name="IsHandicappedCheckBox"
+                            CheckedChanged="IsHandicappedClick" />
+                        
+                        <Label 
+                            Text="Handicapped"
+                            VerticalOptions="CenterAndExpand" />
+
+                    </StackLayout>
+                    
                     <Button 
                         Text="Locate emercengy exit"
                         VerticalOptions="FillAndExpand"

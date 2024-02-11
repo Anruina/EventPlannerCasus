@@ -24,12 +24,16 @@ public partial class EventDetailTabbedPage : TabbedPage
         
         EventInfoPage? eventInfoPage = Children.OfType<EventInfoPage>().FirstOrDefault();
         EventDetailActivitySchedule? activitySchedule = Children.OfType<EventDetailActivitySchedule>().FirstOrDefault();
+        EventDetailMapPage? mapPage = Children.OfType<EventDetailMapPage>().FirstOrDefault();
 
         if (eventInfoPage != null)
             eventInfoPage.OnSetEventId(_eventId);
 
         if (activitySchedule != null)
             activitySchedule.OnSetEventId(_eventId);
+
+        if (mapPage != null)
+            mapPage.OnSetEventId(_eventId);
 
     }
 
